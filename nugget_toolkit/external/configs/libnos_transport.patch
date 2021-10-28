@@ -1,0 +1,8 @@
+42,43c42,43
+< #include <android-base/endian.h>
+< #include <log/log.h>
+---
+> #include <sys/endian.h>
+> #include <android/log.h>
+45a46
+> #include <log.h>

@@ -1,0 +1,1 @@
+int fuzz(bool verbose);

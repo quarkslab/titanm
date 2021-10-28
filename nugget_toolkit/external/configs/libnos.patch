@@ -1,0 +1,32 @@
+17a18
+> 
+18a20
+> 
+19a22
+> 
+24,25c27,28
+< NuggetClient::NuggetClient(const std::string& name)
+<     : device_name_(name), open_(false) {
+---
+> NuggetClient::NuggetClient()
+>     : NuggetClient("") {
+28,30c31,32
+< NuggetClient::NuggetClient(const char* name, uint32_t config)
+<     : device_name_(name ? name : ""), open_(false) {
+<   device_ = { .config = config };
+---
+> NuggetClient::NuggetClient(const std::string& device_name)
+>     : device_name_(device_name), open_(false) {
+32a35,37
+> NuggetClient::NuggetClient(const char* device_name)
+>     : device_name_(device_name ? device_name : ""), open_(false) {}
+> 
+85,92d89
+< }
+< 
+< uint32_t NuggetClient::Reset() const {
+< 
+<   if (!open_)
+<     return APP_ERROR_NOT_READY;
+< 
+<   return device_.ops.reset(device_.ctx);

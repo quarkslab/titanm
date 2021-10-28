@@ -1,0 +1,6 @@
+18c18
+< #include <log/log.h>
+---
+> #include <android/log.h>
+36a37
+> #include <log.h>
