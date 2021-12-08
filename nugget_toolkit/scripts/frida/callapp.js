@@ -14,7 +14,7 @@ var app_id, param;
 var request, request_size;
 var reply, reply_size_addr, reply_size;
 
-var libname = "parser.so";
+var libname = "libparser.so";
 var libdir = "/data/local/tmp/";
 var libpath = libdir + libname;
 
@@ -25,7 +25,7 @@ log("Found sanity function at: " + sanity_func);
 var sanity_res = sanity_func();
 log("Sanity function returned " + sanity_res);
 
-var parser_func = new NativeFunction(Module.findExportByName(libname, "_Z6parserjjPcjS_Pj"), "void", ["int", "int", "pointer", "int", "pointer", "pointer"]);
+var parser_func = new NativeFunction(Module.findExportByName(libname, "parser"), "void", ["int", "int", "pointer", "int", "pointer", "int"]);
 
 Interceptor.attach(moduleBase, {
     onEnter: function(args) {
@@ -63,7 +63,7 @@ Interceptor.attach(moduleBase, {
             log("Reply has null size");
         }
 
-        parser_func(app_id, param, request, request_size, reply, reply_size_addr);
+        parser_func(app_id, param, request, request_size, reply, reply_size);
 
         log("------------------------------------------------------------------------------------------------------");
     }
