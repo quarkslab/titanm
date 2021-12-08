@@ -1,6 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <nostypes.h>
 #include <stdint.h>
 
 #include <vector>
@@ -28,5 +29,8 @@ void print_vector(const std::vector<uint8_t> v);
 uint32_t reset();
 
 uint32_t generate_dump_blob();
+
+int callNosCmd(const char* body, const nostypes::NosApp* app,
+               const nostypes::NosCmd* cmd);
 
 #endif

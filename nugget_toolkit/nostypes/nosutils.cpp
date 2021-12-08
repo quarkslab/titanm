@@ -1,6 +1,5 @@
-#include "nosutils.h"
-
 #include <google/protobuf/text_format.h>
+#include <nosutils.h>
 #include <stdio.h>
 
 #include <iomanip>
@@ -28,18 +27,21 @@ class BetterByteFieldValuePrinter : public TextFormat::FastFieldValuePrinter {
   }
 };
 
-static std::pair<std::string, std::string> printMessagesToString(Message &req,
-                                                                 Message &res) {
-  std::string reqstr;
-  g_NosPrinter.PrintToString(req, &reqstr);
-  std::string resstr;
-  g_NosPrinter.PrintToString(res, &resstr);
-  return std::pair<std::string, std::string>(reqstr, resstr);
+std::string nostypes::messageToString(Message &m) {
+  std::string str;
+  g_NosPrinter.PrintToString(m, &str);
+  return str;
+}
+
+static std::pair<std::string, std::string> printCommandToString(Message &req,
+                                                                Message &res) {
+  return std::pair<std::string, std::string>(messageToString(req),
+                                             messageToString(res));
 }
 
 void nostypes::printNosCommand(std::string app, std::string cmd,
                                Message &request, Message &response) {
-  auto [reqstr, resstr] = printMessagesToString(request, response);
+  auto [reqstr, resstr] = printCommandToString(request, response);
 
   LOG("%s: %s\n{\n", app.c_str(), cmd.c_str());
   LOG("\tIN");

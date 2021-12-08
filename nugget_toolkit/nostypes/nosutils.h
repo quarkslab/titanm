@@ -17,6 +17,8 @@ void printNosCommand(std::string app, std::string cmd, Message &request,
                      Message &response);
 void initNosPrinter();
 
+std::string messageToString(Message &m);
+
 /* Find NosApp and NosCmd */
 void printAppList();
 

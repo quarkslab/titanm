@@ -1,4 +1,5 @@
 #include <fuzz.h>
+#include <nosutils.h>
 #include <rop.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -11,10 +12,12 @@
 #include <unordered_map>
 
 using namespace std;
+using namespace nostypes;
 
 void printHelp(char *arg) {
   cerr << "Usage:" << endl;
-  cerr << arg << " cmd [command arguments]" << std::endl;
+  cerr << arg << " cmd <task> <command> [json string for command arguments]"
+       << std::endl;
   cerr << arg << " keyblob" << std::endl;
   cerr << arg << " fuzz [--verbose|-v]" << std::endl;
   cerr << arg << " reset" << std::endl;
@@ -89,7 +92,31 @@ int main(int argc, char *argv[]) {
       break;
     }
     case mode::cmd: {
-      cout << "cmd" << endl;
+      // Example: nosclient cmd Keymaster AddRngEntropy {\"data\":\"test\"}
+
+      if (mode_args < 2) {
+        printHelp(argv[0]);
+        break;
+      }
+
+      auto app = NosApp::findNosAppByName(argv[2]);
+      if (!app) {
+        std::cerr << "Wrong app name: " << argv[2] << std::endl;
+        std::cerr << "Available apps:" << std::endl;
+        printAppList();
+        return 1;
+      }
+
+      auto cmd = app->findNosCmdByName(argv[3]);
+      if (!cmd) {
+        std::cerr << "Wrong cmd name: " << argv[3] << std::endl;
+        std::cerr << "Available cmds:" << std::endl;
+        app->printCmdList();
+        return 1;
+      }
+
+      return callNosCmd(mode_args == 2 ? nullptr : argv[4], app, cmd);
+
       break;
     }
     case mode::keyblob: {
