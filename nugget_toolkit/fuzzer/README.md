@@ -1,5 +1,5 @@
-#Titan M fuzzer
-`nosclient` integrates the `libprotobuf-mutator` to mutate messages and feed them to Titan M.
+# Titan M fuzzer
+`nosclient` integrates [`libprotobuf-mutator`](https://github.com/google/libprotobuf-mutator) to mutate messages and feed them to Titan M.
 
 ## Oracle
 The fuzzer adopts a black box approach, and only relies on the code returned after sending a command. In practice, this is the return code of `NuggetClient::CallApp`, forwarded from `nos_call_application`. Return codes greater than 1 are considered "interesting".

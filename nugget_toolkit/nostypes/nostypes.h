@@ -14,7 +14,7 @@ using namespace std;
 
 namespace nostypes {
 /* Commands declarations */
-enum WeaverCmdsId { GetConfig, Write, Read };
+enum WeaverCmdsId { GetConfig, Write, Read, EraseValue };
 enum KeymasterCmdsId {
   AddRngEntropy,
   GenerateKey,
@@ -369,6 +369,9 @@ inline std::map<int, NosCmd> weaverCmds = {
     {WeaverCmdsId::Read, NosCmd(WeaverCmdsId::Read, string("Read"),
                                 new nugget::app::weaver::ReadRequest(),
                                 new nugget::app::weaver::ReadResponse())},
+    {WeaverCmdsId::EraseValue, NosCmd(WeaverCmdsId::EraseValue, string("EraseValue"),
+                                new nugget::app::weaver::EraseValueRequest(),
+                                new nugget::app::weaver::EraseValueResponse())}
 };
 
 /* Identity commands declaration */

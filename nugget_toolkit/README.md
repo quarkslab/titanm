@@ -56,5 +56,5 @@ $ adb shell
 
 ```bash
 $ cd scripts
-$ LD_PRELOAD=../out/linux/libparser.so python parse_signrok-csv.py spi-trace.csv
+$ LD_PRELOAD=../out/libparser.so python parse_signrok-csv.py spi-trace.csv
 ```
