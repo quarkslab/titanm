@@ -1,18 +1,12 @@
-[submodule "external/libnos"]
-	path = external/libnos
+[submodule "nugget_toolkit/external/libnos"]
+	path = nugget_toolkit/external/libnos
 	url = https://android.googlesource.com/platform/external/nos/host/generic
-[submodule "external/libprotobuf-mutator"]
-	path = external/libprotobuf-mutator
-	url = https://github.com/google/libprotobuf-mutator.git
-[submodule "external/protobuf"]
-	path = external/protobuf
-	url = https://github.com/protocolbuffers/protobuf.git
 [submodule "nugget_toolkit/external/protobuf"]
 	path = nugget_toolkit/external/protobuf
 	url = https://github.com/protocolbuffers/protobuf.git
 [submodule "nugget_toolkit/external/libprotobuf-mutator"]
 	path = nugget_toolkit/external/libprotobuf-mutator
 	url = https://github.com/google/libprotobuf-mutator.git
-[submodule "nugget_toolkit/external/libnos"]
-	path = nugget_toolkit/external/libnos
-	url = https://android.googlesource.com/platform/external/nos/host/generic
+[submodule "nugget_toolkit/external/sqlite"]
+	path = nugget_toolkit/external/sqlite
+	url = https://android.googlesource.com/platform/external/sqlite

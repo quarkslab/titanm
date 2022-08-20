@@ -167,8 +167,49 @@ target_include_directories(nos_transport PUBLIC include ${libnos_datagram_dir}/i
 target_link_libraries(nos_transport android log)
 
 add_library(nos STATIC  ${libnos_dir}/NuggetClient.cpp)
-add_definitions(-DAPP_ERROR_NOT_READY=-55)
+# add_definitions(-DAPP_ERROR_NOT_READY=-55)
 target_include_directories(nos PUBLIC ${libnos_dir}/include ${libnos_transport_dir}/include ${libnos_datagram_dir}/include ${root_dir}/jni/include ${libnos_root_dir}/nugget/include/)
 target_link_libraries(nos android log nos_datagram nos_transport)
+
+# Sqlite3
+set(sqlite_rootdir sqlite/dist)
+set(sqlite3_cflags
+	"-DNDEBUG=1"
+        "-DHAVE_USLEEP=1"
+        "-DSQLITE_HAVE_ISNAN"
+        "-DSQLITE_DEFAULT_JOURNAL_SIZE_LIMIT=1048576"
+        "-DSQLITE_THREADSAFE=2"
+        "-DSQLITE_TEMP_STORE=3"
+        "-DSQLITE_POWERSAFE_OVERWRITE=1"
+        "-DSQLITE_DEFAULT_FILE_FORMAT=4"
+        "-DSQLITE_DEFAULT_AUTOVACUUM=1"
+        "-DSQLITE_ENABLE_MEMORY_MANAGEMENT=1"
+        "-DSQLITE_ENABLE_FTS3"
+        "-DSQLITE_ENABLE_FTS3_BACKWARDS"
+        "-DSQLITE_ENABLE_FTS4"
+        "-DSQLITE_OMIT_BUILTIN_TEST"
+        "-DSQLITE_OMIT_COMPILEOPTION_DIAGS"
+        "-DSQLITE_OMIT_LOAD_EXTENSION"
+        "-DSQLITE_DEFAULT_FILE_PERMISSIONS=0600"
+        "-DSQLITE_SECURE_DELETE"
+        "-DSQLITE_ENABLE_BATCH_ATOMIC_WRITE"
+        "-DBIONIC_IOCTL_NO_SIGNEDNESS_OVERLOAD"
+        "-DSQLITE_DEFAULT_LEGACY_ALTER_TABLE"
+        "-Wno-unused-parameter"
+        "-Werror"
+
+        // Default value causes sqlite3_open_v2 to return error if DB is missing.
+        "-ftrivial-auto-var-init=pattern"
+	"-DUSE_PREAD64"
+        "-Dfdatasync=fdatasync"
+        "-DHAVE_MALLOC_H=1"
+        "-DHAVE_MALLOC_USABLE_SIZE"
+        "-DSQLITE_ENABLE_DBSTAT_VTAB"
+	)
+
+add_library(sqlite STATIC ${sqlite_rootdir}/sqlite3.c ${sqlite_rootdir}/sqlite3ext.h ${sqlite_rootdir}/sqlite3.h)
+target_include_directories(sqlite PUBLIC ${root_dir}/jni/include)
+target_link_libraries(sqlite android log)
+ 
 
 endif()

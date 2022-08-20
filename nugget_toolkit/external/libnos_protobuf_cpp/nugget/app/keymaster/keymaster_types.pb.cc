@@ -433,16 +433,17 @@ const char descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_5ftype
   "Signature\022\t\n\001r\030\001 \001(\014\022\t\n\001s\030\002 \001(\014\"7\n\nVigoS"
   "ecret\022\020\n\010material\030\001 \001(\014\022\n\n\002iv\030\002 \001(\014\022\013\n\003t"
   "ag\030\003 \001(\014*5\n\025PresharedSecretStatus\022\013\n\007NOT"
-  "_SET\020\000\022\017\n\013ALREADY_SET\020\001*O\n\023AttestationSe"
+  "_SET\020\000\022\017\n\013ALREADY_SET\020\001*s\n\023AttestationSe"
   "lector\022\017\n\013ATTEST_TEST\020\000\022\020\n\014ATTEST_BATCH\020"
-  "\001\022\025\n\021ATTEST_INDIVIDUAL\020\002b\006proto3"
+  "\001\022\025\n\021ATTEST_INDIVIDUAL\020\002\022\017\n\013ATTEST_SELF\020"
+  "\003\022\021\n\rATTEST_CALLER\020\004b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto_deps[1] = {
   &::descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5fdefs_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto = {
-  false, false, 1392, descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto, "nugget/app/keymaster/keymaster_types.proto", 
+  false, false, 1428, descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto, "nugget/app/keymaster/keymaster_types.proto", 
   &descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto_once, descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto_deps, 1, 16,
   schemas, file_default_instances, TableStruct_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto::offsets,
   file_level_metadata_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto, file_level_enum_descriptors_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto, file_level_service_descriptors_nugget_2fapp_2fkeymaster_2fkeymaster_5ftypes_2eproto,
@@ -481,6 +482,8 @@ bool AttestationSelector_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+    case 3:
+    case 4:
       return true;
     default:
       return false;

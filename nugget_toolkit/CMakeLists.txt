@@ -32,8 +32,10 @@ set(libnos_include_dirs
 	external/libnos/libnos_datagram/include
 	external/libnos/libnos_transport/include)
 
-# Build NosTypes library
+# Headers for keystore v2 usage
+set(keymint_include_dir external/keymint/)
 
+# Build NosTypes library
 add_library (nostypes STATIC ${nos_type_src} ${nos_proto_SRC} ${nos_proto_HDR} jni/include ${libnos_include_dirs})
 
 TARGET_LINK_LIBRARIES(nostypes protobuf)
@@ -49,14 +51,17 @@ target_include_directories (parser PUBLIC ${PROTOBUF_ROOT}/include ${CMAKE_CURRE
 # Build client binary
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Android") # client is only built for Android (for now)
 
+# Sqlite3
+set(sqlite3_dir external/sqlite/dist/)
+
 # Build nosclient
 
-add_executable (nosclient client/nosclient.cpp ${nos_type_src} ${nos_proto_SRC} ${nos_proto_HDR} nostypes/nostypes.h ${libnos_include_dirs} exploits/rop.cpp client/utils.cpp fuzzer/fuzz.cpp)
+add_executable (nosclient client/nosclient.cpp ${nos_type_src} ${nos_proto_SRC} ${nos_proto_HDR} nostypes/nostypes.h ${libnos_include_dirs} exploits/rop.cpp client/utils.cpp client/keyblob_utils.cpp fuzzer/fuzz.cpp fuzzer/libradamsa.c)
 
-target_include_directories (nosclient PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${nos_proto_dir} jni/include nostypes/ external/libnos/nugget/include ${libnos_include_dirs} client fuzzer exploits external/libprotobuf-mutator)
+target_include_directories (nosclient PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${nos_proto_dir} jni/include nostypes/ external/libnos/nugget/include ${libnos_include_dirs} client fuzzer exploits external/libprotobuf-mutator ${keymint_include_dir} ${sqlite3_dir})
 # target_compile_options(nosclient PUBLIC -fsanitize=address -fno-omit-frame-pointer)
 # set_target_properties(nosclient PROPERTIES LINK_FLAGS -fsanitize=address)
 
-TARGET_LINK_LIBRARIES(nosclient android log protobuf nostypes nos nos_datagram nos_transport pm)
+TARGET_LINK_LIBRARIES(nosclient android log protobuf nostypes nos nos_datagram nos_transport pm sqlite)
 
 endif()

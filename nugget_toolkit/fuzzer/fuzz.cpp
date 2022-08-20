@@ -14,6 +14,12 @@
 #include "src/mutator.h"
 #include "utils.h"
 
+extern "C" {
+#include "radamsa.h"
+}
+
+#include <google/protobuf/util/json_util.h>
+
 using std::cout;
 using std::endl;
 
@@ -44,7 +50,7 @@ std::map<App, std::set<int>> app_blocklisted_cmds = {
 int fuzz(bool verbose) {
   protobuf_mutator::Mutator *mutator = new protobuf_mutator::Mutator();
 
-  bool continue_at_crash = false;
+  bool continue_at_crash = true;
 
   // some support variables for statistics
   int zeros = 0;
@@ -223,6 +229,12 @@ int fuzz(bool verbose) {
         cout << "App: " << app_id << ", command: " << cmd_id << endl;
         cout << "Body:" << endl;
         current_cmd->request->PrintDebugString();
+
+        std::string jsonstr;
+        google::protobuf::util::MessageToJsonString(*current_cmd->request,
+                                                    &jsonstr);
+        cout << jsonstr << endl;
+
         if (continue_at_crash) {
           cout << "Continuing after crash...\n";
           app_blocklisted_cmds[app_id].insert(cmd_id);
@@ -275,6 +287,91 @@ int fuzz(bool verbose) {
 
   delete (key_blob);
   delete (mutator);
+
+  return 0;
+}
+
+int fuzz_nugget() {
+  nos::NuggetClient client(CITADEL_DEV);
+  client.Open();
+
+  if (!client.IsOpen()) {
+    std::cerr << "Error opening client" << std::endl;
+    exit(1);
+  }
+
+  // a bit of stats on how it is going
+  std::map<int, std::map<int, int>> ret_codes;
+
+  // valid Nugget commands
+  std::vector<int> cmds = {0x100, 0x101, 0x200, 0xf000, 0xf001};
+  for (int i = 0; i <= 0x10; ++i) {
+    cmds.push_back(i);
+    ret_codes[i] = {};
+  }
+  int n_cmds = cmds.size();
+
+  // size vector to make room for the largest input possible
+  std::vector<uint8_t> request_vector;
+  // size of the input to mutate, will be the size of the previous mutation
+  size_t mutated_size = 0;
+  radamsa_init();
+  int seed = 4;
+  srand(seed);
+
+  uint32_t ret;
+  auto t_start = std::chrono::high_resolution_clock::now();
+
+  // disclaimer: we may be handling the vector size in a very inefficient
+  // manner. The thing is that CallApp() will set the size to request.size(),
+  // which would be always MAX_NUGGET_SIZE if we only resize the vector when we
+  // declare it. That's why we resize it at every iteration, with the actual
+  // mutated_size: maybe I'm dumb, but I don't see any other way to achieve that
+  // without touching libnos code.
+  for (long int i = 0; true; i++) {
+    request_vector.resize(MAX_NUGGET_SIZE);
+    // mutate input w/ radamsa
+    mutated_size = radamsa_inplace(request_vector.data(), mutated_size,
+                                   MAX_NUGGET_SIZE, seed);
+    request_vector.resize(mutated_size);
+    // choose cmd_id
+    int cmd_id = cmds[rand() % n_cmds];
+
+    // cout << "cmd_id = " << cmd_id << endl;
+    // string s (request_vector.begin(), request_vector.begin()+mutated_size);
+    // cout << "msg: " << s << " size: " << mutated_size << endl;
+
+    ret = client.CallApp(0, cmd_id, request_vector, nullptr);
+    if (ret_codes[cmd_id].find(ret) == ret_codes[cmd_id].end())
+      ret_codes[cmd_id][ret] = 1;
+    else
+      ret_codes[cmd_id][ret]++;
+    if (ret > 1) {
+      cout << "Error! Command: 0x" << hex << cmd_id << ", return code: " << ret
+           << endl;
+      print_vector(request_vector);
+      exit(1);
+    }
+    // cout << "ret = " << ret << endl;
+    if (i % 100 == 0) {
+      double elapsed_time_ms =
+          std::chrono::duration<double, std::milli>(
+              std::chrono::high_resolution_clock::now() - t_start)
+              .count();
+      cout << dec << i << " messages after " << elapsed_time_ms << "ms" << endl;
+      cout << "speed: " << (double)(1000 * i) / elapsed_time_ms << " msg/sec"
+           << endl;
+      cout << "Commands return codes:" << endl;
+      for (const auto &el : ret_codes) {
+        cout << "Command id 0x" << hex << el.first << endl;
+        for (const auto &codes : el.second)
+          cout << "\t" << codes.first << ": " << dec << codes.second << endl;
+      }
+      cout << endl;
+    }
+  }
+
+  client.Close();
 
   return 0;
 }

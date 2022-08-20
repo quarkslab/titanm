@@ -43,6 +43,32 @@ struct WICinitializeResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT WICinitializeResponseDefaultTypeInternal _WICinitializeResponse_default_instance_;
+constexpr WICinitializeForUpdateRequest::WICinitializeForUpdateRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : doctype_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , encryptedcredentialkeys_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , testcredential_(false){}
+struct WICinitializeForUpdateRequestDefaultTypeInternal {
+  constexpr WICinitializeForUpdateRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~WICinitializeForUpdateRequestDefaultTypeInternal() {}
+  union {
+    WICinitializeForUpdateRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT WICinitializeForUpdateRequestDefaultTypeInternal _WICinitializeForUpdateRequest_default_instance_;
+constexpr WICinitializeForUpdateResponse::WICinitializeForUpdateResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : result_(nullptr){}
+struct WICinitializeForUpdateResponseDefaultTypeInternal {
+  constexpr WICinitializeForUpdateResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~WICinitializeForUpdateResponseDefaultTypeInternal() {}
+  union {
+    WICinitializeForUpdateResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT WICinitializeForUpdateResponseDefaultTypeInternal _WICinitializeForUpdateResponse_default_instance_;
 constexpr WICcreateCredentialKeyRequest::WICcreateCredentialKeyRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
 struct WICcreateCredentialKeyRequestDefaultTypeInternal {
@@ -563,7 +589,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ICfinishRetrievalResponseDefaul
 constexpr ICdeleteCredentialRequest::ICdeleteCredentialRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : doctype_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , testcredential_(false)
+  , challenge_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , includechallenge_(false)
   , proofofdeletioncborsize_(0u){}
 struct ICdeleteCredentialRequestDefaultTypeInternal {
   constexpr ICdeleteCredentialRequestDefaultTypeInternal()
@@ -587,10 +614,38 @@ struct ICdeleteCredentialResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ICdeleteCredentialResponseDefaultTypeInternal _ICdeleteCredentialResponse_default_instance_;
+constexpr ICproveOwnershipRequest::ICproveOwnershipRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : doctype_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , challenge_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , testcredential_(false)
+  , proofofownershipcborsize_(0u){}
+struct ICproveOwnershipRequestDefaultTypeInternal {
+  constexpr ICproveOwnershipRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ICproveOwnershipRequestDefaultTypeInternal() {}
+  union {
+    ICproveOwnershipRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ICproveOwnershipRequestDefaultTypeInternal _ICproveOwnershipRequest_default_instance_;
+constexpr ICproveOwnershipResponse::ICproveOwnershipResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : signatureoftobesigned_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , result_(nullptr){}
+struct ICproveOwnershipResponseDefaultTypeInternal {
+  constexpr ICproveOwnershipResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ICproveOwnershipResponseDefaultTypeInternal() {}
+  union {
+    ICproveOwnershipResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ICproveOwnershipResponseDefaultTypeInternal _ICproveOwnershipResponse_default_instance_;
 }  // namespace identity
 }  // namespace app
 }  // namespace nugget
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_nugget_2fapp_2fidentity_2fidentity_2eproto[42];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_nugget_2fapp_2fidentity_2fidentity_2eproto[46];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_nugget_2fapp_2fidentity_2fidentity_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_nugget_2fapp_2fidentity_2fidentity_2eproto = nullptr;
 
@@ -607,6 +662,20 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fidentity_2fiden
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeResponse, result_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeForUpdateRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeForUpdateRequest, testcredential_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeForUpdateRequest, doctype_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeForUpdateRequest, encryptedcredentialkeys_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeForUpdateResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICinitializeForUpdateResponse, result_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::WICcreateCredentialKeyRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -902,7 +971,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fidentity_2fiden
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialRequest, doctype_),
-  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialRequest, testcredential_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialRequest, challenge_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialRequest, includechallenge_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialRequest, proofofdeletioncborsize_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialResponse, _internal_metadata_),
@@ -911,55 +981,77 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fidentity_2fiden
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialResponse, result_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICdeleteCredentialResponse, signatureoftobesigned_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipRequest, doctype_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipRequest, testcredential_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipRequest, challenge_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipRequest, proofofownershipcborsize_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipResponse, result_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::identity::ICproveOwnershipResponse, signatureoftobesigned_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::nugget::app::identity::WICinitializeRequest)},
   { 6, -1, sizeof(::nugget::app::identity::WICinitializeResponse)},
-  { 12, -1, sizeof(::nugget::app::identity::WICcreateCredentialKeyRequest)},
-  { 17, -1, sizeof(::nugget::app::identity::WICcreateCredentialKeyResponse)},
-  { 24, -1, sizeof(::nugget::app::identity::WICstartPersonalizationRequest)},
-  { 33, -1, sizeof(::nugget::app::identity::WICstartPersonalizationResponse)},
-  { 39, -1, sizeof(::nugget::app::identity::WICaddAccessControlProfileRequest)},
-  { 49, -1, sizeof(::nugget::app::identity::WICaddAccessControlProfileResponse)},
-  { 56, -1, sizeof(::nugget::app::identity::WICbeginAddEntryRequest)},
-  { 65, -1, sizeof(::nugget::app::identity::WICbeginAddEntryResponse)},
-  { 71, -1, sizeof(::nugget::app::identity::WICaddEntryValueRequest)},
-  { 80, -1, sizeof(::nugget::app::identity::WICaddEntryValueResponse)},
-  { 87, -1, sizeof(::nugget::app::identity::WICfinishAddingEntriesRequest)},
-  { 94, -1, sizeof(::nugget::app::identity::WICfinishAddingEntriesResponse)},
-  { 102, -1, sizeof(::nugget::app::identity::ICinitializeRequest)},
-  { 110, -1, sizeof(::nugget::app::identity::ICinitializeResponse)},
-  { 116, -1, sizeof(::nugget::app::identity::ICcreateEphemeralKeyPairRequest)},
-  { 121, -1, sizeof(::nugget::app::identity::ICcreateEphemeralKeyPairResponse)},
-  { 128, -1, sizeof(::nugget::app::identity::ICgenerateSigningKeyPairRequest)},
-  { 134, -1, sizeof(::nugget::app::identity::ICgenerateSigningKeyPairResponse)},
-  { 142, -1, sizeof(::nugget::app::identity::ICcreateAuthChallengeRequest)},
-  { 147, -1, sizeof(::nugget::app::identity::ICcreateAuthChallengeResponse)},
-  { 154, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntriesRequest)},
-  { 159, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntriesResponse)},
-  { 165, -1, sizeof(::nugget::app::identity::ICsetAuthTokenRequest)},
-  { 180, -1, sizeof(::nugget::app::identity::ICsetAuthTokenResponse)},
-  { 186, -1, sizeof(::nugget::app::identity::ICpushReaderCertRequest)},
-  { 199, -1, sizeof(::nugget::app::identity::ICpushReaderCertResponse)},
-  { 205, -1, sizeof(::nugget::app::identity::ICvalidateAccessControlProfileRequest)},
-  { 218, -1, sizeof(::nugget::app::identity::ICvalidateAccessControlProfileResponse)},
-  { 225, -1, sizeof(::nugget::app::identity::ICvalidateRequestMessageRequest)},
-  { 234, -1, sizeof(::nugget::app::identity::ICvalidateRequestMessageResponse)},
-  { 240, -1, sizeof(::nugget::app::identity::ICcalcMacKeyRequest)},
-  { 251, -1, sizeof(::nugget::app::identity::ICcalcMacKeyResponse)},
-  { 257, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntryValueRequest)},
-  { 267, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntryValueResponse)},
-  { 273, -1, sizeof(::nugget::app::identity::ICretrieveEntryValueRequest)},
-  { 282, -1, sizeof(::nugget::app::identity::ICretrieveEntryValueResponse)},
-  { 289, -1, sizeof(::nugget::app::identity::ICfinishRetrievalRequest)},
-  { 294, -1, sizeof(::nugget::app::identity::ICfinishRetrievalResponse)},
-  { 301, -1, sizeof(::nugget::app::identity::ICdeleteCredentialRequest)},
-  { 309, -1, sizeof(::nugget::app::identity::ICdeleteCredentialResponse)},
+  { 12, -1, sizeof(::nugget::app::identity::WICinitializeForUpdateRequest)},
+  { 20, -1, sizeof(::nugget::app::identity::WICinitializeForUpdateResponse)},
+  { 26, -1, sizeof(::nugget::app::identity::WICcreateCredentialKeyRequest)},
+  { 31, -1, sizeof(::nugget::app::identity::WICcreateCredentialKeyResponse)},
+  { 38, -1, sizeof(::nugget::app::identity::WICstartPersonalizationRequest)},
+  { 47, -1, sizeof(::nugget::app::identity::WICstartPersonalizationResponse)},
+  { 53, -1, sizeof(::nugget::app::identity::WICaddAccessControlProfileRequest)},
+  { 63, -1, sizeof(::nugget::app::identity::WICaddAccessControlProfileResponse)},
+  { 70, -1, sizeof(::nugget::app::identity::WICbeginAddEntryRequest)},
+  { 79, -1, sizeof(::nugget::app::identity::WICbeginAddEntryResponse)},
+  { 85, -1, sizeof(::nugget::app::identity::WICaddEntryValueRequest)},
+  { 94, -1, sizeof(::nugget::app::identity::WICaddEntryValueResponse)},
+  { 101, -1, sizeof(::nugget::app::identity::WICfinishAddingEntriesRequest)},
+  { 108, -1, sizeof(::nugget::app::identity::WICfinishAddingEntriesResponse)},
+  { 116, -1, sizeof(::nugget::app::identity::ICinitializeRequest)},
+  { 124, -1, sizeof(::nugget::app::identity::ICinitializeResponse)},
+  { 130, -1, sizeof(::nugget::app::identity::ICcreateEphemeralKeyPairRequest)},
+  { 135, -1, sizeof(::nugget::app::identity::ICcreateEphemeralKeyPairResponse)},
+  { 142, -1, sizeof(::nugget::app::identity::ICgenerateSigningKeyPairRequest)},
+  { 148, -1, sizeof(::nugget::app::identity::ICgenerateSigningKeyPairResponse)},
+  { 156, -1, sizeof(::nugget::app::identity::ICcreateAuthChallengeRequest)},
+  { 161, -1, sizeof(::nugget::app::identity::ICcreateAuthChallengeResponse)},
+  { 168, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntriesRequest)},
+  { 173, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntriesResponse)},
+  { 179, -1, sizeof(::nugget::app::identity::ICsetAuthTokenRequest)},
+  { 194, -1, sizeof(::nugget::app::identity::ICsetAuthTokenResponse)},
+  { 200, -1, sizeof(::nugget::app::identity::ICpushReaderCertRequest)},
+  { 213, -1, sizeof(::nugget::app::identity::ICpushReaderCertResponse)},
+  { 219, -1, sizeof(::nugget::app::identity::ICvalidateAccessControlProfileRequest)},
+  { 232, -1, sizeof(::nugget::app::identity::ICvalidateAccessControlProfileResponse)},
+  { 239, -1, sizeof(::nugget::app::identity::ICvalidateRequestMessageRequest)},
+  { 248, -1, sizeof(::nugget::app::identity::ICvalidateRequestMessageResponse)},
+  { 254, -1, sizeof(::nugget::app::identity::ICcalcMacKeyRequest)},
+  { 265, -1, sizeof(::nugget::app::identity::ICcalcMacKeyResponse)},
+  { 271, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntryValueRequest)},
+  { 281, -1, sizeof(::nugget::app::identity::ICstartRetrieveEntryValueResponse)},
+  { 287, -1, sizeof(::nugget::app::identity::ICretrieveEntryValueRequest)},
+  { 296, -1, sizeof(::nugget::app::identity::ICretrieveEntryValueResponse)},
+  { 303, -1, sizeof(::nugget::app::identity::ICfinishRetrievalRequest)},
+  { 308, -1, sizeof(::nugget::app::identity::ICfinishRetrievalResponse)},
+  { 315, -1, sizeof(::nugget::app::identity::ICdeleteCredentialRequest)},
+  { 324, -1, sizeof(::nugget::app::identity::ICdeleteCredentialResponse)},
+  { 331, -1, sizeof(::nugget::app::identity::ICproveOwnershipRequest)},
+  { 340, -1, sizeof(::nugget::app::identity::ICproveOwnershipResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICinitializeRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICinitializeResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICinitializeForUpdateRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICinitializeForUpdateResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICcreateCredentialKeyRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICcreateCredentialKeyResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_WICstartPersonalizationRequest_default_instance_),
@@ -1000,6 +1092,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_ICfinishRetrievalResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_ICdeleteCredentialRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_ICdeleteCredentialResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_ICproveOwnershipRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::identity::_ICproveOwnershipResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_nugget_2fapp_2fidentity_2fidentity_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -1010,179 +1104,196 @@ const char descriptor_table_protodef_nugget_2fapp_2fidentity_2fidentity_2eproto[
   "tions.proto\".\n\024WICinitializeRequest\022\026\n\016t"
   "estCredential\030\001 \001(\010\"D\n\025WICinitializeResp"
   "onse\022+\n\006result\030\001 \001(\0132\033.nugget.app.identi"
-  "ty.Result\"\037\n\035WICcreateCredentialKeyReque"
-  "st\"`\n\036WICcreateCredentialKeyResponse\022+\n\006"
-  "result\030\001 \001(\0132\033.nugget.app.identity.Resul"
-  "t\022\021\n\tpublickey\030\002 \001(\014\"\222\001\n\036WICstartPersona"
-  "lizationRequest\022!\n\031accessControlProfileC"
-  "ount\030\001 \001(\r\022\023\n\013entryCounts\030\002 \001(\014\022\017\n\007docTy"
-  "pe\030\003 \001(\014\022\'\n\037expectedProofOfProvisioningS"
-  "ize\030\004 \001(\r\"N\n\037WICstartPersonalizationResp"
-  "onse\022+\n\006result\030\001 \001(\0132\033.nugget.app.identi"
-  "ty.Result\"\233\001\n!WICaddAccessControlProfile"
-  "Request\022\n\n\002id\030\001 \001(\r\022\031\n\021readerCertificate"
-  "\030\002 \001(\014\022\"\n\032userAuthenticationRequired\030\003 \001"
-  "(\010\022\025\n\rtimeoutMillis\030\004 \001(\004\022\024\n\014secureUserI"
-  "d\030\005 \001(\004\"^\n\"WICaddAccessControlProfileRes"
-  "ponse\022+\n\006result\030\001 \001(\0132\033.nugget.app.ident"
-  "ity.Result\022\013\n\003mac\030\002 \001(\014\"n\n\027WICbeginAddEn"
-  "tryRequest\022\037\n\027accessControlProfileIds\030\001 "
-  "\001(\014\022\021\n\tnameSpace\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\021\n\t"
-  "entrySize\030\004 \001(\004\"G\n\030WICbeginAddEntryRespo"
+  "ty.Result\"i\n\035WICinitializeForUpdateReque"
+  "st\022\026\n\016testCredential\030\001 \001(\010\022\017\n\007docType\030\002 "
+  "\001(\014\022\037\n\027encryptedCredentialKeys\030\003 \001(\014\"M\n\036"
+  "WICinitializeForUpdateResponse\022+\n\006result"
+  "\030\001 \001(\0132\033.nugget.app.identity.Result\"\037\n\035W"
+  "ICcreateCredentialKeyRequest\"`\n\036WICcreat"
+  "eCredentialKeyResponse\022+\n\006result\030\001 \001(\0132\033"
+  ".nugget.app.identity.Result\022\021\n\tpublickey"
+  "\030\002 \001(\014\"\222\001\n\036WICstartPersonalizationReques"
+  "t\022!\n\031accessControlProfileCount\030\001 \001(\r\022\023\n\013"
+  "entryCounts\030\002 \001(\014\022\017\n\007docType\030\003 \001(\014\022\'\n\037ex"
+  "pectedProofOfProvisioningSize\030\004 \001(\r\"N\n\037W"
+  "ICstartPersonalizationResponse\022+\n\006result"
+  "\030\001 \001(\0132\033.nugget.app.identity.Result\"\233\001\n!"
+  "WICaddAccessControlProfileRequest\022\n\n\002id\030"
+  "\001 \001(\r\022\031\n\021readerCertificate\030\002 \001(\014\022\"\n\032user"
+  "AuthenticationRequired\030\003 \001(\010\022\025\n\rtimeoutM"
+  "illis\030\004 \001(\004\022\024\n\014secureUserId\030\005 \001(\004\"^\n\"WIC"
+  "addAccessControlProfileResponse\022+\n\006resul"
+  "t\030\001 \001(\0132\033.nugget.app.identity.Result\022\013\n\003"
+  "mac\030\002 \001(\014\"n\n\027WICbeginAddEntryRequest\022\037\n\027"
+  "accessControlProfileIds\030\001 \001(\014\022\021\n\tnameSpa"
+  "ce\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\021\n\tentrySize\030\004 \001("
+  "\004\"G\n\030WICbeginAddEntryResponse\022+\n\006result\030"
+  "\001 \001(\0132\033.nugget.app.identity.Result\"l\n\027WI"
+  "CaddEntryValueRequest\022\037\n\027accessControlPr"
+  "ofileIds\030\001 \001(\014\022\021\n\tnameSpace\030\002 \001(\t\022\014\n\004nam"
+  "e\030\003 \001(\t\022\017\n\007content\030\004 \001(\014\"b\n\030WICaddEntryV"
+  "alueResponse\022+\n\006result\030\001 \001(\0132\033.nugget.ap"
+  "p.identity.Result\022\031\n\021encrypted_content\030\002"
+  " \001(\014\"H\n\035WICfinishAddingEntriesRequest\022\017\n"
+  "\007docType\030\001 \001(\014\022\026\n\016testCredential\030\002 \001(\010\"\204"
+  "\001\n\036WICfinishAddingEntriesResponse\022+\n\006res"
+  "ult\030\001 \001(\0132\033.nugget.app.identity.Result\022\035"
+  "\n\025signatureOfToBeSigned\030\002 \001(\014\022\026\n\016credent"
+  "ialData\030\003 \001(\014\"_\n\023ICinitializeRequest\022\026\n\016"
+  "testCredential\030\001 \001(\010\022\017\n\007docType\030\002 \001(\014\022\037\n"
+  "\027encryptedCredentialKeys\030\003 \001(\014\"C\n\024ICinit"
+  "ializeResponse\022+\n\006result\030\001 \001(\0132\033.nugget."
+  "app.identity.Result\"!\n\037ICcreateEphemeral"
+  "KeyPairRequest\"f\n ICcreateEphemeralKeyPa"
+  "irResponse\022+\n\006result\030\001 \001(\0132\033.nugget.app."
+  "identity.Result\022\025\n\rephemeralPriv\030\002 \001(\014\"2"
+  "\n\037ICgenerateSigningKeyPairRequest\022\017\n\007doc"
+  "Type\030\001 \001(\014\"~\n ICgenerateSigningKeyPairRe"
+  "sponse\022+\n\006result\030\001 \001(\0132\033.nugget.app.iden"
+  "tity.Result\022\026\n\016SigningKeyBlob\030\002 \001(\014\022\025\n\rs"
+  "igningPubKey\030\003 \001(\014\"\036\n\034ICcreateAuthChalle"
+  "ngeRequest\"_\n\035ICcreateAuthChallengeRespo"
   "nse\022+\n\006result\030\001 \001(\0132\033.nugget.app.identit"
-  "y.Result\"l\n\027WICaddEntryValueRequest\022\037\n\027a"
-  "ccessControlProfileIds\030\001 \001(\014\022\021\n\tnameSpac"
-  "e\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\017\n\007content\030\004 \001(\014\"b"
-  "\n\030WICaddEntryValueResponse\022+\n\006result\030\001 \001"
-  "(\0132\033.nugget.app.identity.Result\022\031\n\021encry"
-  "pted_content\030\002 \001(\014\"H\n\035WICfinishAddingEnt"
-  "riesRequest\022\017\n\007docType\030\001 \001(\014\022\026\n\016testCred"
-  "ential\030\002 \001(\010\"\204\001\n\036WICfinishAddingEntriesR"
-  "esponse\022+\n\006result\030\001 \001(\0132\033.nugget.app.ide"
-  "ntity.Result\022\035\n\025signatureOfToBeSigned\030\002 "
-  "\001(\014\022\026\n\016credentialData\030\003 \001(\014\"_\n\023ICinitial"
-  "izeRequest\022\026\n\016testCredential\030\001 \001(\010\022\017\n\007do"
-  "cType\030\002 \001(\014\022\037\n\027encryptedCredentialKeys\030\003"
-  " \001(\014\"C\n\024ICinitializeResponse\022+\n\006result\030\001"
-  " \001(\0132\033.nugget.app.identity.Result\"!\n\037ICc"
-  "reateEphemeralKeyPairRequest\"f\n ICcreate"
-  "EphemeralKeyPairResponse\022+\n\006result\030\001 \001(\013"
-  "2\033.nugget.app.identity.Result\022\025\n\rephemer"
-  "alPriv\030\002 \001(\014\"2\n\037ICgenerateSigningKeyPair"
-  "Request\022\017\n\007docType\030\001 \001(\014\"~\n ICgenerateSi"
-  "gningKeyPairResponse\022+\n\006result\030\001 \001(\0132\033.n"
-  "ugget.app.identity.Result\022\026\n\016SigningKeyB"
-  "lob\030\002 \001(\014\022\025\n\rsigningPubKey\030\003 \001(\014\"\036\n\034ICcr"
-  "eateAuthChallengeRequest\"_\n\035ICcreateAuth"
-  "ChallengeResponse\022+\n\006result\030\001 \001(\0132\033.nugg"
-  "et.app.identity.Result\022\021\n\tchallenge\030\002 \001("
-  "\004\"\037\n\035ICstartRetrieveEntriesRequest\"M\n\036IC"
-  "startRetrieveEntriesResponse\022+\n\006result\030\001"
-  " \001(\0132\033.nugget.app.identity.Result\"\252\002\n\025IC"
-  "setAuthTokenRequest\022\021\n\tchallenge\030\001 \001(\004\022\024"
-  "\n\014secureUserId\030\002 \001(\004\022\027\n\017authenticatorId\030"
-  "\003 \001(\004\022!\n\031hardwareAuthenticatorType\030\004 \001(\r"
-  "\022\021\n\ttimeStamp\030\005 \001(\004\022\013\n\003mac\030\006 \001(\014\022\"\n\032veri"
-  "ficationTokenChallenge\030\007 \001(\004\022\"\n\032verifica"
-  "tionTokenTimestamp\030\010 \001(\004\022&\n\036verification"
-  "TokenSecurityLevel\030\t \001(\r\022\034\n\024verification"
-  "TokenMac\030\n \001(\014\"E\n\026ICsetAuthTokenResponse"
-  "\022+\n\006result\030\001 \001(\0132\033.nugget.app.identity.R"
-  "esult\"\326\001\n\027ICpushReaderCertRequest\022\020\n\010x50"
-  "9Cert\030\001 \001(\014\022\034\n\024tbsCertificateOffset\030\002 \001("
-  "\r\022\032\n\022tbsCertificateSize\030\003 \001(\r\022\027\n\017signatu"
-  "reOffset\030\004 \001(\r\022\025\n\rsignatureSize\030\005 \001(\r\022\027\n"
-  "\017publicKeyOffset\030\006 \001(\r\022\025\n\rpublicKeySize\030"
-  "\007 \001(\r\022\017\n\007signAlg\030\010 \001(\r\"G\n\030ICpushReaderCe"
-  "rtResponse\022+\n\006result\030\001 \001(\0132\033.nugget.app."
-  "identity.Result\"\334\001\n%ICvalidateAccessCont"
-  "rolProfileRequest\022\n\n\002id\030\001 \001(\r\022\031\n\021readerC"
-  "ertificate\030\002 \001(\014\022\"\n\032userAuthenticationRe"
-  "quired\030\003 \001(\010\022\025\n\rtimeoutMillis\030\004 \001(\r\022\024\n\014s"
-  "ecureUserId\030\005 \001(\004\022\013\n\003mac\030\006 \001(\014\022\027\n\017public"
-  "KeyOffset\030\007 \001(\r\022\025\n\rpublicKeysize\030\010 \001(\r\"l"
-  "\n&ICvalidateAccessControlProfileResponse"
-  "\022+\n\006result\030\001 \001(\0132\033.nugget.app.identity.R"
-  "esult\022\025\n\raccessGranted\030\002 \001(\010\"\216\001\n\037ICvalid"
-  "ateRequestMessageRequest\022\031\n\021sessionTrans"
-  "cript\030\001 \001(\014\022\026\n\016requestMessage\030\002 \001(\014\022\023\n\013c"
-  "oseSignAlg\030\003 \001(\r\022#\n\033readerSignatureOfToB"
-  "eSigned\030\004 \001(\014\"O\n ICvalidateRequestMessag"
-  "eResponse\022+\n\006result\030\001 \001(\0132\033.nugget.app.i"
-  "dentity.Result\"\305\001\n\023ICcalcMacKeyRequest\022\031"
-  "\n\021sessionTranscript\030\001 \001(\014\022 \n\030readerEphem"
-  "eralPublicKey\030\002 \001(\014\022\026\n\016signingKeyBlob\030\003 "
-  "\001(\014\022\017\n\007docType\030\004 \001(\014\022\037\n\027numNamespacesWit"
-  "hValues\030\005 \001(\r\022\'\n\037expectedProofOfProvisio"
-  "ningSize\030\006 \001(\r\"C\n\024ICcalcMacKeyResponse\022+"
-  "\n\006result\030\001 \001(\0132\033.nugget.app.identity.Res"
-  "ult\"\227\001\n ICstartRetrieveEntryValueRequest"
-  "\022\021\n\tnameSpace\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\036\n\026new"
-  "NamespaceNumEntries\030\003 \001(\r\022\021\n\tentrySize\030\004"
-  " \001(\r\022\037\n\027accessControlProfileIds\030\005 \001(\014\"a\n"
-  "!ICstartRetrieveEntryValueResponse\022<\n\021ac"
-  "cessCheckResult\030\001 \001(\0132!.nugget.app.ident"
-  "ity.AccessResult\"y\n\033ICretrieveEntryValue"
-  "Request\022\030\n\020encryptedContent\030\001 \001(\014\022\021\n\tnam"
-  "eSpace\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\037\n\027accessCont"
-  "rolProfileIds\030\004 \001(\014\"\\\n\034ICretrieveEntryVa"
-  "lueResponse\022+\n\006result\030\001 \001(\0132\033.nugget.app"
-  ".identity.Result\022\017\n\007content\030\002 \001(\014\"\032\n\030ICf"
-  "inishRetrievalRequest\"U\n\031ICfinishRetriev"
-  "alResponse\022+\n\006result\030\001 \001(\0132\033.nugget.app."
-  "identity.Result\022\013\n\003mac\030\002 \001(\014\"e\n\031ICdelete"
-  "CredentialRequest\022\017\n\007docType\030\001 \001(\014\022\026\n\016te"
-  "stCredential\030\002 \001(\010\022\037\n\027proofOfDeletionCbo"
-  "rSize\030\003 \001(\r\"h\n\032ICdeleteCredentialRespons"
-  "e\022+\n\006result\030\001 \001(\0132\033.nugget.app.identity."
-  "Result\022\035\n\025signatureOfToBeSigned\030\002 \001(\0142\357\024"
-  "\n\010Identity\022f\n\rWICinitialize\022).nugget.app"
-  ".identity.WICinitializeRequest\032*.nugget."
-  "app.identity.WICinitializeResponse\022\201\001\n\026W"
-  "ICcreateCredentialKey\0222.nugget.app.ident"
-  "ity.WICcreateCredentialKeyRequest\0323.nugg"
-  "et.app.identity.WICcreateCredentialKeyRe"
-  "sponse\022\204\001\n\027WICstartPersonalization\0223.nug"
-  "get.app.identity.WICstartPersonalization"
-  "Request\0324.nugget.app.identity.WICstartPe"
-  "rsonalizationResponse\022\215\001\n\032WICaddAccessCo"
-  "ntrolProfile\0226.nugget.app.identity.WICad"
-  "dAccessControlProfileRequest\0327.nugget.ap"
-  "p.identity.WICaddAccessControlProfileRes"
-  "ponse\022o\n\020WICbeginAddEntry\022,.nugget.app.i"
-  "dentity.WICbeginAddEntryRequest\032-.nugget"
-  ".app.identity.WICbeginAddEntryResponse\022o"
-  "\n\020WICaddEntryValue\022,.nugget.app.identity"
-  ".WICaddEntryValueRequest\032-.nugget.app.id"
-  "entity.WICaddEntryValueResponse\022\201\001\n\026WICf"
-  "inishAddingEntries\0222.nugget.app.identity"
-  ".WICfinishAddingEntriesRequest\0323.nugget."
-  "app.identity.WICfinishAddingEntriesRespo"
-  "nse\022c\n\014ICinitialize\022(.nugget.app.identit"
-  "y.ICinitializeRequest\032).nugget.app.ident"
-  "ity.ICinitializeResponse\022\207\001\n\030ICcreateEph"
-  "emeralKeyPair\0224.nugget.app.identity.ICcr"
-  "eateEphemeralKeyPairRequest\0325.nugget.app"
-  ".identity.ICcreateEphemeralKeyPairRespon"
-  "se\022\207\001\n\030ICgenerateSigningKeyPair\0224.nugget"
-  ".app.identity.ICgenerateSigningKeyPairRe"
-  "quest\0325.nugget.app.identity.ICgenerateSi"
-  "gningKeyPairResponse\022~\n\025ICcreateAuthChal"
-  "lenge\0221.nugget.app.identity.ICcreateAuth"
-  "ChallengeRequest\0322.nugget.app.identity.I"
-  "CcreateAuthChallengeResponse\022\201\001\n\026ICstart"
-  "RetrieveEntries\0222.nugget.app.identity.IC"
-  "startRetrieveEntriesRequest\0323.nugget.app"
-  ".identity.ICstartRetrieveEntriesResponse"
-  "\022i\n\016ICsetAuthToken\022*.nugget.app.identity"
-  ".ICsetAuthTokenRequest\032+.nugget.app.iden"
-  "tity.ICsetAuthTokenResponse\022o\n\020ICpushRea"
-  "derCert\022,.nugget.app.identity.ICpushRead"
-  "erCertRequest\032-.nugget.app.identity.ICpu"
-  "shReaderCertResponse\022\231\001\n\036ICvalidateAcces"
-  "sControlProfile\022:.nugget.app.identity.IC"
-  "validateAccessControlProfileRequest\032;.nu"
-  "gget.app.identity.ICvalidateAccessContro"
-  "lProfileResponse\022\207\001\n\030ICvalidateRequestMe"
-  "ssage\0224.nugget.app.identity.ICvalidateRe"
-  "questMessageRequest\0325.nugget.app.identit"
-  "y.ICvalidateRequestMessageResponse\022c\n\014IC"
-  "calcMacKey\022(.nugget.app.identity.ICcalcM"
-  "acKeyRequest\032).nugget.app.identity.ICcal"
-  "cMacKeyResponse\022\212\001\n\031ICstartRetrieveEntry"
-  "Value\0225.nugget.app.identity.ICstartRetri"
-  "eveEntryValueRequest\0326.nugget.app.identi"
-  "ty.ICstartRetrieveEntryValueResponse\022{\n\024"
-  "ICretrieveEntryValue\0220.nugget.app.identi"
-  "ty.ICretrieveEntryValueRequest\0321.nugget."
-  "app.identity.ICretrieveEntryValueRespons"
-  "e\022r\n\021ICfinishRetrieval\022-.nugget.app.iden"
-  "tity.ICfinishRetrievalRequest\032..nugget.a"
-  "pp.identity.ICfinishRetrievalResponse\022u\n"
-  "\022ICdeleteCredential\022..nugget.app.identit"
-  "y.ICdeleteCredentialRequest\032/.nugget.app"
-  ".identity.ICdeleteCredentialResponse\032!\202}"
-  "\010IDENTITY\212}\010Identity\220}\001\230}\200\010\240}\200\010b\006proto3"
+  "y.Result\022\021\n\tchallenge\030\002 \001(\004\"\037\n\035ICstartRe"
+  "trieveEntriesRequest\"M\n\036ICstartRetrieveE"
+  "ntriesResponse\022+\n\006result\030\001 \001(\0132\033.nugget."
+  "app.identity.Result\"\252\002\n\025ICsetAuthTokenRe"
+  "quest\022\021\n\tchallenge\030\001 \001(\004\022\024\n\014secureUserId"
+  "\030\002 \001(\004\022\027\n\017authenticatorId\030\003 \001(\004\022!\n\031hardw"
+  "areAuthenticatorType\030\004 \001(\r\022\021\n\ttimeStamp\030"
+  "\005 \001(\004\022\013\n\003mac\030\006 \001(\014\022\"\n\032verificationTokenC"
+  "hallenge\030\007 \001(\004\022\"\n\032verificationTokenTimes"
+  "tamp\030\010 \001(\004\022&\n\036verificationTokenSecurityL"
+  "evel\030\t \001(\r\022\034\n\024verificationTokenMac\030\n \001(\014"
+  "\"E\n\026ICsetAuthTokenResponse\022+\n\006result\030\001 \001"
+  "(\0132\033.nugget.app.identity.Result\"\326\001\n\027ICpu"
+  "shReaderCertRequest\022\020\n\010x509Cert\030\001 \001(\014\022\034\n"
+  "\024tbsCertificateOffset\030\002 \001(\r\022\032\n\022tbsCertif"
+  "icateSize\030\003 \001(\r\022\027\n\017signatureOffset\030\004 \001(\r"
+  "\022\025\n\rsignatureSize\030\005 \001(\r\022\027\n\017publicKeyOffs"
+  "et\030\006 \001(\r\022\025\n\rpublicKeySize\030\007 \001(\r\022\017\n\007signA"
+  "lg\030\010 \001(\r\"G\n\030ICpushReaderCertResponse\022+\n\006"
+  "result\030\001 \001(\0132\033.nugget.app.identity.Resul"
+  "t\"\334\001\n%ICvalidateAccessControlProfileRequ"
+  "est\022\n\n\002id\030\001 \001(\r\022\031\n\021readerCertificate\030\002 \001"
+  "(\014\022\"\n\032userAuthenticationRequired\030\003 \001(\010\022\025"
+  "\n\rtimeoutMillis\030\004 \001(\r\022\024\n\014secureUserId\030\005 "
+  "\001(\004\022\013\n\003mac\030\006 \001(\014\022\027\n\017publicKeyOffset\030\007 \001("
+  "\r\022\025\n\rpublicKeysize\030\010 \001(\r\"l\n&ICvalidateAc"
+  "cessControlProfileResponse\022+\n\006result\030\001 \001"
+  "(\0132\033.nugget.app.identity.Result\022\025\n\racces"
+  "sGranted\030\002 \001(\010\"\216\001\n\037ICvalidateRequestMess"
+  "ageRequest\022\031\n\021sessionTranscript\030\001 \001(\014\022\026\n"
+  "\016requestMessage\030\002 \001(\014\022\023\n\013coseSignAlg\030\003 \001"
+  "(\r\022#\n\033readerSignatureOfToBeSigned\030\004 \001(\014\""
+  "O\n ICvalidateRequestMessageResponse\022+\n\006r"
+  "esult\030\001 \001(\0132\033.nugget.app.identity.Result"
+  "\"\305\001\n\023ICcalcMacKeyRequest\022\031\n\021sessionTrans"
+  "cript\030\001 \001(\014\022 \n\030readerEphemeralPublicKey\030"
+  "\002 \001(\014\022\026\n\016signingKeyBlob\030\003 \001(\014\022\017\n\007docType"
+  "\030\004 \001(\014\022\037\n\027numNamespacesWithValues\030\005 \001(\r\022"
+  "\'\n\037expectedProofOfProvisioningSize\030\006 \001(\r"
+  "\"C\n\024ICcalcMacKeyResponse\022+\n\006result\030\001 \001(\013"
+  "2\033.nugget.app.identity.Result\"\227\001\n ICstar"
+  "tRetrieveEntryValueRequest\022\021\n\tnameSpace\030"
+  "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\036\n\026newNamespaceNumEn"
+  "tries\030\003 \001(\r\022\021\n\tentrySize\030\004 \001(\r\022\037\n\027access"
+  "ControlProfileIds\030\005 \001(\014\"a\n!ICstartRetrie"
+  "veEntryValueResponse\022<\n\021accessCheckResul"
+  "t\030\001 \001(\0132!.nugget.app.identity.AccessResu"
+  "lt\"y\n\033ICretrieveEntryValueRequest\022\030\n\020enc"
+  "ryptedContent\030\001 \001(\014\022\021\n\tnameSpace\030\002 \001(\t\022\014"
+  "\n\004name\030\003 \001(\t\022\037\n\027accessControlProfileIds\030"
+  "\004 \001(\014\"\\\n\034ICretrieveEntryValueResponse\022+\n"
+  "\006result\030\001 \001(\0132\033.nugget.app.identity.Resu"
+  "lt\022\017\n\007content\030\002 \001(\014\"\032\n\030ICfinishRetrieval"
+  "Request\"U\n\031ICfinishRetrievalResponse\022+\n\006"
+  "result\030\001 \001(\0132\033.nugget.app.identity.Resul"
+  "t\022\013\n\003mac\030\002 \001(\014\"z\n\031ICdeleteCredentialRequ"
+  "est\022\017\n\007docType\030\001 \001(\014\022\021\n\tchallenge\030\002 \001(\014\022"
+  "\030\n\020includeChallenge\030\003 \001(\010\022\037\n\027proofOfDele"
+  "tionCborSize\030\004 \001(\r\"h\n\032ICdeleteCredential"
+  "Response\022+\n\006result\030\001 \001(\0132\033.nugget.app.id"
+  "entity.Result\022\035\n\025signatureOfToBeSigned\030\002"
+  " \001(\014\"w\n\027ICproveOwnershipRequest\022\017\n\007docTy"
+  "pe\030\001 \001(\014\022\026\n\016testCredential\030\002 \001(\010\022\021\n\tchal"
+  "lenge\030\003 \001(\014\022 \n\030proofOfOwnershipCborSize\030"
+  "\004 \001(\r\"f\n\030ICproveOwnershipResponse\022+\n\006res"
+  "ult\030\001 \001(\0132\033.nugget.app.identity.Result\022\035"
+  "\n\025signatureOfToBeSigned\030\002 \001(\0142\344\026\n\010Identi"
+  "ty\022f\n\rWICinitialize\022).nugget.app.identit"
+  "y.WICinitializeRequest\032*.nugget.app.iden"
+  "tity.WICinitializeResponse\022\201\001\n\026WICinitia"
+  "lizeForUpdate\0222.nugget.app.identity.WICi"
+  "nitializeForUpdateRequest\0323.nugget.app.i"
+  "dentity.WICinitializeForUpdateResponse\022\201"
+  "\001\n\026WICcreateCredentialKey\0222.nugget.app.i"
+  "dentity.WICcreateCredentialKeyRequest\0323."
+  "nugget.app.identity.WICcreateCredentialK"
+  "eyResponse\022\204\001\n\027WICstartPersonalization\0223"
+  ".nugget.app.identity.WICstartPersonaliza"
+  "tionRequest\0324.nugget.app.identity.WICsta"
+  "rtPersonalizationResponse\022\215\001\n\032WICaddAcce"
+  "ssControlProfile\0226.nugget.app.identity.W"
+  "ICaddAccessControlProfileRequest\0327.nugge"
+  "t.app.identity.WICaddAccessControlProfil"
+  "eResponse\022o\n\020WICbeginAddEntry\022,.nugget.a"
+  "pp.identity.WICbeginAddEntryRequest\032-.nu"
+  "gget.app.identity.WICbeginAddEntryRespon"
+  "se\022o\n\020WICaddEntryValue\022,.nugget.app.iden"
+  "tity.WICaddEntryValueRequest\032-.nugget.ap"
+  "p.identity.WICaddEntryValueResponse\022\201\001\n\026"
+  "WICfinishAddingEntries\0222.nugget.app.iden"
+  "tity.WICfinishAddingEntriesRequest\0323.nug"
+  "get.app.identity.WICfinishAddingEntriesR"
+  "esponse\022c\n\014ICinitialize\022(.nugget.app.ide"
+  "ntity.ICinitializeRequest\032).nugget.app.i"
+  "dentity.ICinitializeResponse\022\207\001\n\030ICcreat"
+  "eEphemeralKeyPair\0224.nugget.app.identity."
+  "ICcreateEphemeralKeyPairRequest\0325.nugget"
+  ".app.identity.ICcreateEphemeralKeyPairRe"
+  "sponse\022\207\001\n\030ICgenerateSigningKeyPair\0224.nu"
+  "gget.app.identity.ICgenerateSigningKeyPa"
+  "irRequest\0325.nugget.app.identity.ICgenera"
+  "teSigningKeyPairResponse\022~\n\025ICcreateAuth"
+  "Challenge\0221.nugget.app.identity.ICcreate"
+  "AuthChallengeRequest\0322.nugget.app.identi"
+  "ty.ICcreateAuthChallengeResponse\022\201\001\n\026ICs"
+  "tartRetrieveEntries\0222.nugget.app.identit"
+  "y.ICstartRetrieveEntriesRequest\0323.nugget"
+  ".app.identity.ICstartRetrieveEntriesResp"
+  "onse\022i\n\016ICsetAuthToken\022*.nugget.app.iden"
+  "tity.ICsetAuthTokenRequest\032+.nugget.app."
+  "identity.ICsetAuthTokenResponse\022o\n\020ICpus"
+  "hReaderCert\022,.nugget.app.identity.ICpush"
+  "ReaderCertRequest\032-.nugget.app.identity."
+  "ICpushReaderCertResponse\022\231\001\n\036ICvalidateA"
+  "ccessControlProfile\022:.nugget.app.identit"
+  "y.ICvalidateAccessControlProfileRequest\032"
+  ";.nugget.app.identity.ICvalidateAccessCo"
+  "ntrolProfileResponse\022\207\001\n\030ICvalidateReque"
+  "stMessage\0224.nugget.app.identity.ICvalida"
+  "teRequestMessageRequest\0325.nugget.app.ide"
+  "ntity.ICvalidateRequestMessageResponse\022c"
+  "\n\014ICcalcMacKey\022(.nugget.app.identity.ICc"
+  "alcMacKeyRequest\032).nugget.app.identity.I"
+  "CcalcMacKeyResponse\022\212\001\n\031ICstartRetrieveE"
+  "ntryValue\0225.nugget.app.identity.ICstartR"
+  "etrieveEntryValueRequest\0326.nugget.app.id"
+  "entity.ICstartRetrieveEntryValueResponse"
+  "\022{\n\024ICretrieveEntryValue\0220.nugget.app.id"
+  "entity.ICretrieveEntryValueRequest\0321.nug"
+  "get.app.identity.ICretrieveEntryValueRes"
+  "ponse\022r\n\021ICfinishRetrieval\022-.nugget.app."
+  "identity.ICfinishRetrievalRequest\032..nugg"
+  "et.app.identity.ICfinishRetrievalRespons"
+  "e\022u\n\022ICdeleteCredential\022..nugget.app.ide"
+  "ntity.ICdeleteCredentialRequest\032/.nugget"
+  ".app.identity.ICdeleteCredentialResponse"
+  "\022o\n\020ICproveOwnership\022,.nugget.app.identi"
+  "ty.ICproveOwnershipRequest\032-.nugget.app."
+  "identity.ICproveOwnershipResponse\032!\202}\010ID"
+  "ENTITY\212}\010Identity\220}\001\230}\200\010\240}\200\010b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto_deps[3] = {
   &::descriptor_table_nugget_2fapp_2fidentity_2fidentity_5fdefs_2eproto,
@@ -1191,8 +1302,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto = {
-  false, false, 7199, descriptor_table_protodef_nugget_2fapp_2fidentity_2fidentity_2eproto, "nugget/app/identity/identity.proto", 
-  &descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto_once, descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto_deps, 3, 42,
+  false, false, 7876, descriptor_table_protodef_nugget_2fapp_2fidentity_2fidentity_2eproto, "nugget/app/identity/identity.proto", 
+  &descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto_once, descriptor_table_nugget_2fapp_2fidentity_2fidentity_2eproto_deps, 3, 46,
   schemas, file_default_instances, TableStruct_nugget_2fapp_2fidentity_2fidentity_2eproto::offsets,
   file_level_metadata_nugget_2fapp_2fidentity_2fidentity_2eproto, file_level_enum_descriptors_nugget_2fapp_2fidentity_2fidentity_2eproto, file_level_service_descriptors_nugget_2fapp_2fidentity_2fidentity_2eproto,
 };
@@ -1601,6 +1712,469 @@ void WICinitializeResponse::InternalSwap(WICinitializeResponse* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata WICinitializeResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class WICinitializeForUpdateRequest::_Internal {
+ public:
+};
+
+WICinitializeForUpdateRequest::WICinitializeForUpdateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nugget.app.identity.WICinitializeForUpdateRequest)
+}
+WICinitializeForUpdateRequest::WICinitializeForUpdateRequest(const WICinitializeForUpdateRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  doctype_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_doctype().empty()) {
+    doctype_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_doctype(), 
+      GetArena());
+  }
+  encryptedcredentialkeys_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_encryptedcredentialkeys().empty()) {
+    encryptedcredentialkeys_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_encryptedcredentialkeys(), 
+      GetArena());
+  }
+  testcredential_ = from.testcredential_;
+  // @@protoc_insertion_point(copy_constructor:nugget.app.identity.WICinitializeForUpdateRequest)
+}
+
+void WICinitializeForUpdateRequest::SharedCtor() {
+doctype_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+encryptedcredentialkeys_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+testcredential_ = false;
+}
+
+WICinitializeForUpdateRequest::~WICinitializeForUpdateRequest() {
+  // @@protoc_insertion_point(destructor:nugget.app.identity.WICinitializeForUpdateRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void WICinitializeForUpdateRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  doctype_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  encryptedcredentialkeys_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void WICinitializeForUpdateRequest::ArenaDtor(void* object) {
+  WICinitializeForUpdateRequest* _this = reinterpret_cast< WICinitializeForUpdateRequest* >(object);
+  (void)_this;
+}
+void WICinitializeForUpdateRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void WICinitializeForUpdateRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void WICinitializeForUpdateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  doctype_.ClearToEmpty();
+  encryptedcredentialkeys_.ClearToEmpty();
+  testcredential_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WICinitializeForUpdateRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool testCredential = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          testcredential_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes docType = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_doctype();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes encryptedCredentialKeys = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_encryptedcredentialkeys();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* WICinitializeForUpdateRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool testCredential = 1;
+  if (this->testcredential() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_testcredential(), target);
+  }
+
+  // bytes docType = 2;
+  if (this->doctype().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_doctype(), target);
+  }
+
+  // bytes encryptedCredentialKeys = 3;
+  if (this->encryptedcredentialkeys().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        3, this->_internal_encryptedcredentialkeys(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nugget.app.identity.WICinitializeForUpdateRequest)
+  return target;
+}
+
+size_t WICinitializeForUpdateRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes docType = 2;
+  if (this->doctype().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_doctype());
+  }
+
+  // bytes encryptedCredentialKeys = 3;
+  if (this->encryptedcredentialkeys().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_encryptedcredentialkeys());
+  }
+
+  // bool testCredential = 1;
+  if (this->testcredential() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void WICinitializeForUpdateRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const WICinitializeForUpdateRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WICinitializeForUpdateRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nugget.app.identity.WICinitializeForUpdateRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nugget.app.identity.WICinitializeForUpdateRequest)
+    MergeFrom(*source);
+  }
+}
+
+void WICinitializeForUpdateRequest::MergeFrom(const WICinitializeForUpdateRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.doctype().size() > 0) {
+    _internal_set_doctype(from._internal_doctype());
+  }
+  if (from.encryptedcredentialkeys().size() > 0) {
+    _internal_set_encryptedcredentialkeys(from._internal_encryptedcredentialkeys());
+  }
+  if (from.testcredential() != 0) {
+    _internal_set_testcredential(from._internal_testcredential());
+  }
+}
+
+void WICinitializeForUpdateRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void WICinitializeForUpdateRequest::CopyFrom(const WICinitializeForUpdateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nugget.app.identity.WICinitializeForUpdateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WICinitializeForUpdateRequest::IsInitialized() const {
+  return true;
+}
+
+void WICinitializeForUpdateRequest::InternalSwap(WICinitializeForUpdateRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  doctype_.Swap(&other->doctype_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  encryptedcredentialkeys_.Swap(&other->encryptedcredentialkeys_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(testcredential_, other->testcredential_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WICinitializeForUpdateRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class WICinitializeForUpdateResponse::_Internal {
+ public:
+  static const ::nugget::app::identity::Result& result(const WICinitializeForUpdateResponse* msg);
+};
+
+const ::nugget::app::identity::Result&
+WICinitializeForUpdateResponse::_Internal::result(const WICinitializeForUpdateResponse* msg) {
+  return *msg->result_;
+}
+void WICinitializeForUpdateResponse::clear_result() {
+  if (GetArena() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+}
+WICinitializeForUpdateResponse::WICinitializeForUpdateResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nugget.app.identity.WICinitializeForUpdateResponse)
+}
+WICinitializeForUpdateResponse::WICinitializeForUpdateResponse(const WICinitializeForUpdateResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_result()) {
+    result_ = new ::nugget::app::identity::Result(*from.result_);
+  } else {
+    result_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:nugget.app.identity.WICinitializeForUpdateResponse)
+}
+
+void WICinitializeForUpdateResponse::SharedCtor() {
+result_ = nullptr;
+}
+
+WICinitializeForUpdateResponse::~WICinitializeForUpdateResponse() {
+  // @@protoc_insertion_point(destructor:nugget.app.identity.WICinitializeForUpdateResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void WICinitializeForUpdateResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete result_;
+}
+
+void WICinitializeForUpdateResponse::ArenaDtor(void* object) {
+  WICinitializeForUpdateResponse* _this = reinterpret_cast< WICinitializeForUpdateResponse* >(object);
+  (void)_this;
+}
+void WICinitializeForUpdateResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void WICinitializeForUpdateResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void WICinitializeForUpdateResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArena() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WICinitializeForUpdateResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .nugget.app.identity.Result result = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_result(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* WICinitializeForUpdateResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .nugget.app.identity.Result result = 1;
+  if (this->has_result()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::result(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nugget.app.identity.WICinitializeForUpdateResponse)
+  return target;
+}
+
+size_t WICinitializeForUpdateResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .nugget.app.identity.Result result = 1;
+  if (this->has_result()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *result_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void WICinitializeForUpdateResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const WICinitializeForUpdateResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WICinitializeForUpdateResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nugget.app.identity.WICinitializeForUpdateResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nugget.app.identity.WICinitializeForUpdateResponse)
+    MergeFrom(*source);
+  }
+}
+
+void WICinitializeForUpdateResponse::MergeFrom(const WICinitializeForUpdateResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_result()) {
+    _internal_mutable_result()->::nugget::app::identity::Result::MergeFrom(from._internal_result());
+  }
+}
+
+void WICinitializeForUpdateResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void WICinitializeForUpdateResponse::CopyFrom(const WICinitializeForUpdateResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nugget.app.identity.WICinitializeForUpdateResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WICinitializeForUpdateResponse::IsInitialized() const {
+  return true;
+}
+
+void WICinitializeForUpdateResponse::InternalSwap(WICinitializeForUpdateResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(result_, other->result_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WICinitializeForUpdateResponse::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -11116,18 +11690,24 @@ ICdeleteCredentialRequest::ICdeleteCredentialRequest(const ICdeleteCredentialReq
     doctype_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_doctype(), 
       GetArena());
   }
-  ::memcpy(&testcredential_, &from.testcredential_,
+  challenge_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_challenge().empty()) {
+    challenge_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_challenge(), 
+      GetArena());
+  }
+  ::memcpy(&includechallenge_, &from.includechallenge_,
     static_cast<size_t>(reinterpret_cast<char*>(&proofofdeletioncborsize_) -
-    reinterpret_cast<char*>(&testcredential_)) + sizeof(proofofdeletioncborsize_));
+    reinterpret_cast<char*>(&includechallenge_)) + sizeof(proofofdeletioncborsize_));
   // @@protoc_insertion_point(copy_constructor:nugget.app.identity.ICdeleteCredentialRequest)
 }
 
 void ICdeleteCredentialRequest::SharedCtor() {
 doctype_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+challenge_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&testcredential_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&includechallenge_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&proofofdeletioncborsize_) -
-    reinterpret_cast<char*>(&testcredential_)) + sizeof(proofofdeletioncborsize_));
+    reinterpret_cast<char*>(&includechallenge_)) + sizeof(proofofdeletioncborsize_));
 }
 
 ICdeleteCredentialRequest::~ICdeleteCredentialRequest() {
@@ -11139,6 +11719,7 @@ ICdeleteCredentialRequest::~ICdeleteCredentialRequest() {
 void ICdeleteCredentialRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   doctype_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  challenge_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void ICdeleteCredentialRequest::ArenaDtor(void* object) {
@@ -11158,9 +11739,10 @@ void ICdeleteCredentialRequest::Clear() {
   (void) cached_has_bits;
 
   doctype_.ClearToEmpty();
-  ::memset(&testcredential_, 0, static_cast<size_t>(
+  challenge_.ClearToEmpty();
+  ::memset(&includechallenge_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&proofofdeletioncborsize_) -
-      reinterpret_cast<char*>(&testcredential_)) + sizeof(proofofdeletioncborsize_));
+      reinterpret_cast<char*>(&includechallenge_)) + sizeof(proofofdeletioncborsize_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -11179,16 +11761,24 @@ const char* ICdeleteCredentialRequest::_InternalParse(const char* ptr, ::PROTOBU
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bool testCredential = 2;
+      // bytes challenge = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          testcredential_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_challenge();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // uint32 proofOfDeletionCborSize = 3;
+      // bool includeChallenge = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          includechallenge_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint32 proofOfDeletionCborSize = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           proofofdeletioncborsize_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -11227,16 +11817,22 @@ failure:
         1, this->_internal_doctype(), target);
   }
 
-  // bool testCredential = 2;
-  if (this->testcredential() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_testcredential(), target);
+  // bytes challenge = 2;
+  if (this->challenge().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_challenge(), target);
   }
 
-  // uint32 proofOfDeletionCborSize = 3;
+  // bool includeChallenge = 3;
+  if (this->includechallenge() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_includechallenge(), target);
+  }
+
+  // uint32 proofOfDeletionCborSize = 4;
   if (this->proofofdeletioncborsize() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(3, this->_internal_proofofdeletioncborsize(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(4, this->_internal_proofofdeletioncborsize(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -11262,12 +11858,19 @@ size_t ICdeleteCredentialRequest::ByteSizeLong() const {
         this->_internal_doctype());
   }
 
-  // bool testCredential = 2;
-  if (this->testcredential() != 0) {
+  // bytes challenge = 2;
+  if (this->challenge().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_challenge());
+  }
+
+  // bool includeChallenge = 3;
+  if (this->includechallenge() != 0) {
     total_size += 1 + 1;
   }
 
-  // uint32 proofOfDeletionCborSize = 3;
+  // uint32 proofOfDeletionCborSize = 4;
   if (this->proofofdeletioncborsize() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
@@ -11308,8 +11911,11 @@ void ICdeleteCredentialRequest::MergeFrom(const ICdeleteCredentialRequest& from)
   if (from.doctype().size() > 0) {
     _internal_set_doctype(from._internal_doctype());
   }
-  if (from.testcredential() != 0) {
-    _internal_set_testcredential(from._internal_testcredential());
+  if (from.challenge().size() > 0) {
+    _internal_set_challenge(from._internal_challenge());
+  }
+  if (from.includechallenge() != 0) {
+    _internal_set_includechallenge(from._internal_includechallenge());
   }
   if (from.proofofdeletioncborsize() != 0) {
     _internal_set_proofofdeletioncborsize(from._internal_proofofdeletioncborsize());
@@ -11338,12 +11944,13 @@ void ICdeleteCredentialRequest::InternalSwap(ICdeleteCredentialRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   doctype_.Swap(&other->doctype_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  challenge_.Swap(&other->challenge_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ICdeleteCredentialRequest, proofofdeletioncborsize_)
       + sizeof(ICdeleteCredentialRequest::proofofdeletioncborsize_)
-      - PROTOBUF_FIELD_OFFSET(ICdeleteCredentialRequest, testcredential_)>(
-          reinterpret_cast<char*>(&testcredential_),
-          reinterpret_cast<char*>(&other->testcredential_));
+      - PROTOBUF_FIELD_OFFSET(ICdeleteCredentialRequest, includechallenge_)>(
+          reinterpret_cast<char*>(&includechallenge_),
+          reinterpret_cast<char*>(&other->includechallenge_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ICdeleteCredentialRequest::GetMetadata() const {
@@ -11594,6 +12201,537 @@ void ICdeleteCredentialResponse::InternalSwap(ICdeleteCredentialResponse* other)
 }
 
 
+// ===================================================================
+
+class ICproveOwnershipRequest::_Internal {
+ public:
+};
+
+ICproveOwnershipRequest::ICproveOwnershipRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nugget.app.identity.ICproveOwnershipRequest)
+}
+ICproveOwnershipRequest::ICproveOwnershipRequest(const ICproveOwnershipRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  doctype_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_doctype().empty()) {
+    doctype_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_doctype(), 
+      GetArena());
+  }
+  challenge_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_challenge().empty()) {
+    challenge_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_challenge(), 
+      GetArena());
+  }
+  ::memcpy(&testcredential_, &from.testcredential_,
+    static_cast<size_t>(reinterpret_cast<char*>(&proofofownershipcborsize_) -
+    reinterpret_cast<char*>(&testcredential_)) + sizeof(proofofownershipcborsize_));
+  // @@protoc_insertion_point(copy_constructor:nugget.app.identity.ICproveOwnershipRequest)
+}
+
+void ICproveOwnershipRequest::SharedCtor() {
+doctype_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+challenge_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&testcredential_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&proofofownershipcborsize_) -
+    reinterpret_cast<char*>(&testcredential_)) + sizeof(proofofownershipcborsize_));
+}
+
+ICproveOwnershipRequest::~ICproveOwnershipRequest() {
+  // @@protoc_insertion_point(destructor:nugget.app.identity.ICproveOwnershipRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ICproveOwnershipRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  doctype_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  challenge_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ICproveOwnershipRequest::ArenaDtor(void* object) {
+  ICproveOwnershipRequest* _this = reinterpret_cast< ICproveOwnershipRequest* >(object);
+  (void)_this;
+}
+void ICproveOwnershipRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ICproveOwnershipRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ICproveOwnershipRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:nugget.app.identity.ICproveOwnershipRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  doctype_.ClearToEmpty();
+  challenge_.ClearToEmpty();
+  ::memset(&testcredential_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&proofofownershipcborsize_) -
+      reinterpret_cast<char*>(&testcredential_)) + sizeof(proofofownershipcborsize_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ICproveOwnershipRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bytes docType = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_doctype();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool testCredential = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          testcredential_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes challenge = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_challenge();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint32 proofOfOwnershipCborSize = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          proofofownershipcborsize_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ICproveOwnershipRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nugget.app.identity.ICproveOwnershipRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes docType = 1;
+  if (this->doctype().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_doctype(), target);
+  }
+
+  // bool testCredential = 2;
+  if (this->testcredential() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_testcredential(), target);
+  }
+
+  // bytes challenge = 3;
+  if (this->challenge().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        3, this->_internal_challenge(), target);
+  }
+
+  // uint32 proofOfOwnershipCborSize = 4;
+  if (this->proofofownershipcborsize() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(4, this->_internal_proofofownershipcborsize(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nugget.app.identity.ICproveOwnershipRequest)
+  return target;
+}
+
+size_t ICproveOwnershipRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:nugget.app.identity.ICproveOwnershipRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes docType = 1;
+  if (this->doctype().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_doctype());
+  }
+
+  // bytes challenge = 3;
+  if (this->challenge().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_challenge());
+  }
+
+  // bool testCredential = 2;
+  if (this->testcredential() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // uint32 proofOfOwnershipCborSize = 4;
+  if (this->proofofownershipcborsize() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_proofofownershipcborsize());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ICproveOwnershipRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nugget.app.identity.ICproveOwnershipRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ICproveOwnershipRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ICproveOwnershipRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nugget.app.identity.ICproveOwnershipRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nugget.app.identity.ICproveOwnershipRequest)
+    MergeFrom(*source);
+  }
+}
+
+void ICproveOwnershipRequest::MergeFrom(const ICproveOwnershipRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nugget.app.identity.ICproveOwnershipRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.doctype().size() > 0) {
+    _internal_set_doctype(from._internal_doctype());
+  }
+  if (from.challenge().size() > 0) {
+    _internal_set_challenge(from._internal_challenge());
+  }
+  if (from.testcredential() != 0) {
+    _internal_set_testcredential(from._internal_testcredential());
+  }
+  if (from.proofofownershipcborsize() != 0) {
+    _internal_set_proofofownershipcborsize(from._internal_proofofownershipcborsize());
+  }
+}
+
+void ICproveOwnershipRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nugget.app.identity.ICproveOwnershipRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ICproveOwnershipRequest::CopyFrom(const ICproveOwnershipRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nugget.app.identity.ICproveOwnershipRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ICproveOwnershipRequest::IsInitialized() const {
+  return true;
+}
+
+void ICproveOwnershipRequest::InternalSwap(ICproveOwnershipRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  doctype_.Swap(&other->doctype_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  challenge_.Swap(&other->challenge_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ICproveOwnershipRequest, proofofownershipcborsize_)
+      + sizeof(ICproveOwnershipRequest::proofofownershipcborsize_)
+      - PROTOBUF_FIELD_OFFSET(ICproveOwnershipRequest, testcredential_)>(
+          reinterpret_cast<char*>(&testcredential_),
+          reinterpret_cast<char*>(&other->testcredential_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ICproveOwnershipRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class ICproveOwnershipResponse::_Internal {
+ public:
+  static const ::nugget::app::identity::Result& result(const ICproveOwnershipResponse* msg);
+};
+
+const ::nugget::app::identity::Result&
+ICproveOwnershipResponse::_Internal::result(const ICproveOwnershipResponse* msg) {
+  return *msg->result_;
+}
+void ICproveOwnershipResponse::clear_result() {
+  if (GetArena() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+}
+ICproveOwnershipResponse::ICproveOwnershipResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nugget.app.identity.ICproveOwnershipResponse)
+}
+ICproveOwnershipResponse::ICproveOwnershipResponse(const ICproveOwnershipResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  signatureoftobesigned_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_signatureoftobesigned().empty()) {
+    signatureoftobesigned_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_signatureoftobesigned(), 
+      GetArena());
+  }
+  if (from._internal_has_result()) {
+    result_ = new ::nugget::app::identity::Result(*from.result_);
+  } else {
+    result_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:nugget.app.identity.ICproveOwnershipResponse)
+}
+
+void ICproveOwnershipResponse::SharedCtor() {
+signatureoftobesigned_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+result_ = nullptr;
+}
+
+ICproveOwnershipResponse::~ICproveOwnershipResponse() {
+  // @@protoc_insertion_point(destructor:nugget.app.identity.ICproveOwnershipResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ICproveOwnershipResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  signatureoftobesigned_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete result_;
+}
+
+void ICproveOwnershipResponse::ArenaDtor(void* object) {
+  ICproveOwnershipResponse* _this = reinterpret_cast< ICproveOwnershipResponse* >(object);
+  (void)_this;
+}
+void ICproveOwnershipResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ICproveOwnershipResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ICproveOwnershipResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:nugget.app.identity.ICproveOwnershipResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  signatureoftobesigned_.ClearToEmpty();
+  if (GetArena() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ICproveOwnershipResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .nugget.app.identity.Result result = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_result(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes signatureOfToBeSigned = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_signatureoftobesigned();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ICproveOwnershipResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nugget.app.identity.ICproveOwnershipResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .nugget.app.identity.Result result = 1;
+  if (this->has_result()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::result(this), target, stream);
+  }
+
+  // bytes signatureOfToBeSigned = 2;
+  if (this->signatureoftobesigned().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_signatureoftobesigned(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nugget.app.identity.ICproveOwnershipResponse)
+  return target;
+}
+
+size_t ICproveOwnershipResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:nugget.app.identity.ICproveOwnershipResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes signatureOfToBeSigned = 2;
+  if (this->signatureoftobesigned().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_signatureoftobesigned());
+  }
+
+  // .nugget.app.identity.Result result = 1;
+  if (this->has_result()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *result_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ICproveOwnershipResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nugget.app.identity.ICproveOwnershipResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ICproveOwnershipResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ICproveOwnershipResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nugget.app.identity.ICproveOwnershipResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nugget.app.identity.ICproveOwnershipResponse)
+    MergeFrom(*source);
+  }
+}
+
+void ICproveOwnershipResponse::MergeFrom(const ICproveOwnershipResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nugget.app.identity.ICproveOwnershipResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.signatureoftobesigned().size() > 0) {
+    _internal_set_signatureoftobesigned(from._internal_signatureoftobesigned());
+  }
+  if (from.has_result()) {
+    _internal_mutable_result()->::nugget::app::identity::Result::MergeFrom(from._internal_result());
+  }
+}
+
+void ICproveOwnershipResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nugget.app.identity.ICproveOwnershipResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ICproveOwnershipResponse::CopyFrom(const ICproveOwnershipResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nugget.app.identity.ICproveOwnershipResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ICproveOwnershipResponse::IsInitialized() const {
+  return true;
+}
+
+void ICproveOwnershipResponse::InternalSwap(ICproveOwnershipResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  signatureoftobesigned_.Swap(&other->signatureoftobesigned_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(result_, other->result_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ICproveOwnershipResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace identity
 }  // namespace app
@@ -11604,6 +12742,12 @@ template<> PROTOBUF_NOINLINE ::nugget::app::identity::WICinitializeRequest* Aren
 }
 template<> PROTOBUF_NOINLINE ::nugget::app::identity::WICinitializeResponse* Arena::CreateMaybeMessage< ::nugget::app::identity::WICinitializeResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::nugget::app::identity::WICinitializeResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::nugget::app::identity::WICinitializeForUpdateRequest* Arena::CreateMaybeMessage< ::nugget::app::identity::WICinitializeForUpdateRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::nugget::app::identity::WICinitializeForUpdateRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::nugget::app::identity::WICinitializeForUpdateResponse* Arena::CreateMaybeMessage< ::nugget::app::identity::WICinitializeForUpdateResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::nugget::app::identity::WICinitializeForUpdateResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::nugget::app::identity::WICcreateCredentialKeyRequest* Arena::CreateMaybeMessage< ::nugget::app::identity::WICcreateCredentialKeyRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::nugget::app::identity::WICcreateCredentialKeyRequest >(arena);
@@ -11724,6 +12868,12 @@ template<> PROTOBUF_NOINLINE ::nugget::app::identity::ICdeleteCredentialRequest*
 }
 template<> PROTOBUF_NOINLINE ::nugget::app::identity::ICdeleteCredentialResponse* Arena::CreateMaybeMessage< ::nugget::app::identity::ICdeleteCredentialResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::nugget::app::identity::ICdeleteCredentialResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::nugget::app::identity::ICproveOwnershipRequest* Arena::CreateMaybeMessage< ::nugget::app::identity::ICproveOwnershipRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::nugget::app::identity::ICproveOwnershipRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::nugget::app::identity::ICproveOwnershipResponse* Arena::CreateMaybeMessage< ::nugget::app::identity::ICproveOwnershipResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::nugget::app::identity::ICproveOwnershipResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

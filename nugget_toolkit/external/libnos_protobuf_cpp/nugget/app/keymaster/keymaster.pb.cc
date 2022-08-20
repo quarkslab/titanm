@@ -168,8 +168,10 @@ constexpr StartAttestKeyRequest::StartAttestKeyRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : not_before_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , not_after_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , caller_issuer_subj_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , blob_(nullptr)
   , params_(nullptr)
+  , caller_key_params_(nullptr)
   , attestation_app_id_len_(0u)
   , selector_(0)
 {}
@@ -226,7 +228,9 @@ struct ContinueAttestKeyResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ContinueAttestKeyResponseDefaultTypeInternal _ContinueAttestKeyResponse_default_instance_;
 constexpr FinishAttestKeyRequest::FinishAttestKeyRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : handle_(nullptr){}
+  : handle_(nullptr)
+  , caller_blob_(nullptr)
+  , caller_key_params_(nullptr){}
 struct FinishAttestKeyRequestDefaultTypeInternal {
   constexpr FinishAttestKeyRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -1030,7 +1034,8 @@ constexpr IdentityStartAttestKeyRequest::IdentityStartAttestKeyRequest(
   , attestation_app_id_len_(0u)
   , selector_(0)
 
-  , creation_time_ms_(PROTOBUF_ULONGLONG(0)){}
+  , creation_time_ms_(PROTOBUF_ULONGLONG(0))
+  , use_km_attest_key_(false){}
 struct IdentityStartAttestKeyRequestDefaultTypeInternal {
   constexpr IdentityStartAttestKeyRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -1085,10 +1090,37 @@ struct IdentityFinishAttestKeyResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT IdentityFinishAttestKeyResponseDefaultTypeInternal _IdentityFinishAttestKeyResponse_default_instance_;
+constexpr GetPerFactoryResetValueRequest::GetPerFactoryResetValueRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : input_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , bootloader_only_(false){}
+struct GetPerFactoryResetValueRequestDefaultTypeInternal {
+  constexpr GetPerFactoryResetValueRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GetPerFactoryResetValueRequestDefaultTypeInternal() {}
+  union {
+    GetPerFactoryResetValueRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GetPerFactoryResetValueRequestDefaultTypeInternal _GetPerFactoryResetValueRequest_default_instance_;
+constexpr GetPerFactoryResetValueResponse::GetPerFactoryResetValueResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : output_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , error_code_(0)
+{}
+struct GetPerFactoryResetValueResponseDefaultTypeInternal {
+  constexpr GetPerFactoryResetValueResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GetPerFactoryResetValueResponseDefaultTypeInternal() {}
+  union {
+    GetPerFactoryResetValueResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GetPerFactoryResetValueResponseDefaultTypeInternal _GetPerFactoryResetValueResponse_default_instance_;
 }  // namespace keymaster
 }  // namespace app
 }  // namespace nugget
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto[75];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto[77];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto = nullptr;
 
@@ -1182,6 +1214,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fkeymaster_2fkey
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::StartAttestKeyRequest, selector_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::StartAttestKeyRequest, not_before_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::StartAttestKeyRequest, not_after_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::StartAttestKeyRequest, caller_issuer_subj_name_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::StartAttestKeyRequest, caller_key_params_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::StartAttestKeyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1210,6 +1244,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fkeymaster_2fkey
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::FinishAttestKeyRequest, handle_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::FinishAttestKeyRequest, caller_blob_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::FinishAttestKeyRequest, caller_key_params_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::FinishAttestKeyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1630,6 +1666,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fkeymaster_2fkey
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityStartAttestKeyRequest, not_before_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityStartAttestKeyRequest, not_after_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityStartAttestKeyRequest, creation_time_ms_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityStartAttestKeyRequest, use_km_attest_key_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityStartAttestKeyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1654,6 +1691,20 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2fkeymaster_2fkey
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityFinishAttestKeyResponse, certificate_epilogue_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityFinishAttestKeyResponse, chip_fusing_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::IdentityFinishAttestKeyResponse, nodelocked_ro_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::GetPerFactoryResetValueRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::GetPerFactoryResetValueRequest, bootloader_only_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::GetPerFactoryResetValueRequest, input_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::GetPerFactoryResetValueResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::GetPerFactoryResetValueResponse, error_code_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::keymaster::GetPerFactoryResetValueResponse, output_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::nugget::app::keymaster::AddRngEntropyRequest)},
@@ -1667,70 +1718,72 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 60, -1, sizeof(::nugget::app::keymaster::ExportKeyRequest)},
   { 69, -1, sizeof(::nugget::app::keymaster::ExportKeyResponse)},
   { 78, -1, sizeof(::nugget::app::keymaster::StartAttestKeyRequest)},
-  { 89, -1, sizeof(::nugget::app::keymaster::StartAttestKeyResponse)},
-  { 97, -1, sizeof(::nugget::app::keymaster::ContinueAttestKeyRequest)},
-  { 104, -1, sizeof(::nugget::app::keymaster::ContinueAttestKeyResponse)},
-  { 111, -1, sizeof(::nugget::app::keymaster::FinishAttestKeyRequest)},
-  { 117, -1, sizeof(::nugget::app::keymaster::FinishAttestKeyResponse)},
-  { 126, -1, sizeof(::nugget::app::keymaster::UpgradeKeyRequest)},
-  { 133, -1, sizeof(::nugget::app::keymaster::UpgradeKeyResponse)},
-  { 140, -1, sizeof(::nugget::app::keymaster::DeleteKeyRequest)},
-  { 146, -1, sizeof(::nugget::app::keymaster::DeleteKeyResponse)},
-  { 152, -1, sizeof(::nugget::app::keymaster::DeleteAllKeysRequest)},
-  { 157, -1, sizeof(::nugget::app::keymaster::DeleteAllKeysResponse)},
-  { 163, -1, sizeof(::nugget::app::keymaster::DestroyAttestationIdsRequest)},
-  { 168, -1, sizeof(::nugget::app::keymaster::DestroyAttestationIdsResponse)},
-  { 174, -1, sizeof(::nugget::app::keymaster::BeginOperationRequest)},
-  { 183, -1, sizeof(::nugget::app::keymaster::BeginOperationResponse)},
-  { 193, -1, sizeof(::nugget::app::keymaster::UpdateOperationRequest)},
-  { 203, -1, sizeof(::nugget::app::keymaster::UpdateOperationResponse)},
-  { 212, -1, sizeof(::nugget::app::keymaster::FinishOperationRequest)},
-  { 223, -1, sizeof(::nugget::app::keymaster::FinishOperationResponse)},
-  { 231, -1, sizeof(::nugget::app::keymaster::AbortOperationRequest)},
-  { 237, -1, sizeof(::nugget::app::keymaster::AbortOperationResponse)},
-  { 243, -1, sizeof(::nugget::app::keymaster::ImportWrappedKeyRequest)},
-  { 258, -1, sizeof(::nugget::app::keymaster::GetHmacSharingParametersRequest)},
-  { 263, -1, sizeof(::nugget::app::keymaster::GetHmacSharingParametersResponse)},
-  { 270, -1, sizeof(::nugget::app::keymaster::ComputeSharedHmacRequest)},
-  { 276, -1, sizeof(::nugget::app::keymaster::ComputeSharedHmacResponse)},
-  { 283, -1, sizeof(::nugget::app::keymaster::DeviceLockedRequest)},
-  { 290, -1, sizeof(::nugget::app::keymaster::DeviceLockedResponse)},
-  { 296, -1, sizeof(::nugget::app::keymaster::EarlyBootEndedRequest)},
-  { 301, -1, sizeof(::nugget::app::keymaster::EarlyBootEndedResponse)},
-  { 307, -1, sizeof(::nugget::app::keymaster::SetRootOfTrustRequest)},
-  { 313, -1, sizeof(::nugget::app::keymaster::SetRootOfTrustResponse)},
-  { 319, -1, sizeof(::nugget::app::keymaster::SetBootStateRequest)},
-  { 330, -1, sizeof(::nugget::app::keymaster::SetBootStateResponse)},
-  { 336, -1, sizeof(::nugget::app::keymaster::ProvisionDeviceIdsRequest)},
-  { 349, -1, sizeof(::nugget::app::keymaster::ProvisionDeviceIdsResponse)},
-  { 357, -1, sizeof(::nugget::app::keymaster::ReadTeeBatchCertificateRequest)},
-  { 363, -1, sizeof(::nugget::app::keymaster::ReadTeeBatchCertificateResponse)},
-  { 372, -1, sizeof(::nugget::app::keymaster::DTupHandshakeRequest)},
-  { 378, -1, sizeof(::nugget::app::keymaster::DTupHandshakeResponse)},
-  { 386, -1, sizeof(::nugget::app::keymaster::DTupFetchInputEventRequest)},
-  { 391, -1, sizeof(::nugget::app::keymaster::DTupFetchInputEventResponse)},
-  { 399, -1, sizeof(::nugget::app::keymaster::SetSystemVersionInfoRequest)},
-  { 407, -1, sizeof(::nugget::app::keymaster::SetSystemVersionInfoResponse)},
-  { 413, -1, sizeof(::nugget::app::keymaster::GetBootInfoRequest)},
-  { 418, -1, sizeof(::nugget::app::keymaster::GetBootInfoResponse)},
-  { 428, -1, sizeof(::nugget::app::keymaster::ProvisionPresharedSecretRequest)},
-  { 435, -1, sizeof(::nugget::app::keymaster::ProvisionPresharedSecretResponse)},
-  { 444, -1, sizeof(::nugget::app::keymaster::ProvisionCertificatesRequest)},
-  { 452, -1, sizeof(::nugget::app::keymaster::ProvisionCertificatesResponse)},
-  { 459, -1, sizeof(::nugget::app::keymaster::ReadCertificateRequest)},
-  { 466, -1, sizeof(::nugget::app::keymaster::ReadCertificateResponse)},
-  { 473, -1, sizeof(::nugget::app::keymaster::VigoReadVSRequest)},
-  { 478, -1, sizeof(::nugget::app::keymaster::VigoReadVSResponse)},
-  { 485, -1, sizeof(::nugget::app::keymaster::VigoStartChannelRequest)},
-  { 491, -1, sizeof(::nugget::app::keymaster::VigoStartChannelResponse)},
-  { 499, -1, sizeof(::nugget::app::keymaster::VigoStoreSecretRequest)},
-  { 506, -1, sizeof(::nugget::app::keymaster::VigoStoreSecretResponse)},
-  { 512, -1, sizeof(::nugget::app::keymaster::VigoReleaseSecretRequest)},
-  { 518, -1, sizeof(::nugget::app::keymaster::VigoReleaseSecretResponse)},
-  { 525, -1, sizeof(::nugget::app::keymaster::IdentityStartAttestKeyRequest)},
-  { 537, -1, sizeof(::nugget::app::keymaster::IdentityStartAttestKeyResponse)},
-  { 545, -1, sizeof(::nugget::app::keymaster::IdentityFinishAttestKeyRequest)},
-  { 552, -1, sizeof(::nugget::app::keymaster::IdentityFinishAttestKeyResponse)},
+  { 91, -1, sizeof(::nugget::app::keymaster::StartAttestKeyResponse)},
+  { 99, -1, sizeof(::nugget::app::keymaster::ContinueAttestKeyRequest)},
+  { 106, -1, sizeof(::nugget::app::keymaster::ContinueAttestKeyResponse)},
+  { 113, -1, sizeof(::nugget::app::keymaster::FinishAttestKeyRequest)},
+  { 121, -1, sizeof(::nugget::app::keymaster::FinishAttestKeyResponse)},
+  { 130, -1, sizeof(::nugget::app::keymaster::UpgradeKeyRequest)},
+  { 137, -1, sizeof(::nugget::app::keymaster::UpgradeKeyResponse)},
+  { 144, -1, sizeof(::nugget::app::keymaster::DeleteKeyRequest)},
+  { 150, -1, sizeof(::nugget::app::keymaster::DeleteKeyResponse)},
+  { 156, -1, sizeof(::nugget::app::keymaster::DeleteAllKeysRequest)},
+  { 161, -1, sizeof(::nugget::app::keymaster::DeleteAllKeysResponse)},
+  { 167, -1, sizeof(::nugget::app::keymaster::DestroyAttestationIdsRequest)},
+  { 172, -1, sizeof(::nugget::app::keymaster::DestroyAttestationIdsResponse)},
+  { 178, -1, sizeof(::nugget::app::keymaster::BeginOperationRequest)},
+  { 187, -1, sizeof(::nugget::app::keymaster::BeginOperationResponse)},
+  { 197, -1, sizeof(::nugget::app::keymaster::UpdateOperationRequest)},
+  { 207, -1, sizeof(::nugget::app::keymaster::UpdateOperationResponse)},
+  { 216, -1, sizeof(::nugget::app::keymaster::FinishOperationRequest)},
+  { 227, -1, sizeof(::nugget::app::keymaster::FinishOperationResponse)},
+  { 235, -1, sizeof(::nugget::app::keymaster::AbortOperationRequest)},
+  { 241, -1, sizeof(::nugget::app::keymaster::AbortOperationResponse)},
+  { 247, -1, sizeof(::nugget::app::keymaster::ImportWrappedKeyRequest)},
+  { 262, -1, sizeof(::nugget::app::keymaster::GetHmacSharingParametersRequest)},
+  { 267, -1, sizeof(::nugget::app::keymaster::GetHmacSharingParametersResponse)},
+  { 274, -1, sizeof(::nugget::app::keymaster::ComputeSharedHmacRequest)},
+  { 280, -1, sizeof(::nugget::app::keymaster::ComputeSharedHmacResponse)},
+  { 287, -1, sizeof(::nugget::app::keymaster::DeviceLockedRequest)},
+  { 294, -1, sizeof(::nugget::app::keymaster::DeviceLockedResponse)},
+  { 300, -1, sizeof(::nugget::app::keymaster::EarlyBootEndedRequest)},
+  { 305, -1, sizeof(::nugget::app::keymaster::EarlyBootEndedResponse)},
+  { 311, -1, sizeof(::nugget::app::keymaster::SetRootOfTrustRequest)},
+  { 317, -1, sizeof(::nugget::app::keymaster::SetRootOfTrustResponse)},
+  { 323, -1, sizeof(::nugget::app::keymaster::SetBootStateRequest)},
+  { 334, -1, sizeof(::nugget::app::keymaster::SetBootStateResponse)},
+  { 340, -1, sizeof(::nugget::app::keymaster::ProvisionDeviceIdsRequest)},
+  { 353, -1, sizeof(::nugget::app::keymaster::ProvisionDeviceIdsResponse)},
+  { 361, -1, sizeof(::nugget::app::keymaster::ReadTeeBatchCertificateRequest)},
+  { 367, -1, sizeof(::nugget::app::keymaster::ReadTeeBatchCertificateResponse)},
+  { 376, -1, sizeof(::nugget::app::keymaster::DTupHandshakeRequest)},
+  { 382, -1, sizeof(::nugget::app::keymaster::DTupHandshakeResponse)},
+  { 390, -1, sizeof(::nugget::app::keymaster::DTupFetchInputEventRequest)},
+  { 395, -1, sizeof(::nugget::app::keymaster::DTupFetchInputEventResponse)},
+  { 403, -1, sizeof(::nugget::app::keymaster::SetSystemVersionInfoRequest)},
+  { 411, -1, sizeof(::nugget::app::keymaster::SetSystemVersionInfoResponse)},
+  { 417, -1, sizeof(::nugget::app::keymaster::GetBootInfoRequest)},
+  { 422, -1, sizeof(::nugget::app::keymaster::GetBootInfoResponse)},
+  { 432, -1, sizeof(::nugget::app::keymaster::ProvisionPresharedSecretRequest)},
+  { 439, -1, sizeof(::nugget::app::keymaster::ProvisionPresharedSecretResponse)},
+  { 448, -1, sizeof(::nugget::app::keymaster::ProvisionCertificatesRequest)},
+  { 456, -1, sizeof(::nugget::app::keymaster::ProvisionCertificatesResponse)},
+  { 463, -1, sizeof(::nugget::app::keymaster::ReadCertificateRequest)},
+  { 470, -1, sizeof(::nugget::app::keymaster::ReadCertificateResponse)},
+  { 477, -1, sizeof(::nugget::app::keymaster::VigoReadVSRequest)},
+  { 482, -1, sizeof(::nugget::app::keymaster::VigoReadVSResponse)},
+  { 489, -1, sizeof(::nugget::app::keymaster::VigoStartChannelRequest)},
+  { 495, -1, sizeof(::nugget::app::keymaster::VigoStartChannelResponse)},
+  { 503, -1, sizeof(::nugget::app::keymaster::VigoStoreSecretRequest)},
+  { 510, -1, sizeof(::nugget::app::keymaster::VigoStoreSecretResponse)},
+  { 516, -1, sizeof(::nugget::app::keymaster::VigoReleaseSecretRequest)},
+  { 522, -1, sizeof(::nugget::app::keymaster::VigoReleaseSecretResponse)},
+  { 529, -1, sizeof(::nugget::app::keymaster::IdentityStartAttestKeyRequest)},
+  { 542, -1, sizeof(::nugget::app::keymaster::IdentityStartAttestKeyResponse)},
+  { 550, -1, sizeof(::nugget::app::keymaster::IdentityFinishAttestKeyRequest)},
+  { 557, -1, sizeof(::nugget::app::keymaster::IdentityFinishAttestKeyResponse)},
+  { 566, -1, sizeof(::nugget::app::keymaster::GetPerFactoryResetValueRequest)},
+  { 573, -1, sizeof(::nugget::app::keymaster::GetPerFactoryResetValueResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -1809,6 +1862,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::keymaster::_IdentityStartAttestKeyResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::keymaster::_IdentityFinishAttestKeyRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::keymaster::_IdentityFinishAttestKeyResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::keymaster::_GetPerFactoryResetValueRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::nugget::app::keymaster::_GetPerFactoryResetValueResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -1853,324 +1908,338 @@ const char descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_2eprot
   "hm\030\002 \001(\0162\037.nugget.app.keymaster.Algorith"
   "m\022)\n\003rsa\030\003 \001(\0132\034.nugget.app.keymaster.RS"
   "AKey\022\'\n\002ec\030\004 \001(\0132\033.nugget.app.keymaster."
-  "ECKey\"\375\001\n\025StartAttestKeyRequest\022+\n\004blob\030"
+  "ECKey\"\336\002\n\025StartAttestKeyRequest\022+\n\004blob\030"
   "\001 \001(\0132\035.nugget.app.keymaster.KeyBlob\0223\n\006"
   "params\030\002 \001(\0132#.nugget.app.keymaster.KeyP"
   "arameters\022\036\n\026attestation_app_id_len\030\003 \001("
   "\r\022;\n\010selector\030\004 \001(\0162).nugget.app.keymast"
   "er.AttestationSelector\022\022\n\nnot_before\030\005 \001"
-  "(\014\022\021\n\tnot_after\030\006 \001(\014\"\242\001\n\026StartAttestKey"
-  "Response\0223\n\nerror_code\030\001 \001(\0162\037.nugget.ap"
-  "p.keymaster.ErrorCode\0225\n\006handle\030\002 \001(\0132%."
-  "nugget.app.keymaster.OperationHandle\022\034\n\024"
-  "certificate_prologue\030\003 \001(\014\"\206\001\n\030ContinueA"
-  "ttestKeyRequest\0225\n\006handle\030\001 \001(\0132%.nugget"
-  ".app.keymaster.OperationHandle\0223\n\006params"
-  "\030\003 \001(\0132#.nugget.app.keymaster.KeyParamet"
-  "ers\"j\n\031ContinueAttestKeyResponse\0223\n\nerro"
-  "r_code\030\001 \001(\0162\037.nugget.app.keymaster.Erro"
-  "rCode\022\030\n\020certificate_body\030\002 \001(\014\"O\n\026Finis"
-  "hAttestKeyRequest\0225\n\006handle\030\001 \001(\0132%.nugg"
-  "et.app.keymaster.OperationHandle\"\272\001\n\027Fin"
-  "ishAttestKeyResponse\0223\n\nerror_code\030\001 \001(\016"
-  "2\037.nugget.app.keymaster.ErrorCode\022\034\n\024cer"
-  "tificate_epilogue\030\002 \001(\014\0225\n\013chip_fusing\030\003"
-  " \001(\0162 .nugget.app.keymaster.ChipFusing\022\025"
-  "\n\rnodelocked_ro\030\004 \001(\010\"u\n\021UpgradeKeyReque"
-  "st\022+\n\004blob\030\001 \001(\0132\035.nugget.app.keymaster."
-  "KeyBlob\0223\n\006params\030\002 \001(\0132#.nugget.app.key"
-  "master.KeyParameters\"v\n\022UpgradeKeyRespon"
-  "se\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.keym"
-  "aster.ErrorCode\022+\n\004blob\030\002 \001(\0132\035.nugget.a"
-  "pp.keymaster.KeyBlob\"\?\n\020DeleteKeyRequest"
-  "\022+\n\004blob\030\001 \001(\0132\035.nugget.app.keymaster.Ke"
-  "yBlob\"H\n\021DeleteKeyResponse\0223\n\nerror_code"
-  "\030\001 \001(\0162\037.nugget.app.keymaster.ErrorCode\""
-  "\026\n\024DeleteAllKeysRequest\"L\n\025DeleteAllKeys"
-  "Response\0223\n\nerror_code\030\001 \001(\0162\037.nugget.ap"
-  "p.keymaster.ErrorCode\"\036\n\034DestroyAttestat"
-  "ionIdsRequest\"T\n\035DestroyAttestationIdsRe"
-  "sponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app."
-  "keymaster.ErrorCode\"\351\001\n\025BeginOperationRe"
-  "quest\0221\n\007purpose\030\001 \001(\0162 .nugget.app.keym"
-  "aster.KeyPurpose\022+\n\004blob\030\002 \001(\0132\035.nugget."
-  "app.keymaster.KeyBlob\0223\n\006params\030\003 \001(\0132#."
-  "nugget.app.keymaster.KeyParameters\022;\n\nau"
-  "th_token\030\004 \001(\0132\'.nugget.app.keymaster.Ha"
-  "rdwareAuthToken\"\377\001\n\026BeginOperationRespon"
-  "se\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.keym"
-  "aster.ErrorCode\0223\n\006params\030\002 \001(\0132#.nugget"
-  ".app.keymaster.KeyParameters\0225\n\006handle\030\003"
-  " \001(\0132%.nugget.app.keymaster.OperationHan"
-  "dle\0222\n\talgorithm\030\004 \001(\0162\037.nugget.app.keym"
-  "aster.Algorithm\022\020\n\010key_bits\030\005 \001(\r\"\225\002\n\026Up"
-  "dateOperationRequest\0225\n\006handle\030\001 \001(\0132%.n"
-  "ugget.app.keymaster.OperationHandle\0223\n\006p"
-  "arams\030\002 \001(\0132#.nugget.app.keymaster.KeyPa"
-  "rameters\022\r\n\005input\030\003 \001(\014\022;\n\nauth_token\030\004 "
-  "\001(\0132\'.nugget.app.keymaster.HardwareAuthT"
-  "oken\022C\n\022verification_token\030\005 \001(\0132\'.nugge"
-  "t.app.keymaster.VerificationToken\"\245\001\n\027Up"
-  "dateOperationResponse\0223\n\nerror_code\030\001 \001("
-  "\0162\037.nugget.app.keymaster.ErrorCode\022\020\n\010co"
-  "nsumed\030\002 \001(\r\0223\n\006params\030\003 \001(\0132#.nugget.ap"
-  "p.keymaster.KeyParameters\022\016\n\006output\030\004 \001("
-  "\014\"\250\002\n\026FinishOperationRequest\0225\n\006handle\030\001"
-  " \001(\0132%.nugget.app.keymaster.OperationHan"
-  "dle\0223\n\006params\030\002 \001(\0132#.nugget.app.keymast"
-  "er.KeyParameters\022\r\n\005input\030\003 \001(\014\022\021\n\tsigna"
-  "ture\030\004 \001(\014\022;\n\nauth_token\030\005 \001(\0132\'.nugget."
-  "app.keymaster.HardwareAuthToken\022C\n\022verif"
-  "ication_token\030\006 \001(\0132\'.nugget.app.keymast"
-  "er.VerificationToken\"\223\001\n\027FinishOperation"
-  "Response\0223\n\nerror_code\030\001 \001(\0162\037.nugget.ap"
-  "p.keymaster.ErrorCode\0223\n\006params\030\002 \001(\0132#."
-  "nugget.app.keymaster.KeyParameters\022\016\n\006ou"
-  "tput\030\003 \001(\014\"N\n\025AbortOperationRequest\0225\n\006h"
+  "(\014\022\021\n\tnot_after\030\006 \001(\014\022\037\n\027caller_issuer_s"
+  "ubj_name\030\007 \001(\014\022>\n\021caller_key_params\030\010 \001("
+  "\0132#.nugget.app.keymaster.KeyParameters\"\242"
+  "\001\n\026StartAttestKeyResponse\0223\n\nerror_code\030"
+  "\001 \001(\0162\037.nugget.app.keymaster.ErrorCode\0225"
+  "\n\006handle\030\002 \001(\0132%.nugget.app.keymaster.Op"
+  "erationHandle\022\034\n\024certificate_prologue\030\003 "
+  "\001(\014\"\206\001\n\030ContinueAttestKeyRequest\0225\n\006hand"
+  "le\030\001 \001(\0132%.nugget.app.keymaster.Operatio"
+  "nHandle\0223\n\006params\030\003 \001(\0132#.nugget.app.key"
+  "master.KeyParameters\"j\n\031ContinueAttestKe"
+  "yResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.a"
+  "pp.keymaster.ErrorCode\022\030\n\020certificate_bo"
+  "dy\030\002 \001(\014\"\303\001\n\026FinishAttestKeyRequest\0225\n\006h"
   "andle\030\001 \001(\0132%.nugget.app.keymaster.Opera"
-  "tionHandle\"M\n\026AbortOperationResponse\0223\n\n"
-  "error_code\030\001 \001(\0162\037.nugget.app.keymaster."
-  "ErrorCode\"\274\002\n\027ImportWrappedKeyRequest\022\022\n"
-  "\nkey_format\030\001 \001(\r\0223\n\006params\030\002 \001(\0132#.nugg"
-  "et.app.keymaster.KeyParameters\022\024\n\014rsa_en"
-  "velope\030\003 \001(\014\022\035\n\025initialization_vector\030\004 "
-  "\001(\014\022\034\n\024encrypted_import_key\030\005 \001(\014\022\013\n\003aad"
-  "\030\006 \001(\014\022\017\n\007gcm_tag\030\007 \001(\014\0228\n\021wrapping_key_"
-  "blob\030\010 \001(\0132\035.nugget.app.keymaster.KeyBlo"
-  "b\022\023\n\013masking_key\030\t \001(\014\022\030\n\020creation_time_"
-  "ms\030\n \001(\004\"!\n\037GetHmacSharingParametersRequ"
-  "est\"\241\001\n GetHmacSharingParametersResponse"
+  "tionHandle\0222\n\013caller_blob\030\002 \001(\0132\035.nugget"
+  ".app.keymaster.KeyBlob\022>\n\021caller_key_par"
+  "ams\030\003 \001(\0132#.nugget.app.keymaster.KeyPara"
+  "meters\"\272\001\n\027FinishAttestKeyResponse\0223\n\ner"
+  "ror_code\030\001 \001(\0162\037.nugget.app.keymaster.Er"
+  "rorCode\022\034\n\024certificate_epilogue\030\002 \001(\014\0225\n"
+  "\013chip_fusing\030\003 \001(\0162 .nugget.app.keymaste"
+  "r.ChipFusing\022\025\n\rnodelocked_ro\030\004 \001(\010\"u\n\021U"
+  "pgradeKeyRequest\022+\n\004blob\030\001 \001(\0132\035.nugget."
+  "app.keymaster.KeyBlob\0223\n\006params\030\002 \001(\0132#."
+  "nugget.app.keymaster.KeyParameters\"v\n\022Up"
+  "gradeKeyResponse\0223\n\nerror_code\030\001 \001(\0162\037.n"
+  "ugget.app.keymaster.ErrorCode\022+\n\004blob\030\002 "
+  "\001(\0132\035.nugget.app.keymaster.KeyBlob\"\?\n\020De"
+  "leteKeyRequest\022+\n\004blob\030\001 \001(\0132\035.nugget.ap"
+  "p.keymaster.KeyBlob\"H\n\021DeleteKeyResponse"
   "\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.keymas"
-  "ter.ErrorCode\022H\n\023hmac_sharing_params\030\002 \001"
-  "(\0132+.nugget.app.keymaster.HmacSharingPar"
-  "ameters\"d\n\030ComputeSharedHmacRequest\022H\n\023h"
-  "mac_sharing_params\030\001 \003(\0132+.nugget.app.ke"
-  "ymaster.HmacSharingParameters\"g\n\031Compute"
-  "SharedHmacResponse\0223\n\nerror_code\030\001 \001(\0162\037"
-  ".nugget.app.keymaster.ErrorCode\022\025\n\rshari"
-  "ng_check\030\002 \001(\014\"q\n\023DeviceLockedRequest\022\025\n"
-  "\rpassword_only\030\001 \001(\010\022C\n\022verification_tok"
-  "en\030\002 \001(\0132\'.nugget.app.keymaster.Verifica"
-  "tionToken\"K\n\024DeviceLockedResponse\0223\n\nerr"
-  "or_code\030\001 \001(\0162\037.nugget.app.keymaster.Err"
-  "orCode\"\027\n\025EarlyBootEndedRequest\"M\n\026Early"
-  "BootEndedResponse\0223\n\nerror_code\030\001 \001(\0162\037."
-  "nugget.app.keymaster.ErrorCode\"\'\n\025SetRoo"
-  "tOfTrustRequest\022\016\n\006digest\030\001 \001(\014\"M\n\026SetRo"
-  "otOfTrustResponse\0223\n\nerror_code\030\001 \001(\0162\037."
-  "nugget.app.keymaster.ErrorCode\"\270\001\n\023SetBo"
-  "otStateRequest\022\023\n\013is_unlocked\030\001 \001(\010\022\022\n\np"
-  "ublic_key\030\002 \001(\014\022.\n\005color\030\003 \001(\0162\037.nugget."
-  "app.keymaster.BootColor\022\026\n\016system_versio"
-  "n\030\004 \001(\r\022\035\n\025system_security_level\030\005 \001(\r\022\021"
-  "\n\tboot_hash\030\006 \001(\014\"K\n\024SetBootStateRespons"
-  "e\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.keyma"
-  "ster.ErrorCode\"\303\001\n\031ProvisionDeviceIdsReq"
-  "uest\022\025\n\rproduct_brand\030\001 \001(\014\022\026\n\016product_d"
-  "evice\030\002 \001(\014\022\024\n\014product_name\030\003 \001(\014\022\020\n\010ser"
-  "ialno\030\004 \001(\014\022\034\n\024product_manufacturer\030\005 \001("
-  "\014\022\025\n\rproduct_model\030\006 \001(\014\022\014\n\004imei\030\007 \001(\014\022\014"
-  "\n\004meid\030\010 \001(\014\"\237\001\n\032ProvisionDeviceIdsRespo"
-  "nse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.key"
-  "master.ErrorCode\0225\n\013chip_fusing\030\002 \001(\0162 ."
-  "nugget.app.keymaster.ChipFusing\022\025\n\rnodel"
-  "ocked_ro\030\003 \001(\010\"T\n\036ReadTeeBatchCertificat"
-  "eRequest\0222\n\talgorithm\030\001 \001(\0162\037.nugget.app"
-  ".keymaster.Algorithm\"\276\001\n\037ReadTeeBatchCer"
-  "tificateResponse\0223\n\nerror_code\030\001 \001(\0162\037.n"
-  "ugget.app.keymaster.ErrorCode\022)\n\003rsa\030\002 \001"
-  "(\0132\034.nugget.app.keymaster.RSAKey\022\'\n\002ec\030\003"
-  " \001(\0132\033.nugget.app.keymaster.ECKey\022\022\n\nbat"
-  "ch_cert\030\004 \001(\014\",\n\024DTupHandshakeRequest\022\024\n"
-  "\014nonce_client\030\001 \001(\014\"v\n\025DTupHandshakeResp"
-  "onse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.ke"
-  "ymaster.DTupError\022\025\n\rnonce_citadel\030\002 \001(\014"
-  "\022\021\n\tsignature\030\003 \001(\014\"\034\n\032DTupFetchInputEve"
-  "ntRequest\"\230\001\n\033DTupFetchInputEventRespons"
-  "e\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.keyma"
-  "ster.DTupError\0221\n\005event\030\002 \001(\0162\".nugget.a"
-  "pp.keymaster.DTupKeyEvent\022\021\n\tsignature\030\003"
-  " \001(\014\"s\n\033SetSystemVersionInfoRequest\022\026\n\016s"
-  "ystem_version\030\001 \001(\r\022\035\n\025system_security_l"
-  "evel\030\002 \001(\r\022\035\n\025vendor_security_level\030\003 \001("
-  "\r\"S\n\034SetSystemVersionInfoResponse\0223\n\nerr"
-  "or_code\030\001 \001(\0162\037.nugget.app.keymaster.Err"
-  "orCode\"\024\n\022GetBootInfoRequest\"\271\001\n\023GetBoot"
-  "InfoResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugge"
-  "t.app.keymaster.ErrorCode\022\023\n\013is_unlocked"
-  "\030\002 \001(\010\0223\n\nboot_color\030\003 \001(\0162\037.nugget.app."
-  "keymaster.BootColor\022\020\n\010boot_key\030\004 \001(\014\022\021\n"
-  "\tboot_hash\030\005 \001(\014\"O\n\037ProvisionPresharedSe"
-  "cretRequest\022\030\n\020preshared_secret\030\001 \001(\014\022\022\n"
-  "\nget_status\030\002 \001(\010\"\324\001\n ProvisionPreshared"
-  "SecretResponse\0223\n\nerror_code\030\001 \001(\0162\037.nug"
-  "get.app.keymaster.ErrorCode\022;\n\006status\030\002 "
-  "\001(\0162+.nugget.app.keymaster.PresharedSecr"
-  "etStatus\022.\n\005color\030\003 \001(\0162\037.nugget.app.key"
-  "master.BootColor\022\016\n\006digest\030\004 \001(\014\"X\n\034Prov"
-  "isionCertificatesRequest\022\024\n\014block_number"
-  "\030\001 \001(\r\022\022\n\ncert_block\030\002 \001(\014\022\016\n\006digest\030\003 \001"
-  "(\014\"\222\001\n\035ProvisionCertificatesResponse\0223\n\n"
-  "error_code\030\001 \001(\0162\037.nugget.app.keymaster."
-  "ErrorCode\022<\n\013cert_status\030\002 \001(\0162\'.nugget."
-  "app.keymaster.CertificateStatus\"\211\001\n\026Read"
-  "CertificateRequest\022;\n\010selector\030\001 \001(\0162).n"
-  "ugget.app.keymaster.AttestationSelector\022"
-  "2\n\talgorithm\030\002 \001(\0162\037.nugget.app.keymaste"
-  "r.Algorithm\"\177\n\027ReadCertificateResponse\0223"
-  "\n\nerror_code\030\001 \001(\0162\037.nugget.app.keymaste"
-  "r.ErrorCode\022/\n\004cert\030\002 \001(\0132!.nugget.app.k"
-  "eymaster.Certificate\"\023\n\021VigoReadVSReques"
-  "t\"x\n\022VigoReadVSResponse\0223\n\nerror_code\030\001 "
-  "\001(\0162\037.nugget.app.keymaster.ErrorCode\022-\n\006"
-  "vs_key\030\002 \001(\0132\035.nugget.app.keymaster.Vigo"
-  "Key\"L\n\027VigoStartChannelRequest\0221\n\nclient"
-  "_key\030\001 \001(\0132\035.nugget.app.keymaster.VigoKe"
-  "y\"\302\001\n\030VigoStartChannelResponse\0223\n\nerror_"
+  "ter.ErrorCode\"\026\n\024DeleteAllKeysRequest\"L\n"
+  "\025DeleteAllKeysResponse\0223\n\nerror_code\030\001 \001"
+  "(\0162\037.nugget.app.keymaster.ErrorCode\"\036\n\034D"
+  "estroyAttestationIdsRequest\"T\n\035DestroyAt"
+  "testationIdsResponse\0223\n\nerror_code\030\001 \001(\016"
+  "2\037.nugget.app.keymaster.ErrorCode\"\351\001\n\025Be"
+  "ginOperationRequest\0221\n\007purpose\030\001 \001(\0162 .n"
+  "ugget.app.keymaster.KeyPurpose\022+\n\004blob\030\002"
+  " \001(\0132\035.nugget.app.keymaster.KeyBlob\0223\n\006p"
+  "arams\030\003 \001(\0132#.nugget.app.keymaster.KeyPa"
+  "rameters\022;\n\nauth_token\030\004 \001(\0132\'.nugget.ap"
+  "p.keymaster.HardwareAuthToken\"\377\001\n\026BeginO"
+  "perationResponse\0223\n\nerror_code\030\001 \001(\0162\037.n"
+  "ugget.app.keymaster.ErrorCode\0223\n\006params\030"
+  "\002 \001(\0132#.nugget.app.keymaster.KeyParamete"
+  "rs\0225\n\006handle\030\003 \001(\0132%.nugget.app.keymaste"
+  "r.OperationHandle\0222\n\talgorithm\030\004 \001(\0162\037.n"
+  "ugget.app.keymaster.Algorithm\022\020\n\010key_bit"
+  "s\030\005 \001(\r\"\225\002\n\026UpdateOperationRequest\0225\n\006ha"
+  "ndle\030\001 \001(\0132%.nugget.app.keymaster.Operat"
+  "ionHandle\0223\n\006params\030\002 \001(\0132#.nugget.app.k"
+  "eymaster.KeyParameters\022\r\n\005input\030\003 \001(\014\022;\n"
+  "\nauth_token\030\004 \001(\0132\'.nugget.app.keymaster"
+  ".HardwareAuthToken\022C\n\022verification_token"
+  "\030\005 \001(\0132\'.nugget.app.keymaster.Verificati"
+  "onToken\"\245\001\n\027UpdateOperationResponse\0223\n\ne"
+  "rror_code\030\001 \001(\0162\037.nugget.app.keymaster.E"
+  "rrorCode\022\020\n\010consumed\030\002 \001(\r\0223\n\006params\030\003 \001"
+  "(\0132#.nugget.app.keymaster.KeyParameters\022"
+  "\016\n\006output\030\004 \001(\014\"\250\002\n\026FinishOperationReque"
+  "st\0225\n\006handle\030\001 \001(\0132%.nugget.app.keymaste"
+  "r.OperationHandle\0223\n\006params\030\002 \001(\0132#.nugg"
+  "et.app.keymaster.KeyParameters\022\r\n\005input\030"
+  "\003 \001(\014\022\021\n\tsignature\030\004 \001(\014\022;\n\nauth_token\030\005"
+  " \001(\0132\'.nugget.app.keymaster.HardwareAuth"
+  "Token\022C\n\022verification_token\030\006 \001(\0132\'.nugg"
+  "et.app.keymaster.VerificationToken\"\223\001\n\027F"
+  "inishOperationResponse\0223\n\nerror_code\030\001 \001"
+  "(\0162\037.nugget.app.keymaster.ErrorCode\0223\n\006p"
+  "arams\030\002 \001(\0132#.nugget.app.keymaster.KeyPa"
+  "rameters\022\016\n\006output\030\003 \001(\014\"N\n\025AbortOperati"
+  "onRequest\0225\n\006handle\030\001 \001(\0132%.nugget.app.k"
+  "eymaster.OperationHandle\"M\n\026AbortOperati"
+  "onResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget."
+  "app.keymaster.ErrorCode\"\274\002\n\027ImportWrappe"
+  "dKeyRequest\022\022\n\nkey_format\030\001 \001(\r\0223\n\006param"
+  "s\030\002 \001(\0132#.nugget.app.keymaster.KeyParame"
+  "ters\022\024\n\014rsa_envelope\030\003 \001(\014\022\035\n\025initializa"
+  "tion_vector\030\004 \001(\014\022\034\n\024encrypted_import_ke"
+  "y\030\005 \001(\014\022\013\n\003aad\030\006 \001(\014\022\017\n\007gcm_tag\030\007 \001(\014\0228\n"
+  "\021wrapping_key_blob\030\010 \001(\0132\035.nugget.app.ke"
+  "ymaster.KeyBlob\022\023\n\013masking_key\030\t \001(\014\022\030\n\020"
+  "creation_time_ms\030\n \001(\004\"!\n\037GetHmacSharing"
+  "ParametersRequest\"\241\001\n GetHmacSharingPara"
+  "metersResponse\0223\n\nerror_code\030\001 \001(\0162\037.nug"
+  "get.app.keymaster.ErrorCode\022H\n\023hmac_shar"
+  "ing_params\030\002 \001(\0132+.nugget.app.keymaster."
+  "HmacSharingParameters\"d\n\030ComputeSharedHm"
+  "acRequest\022H\n\023hmac_sharing_params\030\001 \003(\0132+"
+  ".nugget.app.keymaster.HmacSharingParamet"
+  "ers\"g\n\031ComputeSharedHmacResponse\0223\n\nerro"
+  "r_code\030\001 \001(\0162\037.nugget.app.keymaster.Erro"
+  "rCode\022\025\n\rsharing_check\030\002 \001(\014\"q\n\023DeviceLo"
+  "ckedRequest\022\025\n\rpassword_only\030\001 \001(\010\022C\n\022ve"
+  "rification_token\030\002 \001(\0132\'.nugget.app.keym"
+  "aster.VerificationToken\"K\n\024DeviceLockedR"
+  "esponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app"
+  ".keymaster.ErrorCode\"\027\n\025EarlyBootEndedRe"
+  "quest\"M\n\026EarlyBootEndedResponse\0223\n\nerror"
+  "_code\030\001 \001(\0162\037.nugget.app.keymaster.Error"
+  "Code\"\'\n\025SetRootOfTrustRequest\022\016\n\006digest\030"
+  "\001 \001(\014\"M\n\026SetRootOfTrustResponse\0223\n\nerror"
+  "_code\030\001 \001(\0162\037.nugget.app.keymaster.Error"
+  "Code\"\270\001\n\023SetBootStateRequest\022\023\n\013is_unloc"
+  "ked\030\001 \001(\010\022\022\n\npublic_key\030\002 \001(\014\022.\n\005color\030\003"
+  " \001(\0162\037.nugget.app.keymaster.BootColor\022\026\n"
+  "\016system_version\030\004 \001(\r\022\035\n\025system_security"
+  "_level\030\005 \001(\r\022\021\n\tboot_hash\030\006 \001(\014\"K\n\024SetBo"
+  "otStateResponse\0223\n\nerror_code\030\001 \001(\0162\037.nu"
+  "gget.app.keymaster.ErrorCode\"\303\001\n\031Provisi"
+  "onDeviceIdsRequest\022\025\n\rproduct_brand\030\001 \001("
+  "\014\022\026\n\016product_device\030\002 \001(\014\022\024\n\014product_nam"
+  "e\030\003 \001(\014\022\020\n\010serialno\030\004 \001(\014\022\034\n\024product_man"
+  "ufacturer\030\005 \001(\014\022\025\n\rproduct_model\030\006 \001(\014\022\014"
+  "\n\004imei\030\007 \001(\014\022\014\n\004meid\030\010 \001(\014\"\237\001\n\032Provision"
+  "DeviceIdsResponse\0223\n\nerror_code\030\001 \001(\0162\037."
+  "nugget.app.keymaster.ErrorCode\0225\n\013chip_f"
+  "using\030\002 \001(\0162 .nugget.app.keymaster.ChipF"
+  "using\022\025\n\rnodelocked_ro\030\003 \001(\010\"T\n\036ReadTeeB"
+  "atchCertificateRequest\0222\n\talgorithm\030\001 \001("
+  "\0162\037.nugget.app.keymaster.Algorithm\"\276\001\n\037R"
+  "eadTeeBatchCertificateResponse\0223\n\nerror_"
   "code\030\001 \001(\0162\037.nugget.app.keymaster.ErrorC"
-  "ode\0221\n\nserver_key\030\002 \001(\0132\035.nugget.app.key"
-  "master.VigoKey\022>\n\021channel_signature\030\003 \001("
-  "\0132#.nugget.app.keymaster.VigoSignature\"\203"
-  "\001\n\026VigoStoreSecretRequest\022-\n\006rs_key\030\001 \001("
-  "\0132\035.nugget.app.keymaster.VigoKey\022:\n\020secr"
-  "et_encrypted\030\002 \001(\0132 .nugget.app.keymaste"
-  "r.VigoSecret\"N\n\027VigoStoreSecretResponse\022"
-  "3\n\nerror_code\030\001 \001(\0162\037.nugget.app.keymast"
-  "er.ErrorCode\"U\n\030VigoReleaseSecretRequest"
-  "\0229\n\014rs_signature\030\001 \001(\0132#.nugget.app.keym"
-  "aster.VigoSignature\"\214\001\n\031VigoReleaseSecre"
-  "tResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.a"
-  "pp.keymaster.ErrorCode\022:\n\020secret_encrypt"
-  "ed\030\002 \001(\0132 .nugget.app.keymaster.VigoSecr"
-  "et\"\202\002\n\035IdentityStartAttestKeyRequest\022\016\n\006"
-  "pubkey\030\001 \001(\014\0223\n\006params\030\002 \001(\0132#.nugget.ap"
-  "p.keymaster.KeyParameters\022\036\n\026attestation"
-  "_app_id_len\030\003 \001(\r\022;\n\010selector\030\004 \001(\0162).nu"
-  "gget.app.keymaster.AttestationSelector\022\022"
-  "\n\nnot_before\030\005 \001(\014\022\021\n\tnot_after\030\006 \001(\014\022\030\n"
-  "\020creation_time_ms\030\007 \001(\004\"\252\001\n\036IdentityStar"
-  "tAttestKeyResponse\0223\n\nerror_code\030\001 \001(\0162\037"
-  ".nugget.app.keymaster.ErrorCode\0225\n\006handl"
-  "e\030\002 \001(\0132%.nugget.app.keymaster.Operation"
-  "Handle\022\034\n\024certificate_prologue\030\003 \001(\014\"r\n\036"
-  "IdentityFinishAttestKeyRequest\0225\n\006handle"
-  "\030\001 \001(\0132%.nugget.app.keymaster.OperationH"
-  "andle\022\031\n\021use_km_attest_key\030\002 \001(\010\"\302\001\n\037Ide"
-  "ntityFinishAttestKeyResponse\0223\n\nerror_co"
+  "ode\022)\n\003rsa\030\002 \001(\0132\034.nugget.app.keymaster."
+  "RSAKey\022\'\n\002ec\030\003 \001(\0132\033.nugget.app.keymaste"
+  "r.ECKey\022\022\n\nbatch_cert\030\004 \001(\014\",\n\024DTupHands"
+  "hakeRequest\022\024\n\014nonce_client\030\001 \001(\014\"v\n\025DTu"
+  "pHandshakeResponse\0223\n\nerror_code\030\001 \001(\0162\037"
+  ".nugget.app.keymaster.DTupError\022\025\n\rnonce"
+  "_citadel\030\002 \001(\014\022\021\n\tsignature\030\003 \001(\014\"\034\n\032DTu"
+  "pFetchInputEventRequest\"\230\001\n\033DTupFetchInp"
+  "utEventResponse\0223\n\nerror_code\030\001 \001(\0162\037.nu"
+  "gget.app.keymaster.DTupError\0221\n\005event\030\002 "
+  "\001(\0162\".nugget.app.keymaster.DTupKeyEvent\022"
+  "\021\n\tsignature\030\003 \001(\014\"s\n\033SetSystemVersionIn"
+  "foRequest\022\026\n\016system_version\030\001 \001(\r\022\035\n\025sys"
+  "tem_security_level\030\002 \001(\r\022\035\n\025vendor_secur"
+  "ity_level\030\003 \001(\r\"S\n\034SetSystemVersionInfoR"
+  "esponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app"
+  ".keymaster.ErrorCode\"\024\n\022GetBootInfoReque"
+  "st\"\271\001\n\023GetBootInfoResponse\0223\n\nerror_code"
+  "\030\001 \001(\0162\037.nugget.app.keymaster.ErrorCode\022"
+  "\023\n\013is_unlocked\030\002 \001(\010\0223\n\nboot_color\030\003 \001(\016"
+  "2\037.nugget.app.keymaster.BootColor\022\020\n\010boo"
+  "t_key\030\004 \001(\014\022\021\n\tboot_hash\030\005 \001(\014\"O\n\037Provis"
+  "ionPresharedSecretRequest\022\030\n\020preshared_s"
+  "ecret\030\001 \001(\014\022\022\n\nget_status\030\002 \001(\010\"\324\001\n Prov"
+  "isionPresharedSecretResponse\0223\n\nerror_co"
   "de\030\001 \001(\0162\037.nugget.app.keymaster.ErrorCod"
-  "e\022\034\n\024certificate_epilogue\030\002 \001(\014\0225\n\013chip_"
-  "fusing\030\003 \001(\0162 .nugget.app.keymaster.Chip"
-  "Fusing\022\025\n\rnodelocked_ro\030\004 \001(\0102\237\"\n\tKeymas"
-  "ter\022h\n\rAddRngEntropy\022*.nugget.app.keymas"
-  "ter.AddRngEntropyRequest\032+.nugget.app.ke"
-  "ymaster.AddRngEntropyResponse\022b\n\013Generat"
-  "eKey\022(.nugget.app.keymaster.GenerateKeyR"
-  "equest\032).nugget.app.keymaster.GenerateKe"
-  "yResponse\022\200\001\n\025GetKeyCharacteristics\0222.nu"
-  "gget.app.keymaster.GetKeyCharacteristics"
-  "Request\0323.nugget.app.keymaster.GetKeyCha"
-  "racteristicsResponse\022\\\n\tImportKey\022&.nugg"
-  "et.app.keymaster.ImportKeyRequest\032\'.nugg"
-  "et.app.keymaster.ImportKeyResponse\022\\\n\tEx"
-  "portKey\022&.nugget.app.keymaster.ExportKey"
-  "Request\032\'.nugget.app.keymaster.ExportKey"
-  "Response\022k\n\016StartAttestKey\022+.nugget.app."
-  "keymaster.StartAttestKeyRequest\032,.nugget"
-  ".app.keymaster.StartAttestKeyResponse\022_\n"
-  "\nUpgradeKey\022\'.nugget.app.keymaster.Upgra"
-  "deKeyRequest\032(.nugget.app.keymaster.Upgr"
-  "adeKeyResponse\022\\\n\tDeleteKey\022&.nugget.app"
-  ".keymaster.DeleteKeyRequest\032\'.nugget.app"
-  ".keymaster.DeleteKeyResponse\022h\n\rDeleteAl"
-  "lKeys\022*.nugget.app.keymaster.DeleteAllKe"
-  "ysRequest\032+.nugget.app.keymaster.DeleteA"
-  "llKeysResponse\022\200\001\n\025DestroyAttestationIds"
-  "\0222.nugget.app.keymaster.DestroyAttestati"
-  "onIdsRequest\0323.nugget.app.keymaster.Dest"
-  "royAttestationIdsResponse\022k\n\016BeginOperat"
-  "ion\022+.nugget.app.keymaster.BeginOperatio"
-  "nRequest\032,.nugget.app.keymaster.BeginOpe"
-  "rationResponse\022n\n\017UpdateOperation\022,.nugg"
-  "et.app.keymaster.UpdateOperationRequest\032"
-  "-.nugget.app.keymaster.UpdateOperationRe"
-  "sponse\022n\n\017FinishOperation\022,.nugget.app.k"
-  "eymaster.FinishOperationRequest\032-.nugget"
-  ".app.keymaster.FinishOperationResponse\022k"
-  "\n\016AbortOperation\022+.nugget.app.keymaster."
-  "AbortOperationRequest\032,.nugget.app.keyma"
-  "ster.AbortOperationResponse\022j\n\020ImportWra"
-  "ppedKey\022-.nugget.app.keymaster.ImportWra"
-  "ppedKeyRequest\032\'.nugget.app.keymaster.Im"
-  "portKeyResponse\022k\n\016SetRootOfTrust\022+.nugg"
-  "et.app.keymaster.SetRootOfTrustRequest\032,"
-  ".nugget.app.keymaster.SetRootOfTrustResp"
-  "onse\022e\n\014SetBootState\022).nugget.app.keymas"
-  "ter.SetBootStateRequest\032*.nugget.app.key"
-  "master.SetBootStateResponse\022w\n\022Provision"
-  "DeviceIds\022/.nugget.app.keymaster.Provisi"
-  "onDeviceIdsRequest\0320.nugget.app.keymaste"
-  "r.ProvisionDeviceIdsResponse\022\206\001\n\027ReadTee"
-  "BatchCertificate\0224.nugget.app.keymaster."
-  "ReadTeeBatchCertificateRequest\0325.nugget."
-  "app.keymaster.ReadTeeBatchCertificateRes"
-  "ponse\022\211\001\n\030GetHmacSharingParameters\0225.nug"
-  "get.app.keymaster.GetHmacSharingParamete"
-  "rsRequest\0326.nugget.app.keymaster.GetHmac"
-  "SharingParametersResponse\022t\n\021ComputeShar"
-  "edHmac\022..nugget.app.keymaster.ComputeSha"
-  "redHmacRequest\032/.nugget.app.keymaster.Co"
-  "mputeSharedHmacResponse\022h\n\rHandshakeDTup"
-  "\022*.nugget.app.keymaster.DTupHandshakeReq"
-  "uest\032+.nugget.app.keymaster.DTupHandshak"
-  "eResponse\022z\n\023FetchDTupInputEvent\0220.nugge"
-  "t.app.keymaster.DTupFetchInputEventReque"
-  "st\0321.nugget.app.keymaster.DTupFetchInput"
-  "EventResponse\022}\n\024SetSystemVersionInfo\0221."
-  "nugget.app.keymaster.SetSystemVersionInf"
-  "oRequest\0322.nugget.app.keymaster.SetSyste"
-  "mVersionInfoResponse\022b\n\013GetBootInfo\022(.nu"
-  "gget.app.keymaster.GetBootInfoRequest\032)."
-  "nugget.app.keymaster.GetBootInfoResponse"
-  "\022\211\001\n\030ProvisionPresharedSecret\0225.nugget.a"
-  "pp.keymaster.ProvisionPresharedSecretReq"
-  "uest\0326.nugget.app.keymaster.ProvisionPre"
-  "sharedSecretResponse\022t\n\021ContinueAttestKe"
-  "y\022..nugget.app.keymaster.ContinueAttestK"
-  "eyRequest\032/.nugget.app.keymaster.Continu"
-  "eAttestKeyResponse\022n\n\017FinishAttestKey\022,."
-  "nugget.app.keymaster.FinishAttestKeyRequ"
-  "est\032-.nugget.app.keymaster.FinishAttestK"
-  "eyResponse\022\200\001\n\025ProvisionCertificates\0222.n"
-  "ugget.app.keymaster.ProvisionCertificate"
-  "sRequest\0323.nugget.app.keymaster.Provisio"
-  "nCertificatesResponse\022e\n\014DeviceLocked\022)."
-  "nugget.app.keymaster.DeviceLockedRequest"
-  "\032*.nugget.app.keymaster.DeviceLockedResp"
-  "onse\022k\n\016EarlyBootEnded\022+.nugget.app.keym"
-  "aster.EarlyBootEndedRequest\032,.nugget.app"
-  ".keymaster.EarlyBootEndedResponse\022n\n\017Rea"
-  "dCertificate\022,.nugget.app.keymaster.Read"
-  "CertificateRequest\032-.nugget.app.keymaste"
-  "r.ReadCertificateResponse\022\203\001\n\026IdentitySt"
-  "artAttestKey\0223.nugget.app.keymaster.Iden"
-  "tityStartAttestKeyRequest\0324.nugget.app.k"
-  "eymaster.IdentityStartAttestKeyResponse\022"
-  "\206\001\n\027IdentityFinishAttestKey\0224.nugget.app"
-  ".keymaster.IdentityFinishAttestKeyReques"
-  "t\0325.nugget.app.keymaster.IdentityFinishA"
-  "ttestKeyResponse\022_\n\nVigoReadVS\022\'.nugget."
-  "app.keymaster.VigoReadVSRequest\032(.nugget"
-  ".app.keymaster.VigoReadVSResponse\022q\n\020Vig"
-  "oStartChannel\022-.nugget.app.keymaster.Vig"
-  "oStartChannelRequest\032..nugget.app.keymas"
-  "ter.VigoStartChannelResponse\022n\n\017VigoStor"
-  "eSecret\022,.nugget.app.keymaster.VigoStore"
-  "SecretRequest\032-.nugget.app.keymaster.Vig"
-  "oStoreSecretResponse\022t\n\021VigoReleaseSecre"
-  "t\022..nugget.app.keymaster.VigoReleaseSecr"
-  "etRequest\032/.nugget.app.keymaster.VigoRel"
-  "easeSecretResponse\032#\202}\tKEYMASTER\212}\tKeyma"
-  "ster\220}\001\230}\200\030\240}\200\020b\006proto3"
+  "e\022;\n\006status\030\002 \001(\0162+.nugget.app.keymaster"
+  ".PresharedSecretStatus\022.\n\005color\030\003 \001(\0162\037."
+  "nugget.app.keymaster.BootColor\022\016\n\006digest"
+  "\030\004 \001(\014\"X\n\034ProvisionCertificatesRequest\022\024"
+  "\n\014block_number\030\001 \001(\r\022\022\n\ncert_block\030\002 \001(\014"
+  "\022\016\n\006digest\030\003 \001(\014\"\222\001\n\035ProvisionCertificat"
+  "esResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugget."
+  "app.keymaster.ErrorCode\022<\n\013cert_status\030\002"
+  " \001(\0162\'.nugget.app.keymaster.CertificateS"
+  "tatus\"\211\001\n\026ReadCertificateRequest\022;\n\010sele"
+  "ctor\030\001 \001(\0162).nugget.app.keymaster.Attest"
+  "ationSelector\0222\n\talgorithm\030\002 \001(\0162\037.nugge"
+  "t.app.keymaster.Algorithm\"\177\n\027ReadCertifi"
+  "cateResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugge"
+  "t.app.keymaster.ErrorCode\022/\n\004cert\030\002 \001(\0132"
+  "!.nugget.app.keymaster.Certificate\"\023\n\021Vi"
+  "goReadVSRequest\"x\n\022VigoReadVSResponse\0223\n"
+  "\nerror_code\030\001 \001(\0162\037.nugget.app.keymaster"
+  ".ErrorCode\022-\n\006vs_key\030\002 \001(\0132\035.nugget.app."
+  "keymaster.VigoKey\"L\n\027VigoStartChannelReq"
+  "uest\0221\n\nclient_key\030\001 \001(\0132\035.nugget.app.ke"
+  "ymaster.VigoKey\"\302\001\n\030VigoStartChannelResp"
+  "onse\0223\n\nerror_code\030\001 \001(\0162\037.nugget.app.ke"
+  "ymaster.ErrorCode\0221\n\nserver_key\030\002 \001(\0132\035."
+  "nugget.app.keymaster.VigoKey\022>\n\021channel_"
+  "signature\030\003 \001(\0132#.nugget.app.keymaster.V"
+  "igoSignature\"\203\001\n\026VigoStoreSecretRequest\022"
+  "-\n\006rs_key\030\001 \001(\0132\035.nugget.app.keymaster.V"
+  "igoKey\022:\n\020secret_encrypted\030\002 \001(\0132 .nugge"
+  "t.app.keymaster.VigoSecret\"N\n\027VigoStoreS"
+  "ecretResponse\0223\n\nerror_code\030\001 \001(\0162\037.nugg"
+  "et.app.keymaster.ErrorCode\"U\n\030VigoReleas"
+  "eSecretRequest\0229\n\014rs_signature\030\001 \001(\0132#.n"
+  "ugget.app.keymaster.VigoSignature\"\214\001\n\031Vi"
+  "goReleaseSecretResponse\0223\n\nerror_code\030\001 "
+  "\001(\0162\037.nugget.app.keymaster.ErrorCode\022:\n\020"
+  "secret_encrypted\030\002 \001(\0132 .nugget.app.keym"
+  "aster.VigoSecret\"\235\002\n\035IdentityStartAttest"
+  "KeyRequest\022\016\n\006pubkey\030\001 \001(\014\0223\n\006params\030\002 \001"
+  "(\0132#.nugget.app.keymaster.KeyParameters\022"
+  "\036\n\026attestation_app_id_len\030\003 \001(\r\022;\n\010selec"
+  "tor\030\004 \001(\0162).nugget.app.keymaster.Attesta"
+  "tionSelector\022\022\n\nnot_before\030\005 \001(\014\022\021\n\tnot_"
+  "after\030\006 \001(\014\022\030\n\020creation_time_ms\030\007 \001(\004\022\031\n"
+  "\021use_km_attest_key\030\010 \001(\010\"\252\001\n\036IdentitySta"
+  "rtAttestKeyResponse\0223\n\nerror_code\030\001 \001(\0162"
+  "\037.nugget.app.keymaster.ErrorCode\0225\n\006hand"
+  "le\030\002 \001(\0132%.nugget.app.keymaster.Operatio"
+  "nHandle\022\034\n\024certificate_prologue\030\003 \001(\014\"r\n"
+  "\036IdentityFinishAttestKeyRequest\0225\n\006handl"
+  "e\030\001 \001(\0132%.nugget.app.keymaster.Operation"
+  "Handle\022\031\n\021use_km_attest_key\030\002 \001(\010\"\302\001\n\037Id"
+  "entityFinishAttestKeyResponse\0223\n\nerror_c"
+  "ode\030\001 \001(\0162\037.nugget.app.keymaster.ErrorCo"
+  "de\022\034\n\024certificate_epilogue\030\002 \001(\014\0225\n\013chip"
+  "_fusing\030\003 \001(\0162 .nugget.app.keymaster.Chi"
+  "pFusing\022\025\n\rnodelocked_ro\030\004 \001(\010\"H\n\036GetPer"
+  "FactoryResetValueRequest\022\027\n\017bootloader_o"
+  "nly\030\001 \001(\010\022\r\n\005input\030\002 \001(\014\"f\n\037GetPerFactor"
+  "yResetValueResponse\0223\n\nerror_code\030\001 \001(\0162"
+  "\037.nugget.app.keymaster.ErrorCode\022\016\n\006outp"
+  "ut\030\002 \001(\0142\250#\n\tKeymaster\022h\n\rAddRngEntropy\022"
+  "*.nugget.app.keymaster.AddRngEntropyRequ"
+  "est\032+.nugget.app.keymaster.AddRngEntropy"
+  "Response\022b\n\013GenerateKey\022(.nugget.app.key"
+  "master.GenerateKeyRequest\032).nugget.app.k"
+  "eymaster.GenerateKeyResponse\022\200\001\n\025GetKeyC"
+  "haracteristics\0222.nugget.app.keymaster.Ge"
+  "tKeyCharacteristicsRequest\0323.nugget.app."
+  "keymaster.GetKeyCharacteristicsResponse\022"
+  "\\\n\tImportKey\022&.nugget.app.keymaster.Impo"
+  "rtKeyRequest\032\'.nugget.app.keymaster.Impo"
+  "rtKeyResponse\022\\\n\tExportKey\022&.nugget.app."
+  "keymaster.ExportKeyRequest\032\'.nugget.app."
+  "keymaster.ExportKeyResponse\022k\n\016StartAtte"
+  "stKey\022+.nugget.app.keymaster.StartAttest"
+  "KeyRequest\032,.nugget.app.keymaster.StartA"
+  "ttestKeyResponse\022_\n\nUpgradeKey\022\'.nugget."
+  "app.keymaster.UpgradeKeyRequest\032(.nugget"
+  ".app.keymaster.UpgradeKeyResponse\022\\\n\tDel"
+  "eteKey\022&.nugget.app.keymaster.DeleteKeyR"
+  "equest\032\'.nugget.app.keymaster.DeleteKeyR"
+  "esponse\022h\n\rDeleteAllKeys\022*.nugget.app.ke"
+  "ymaster.DeleteAllKeysRequest\032+.nugget.ap"
+  "p.keymaster.DeleteAllKeysResponse\022\200\001\n\025De"
+  "stroyAttestationIds\0222.nugget.app.keymast"
+  "er.DestroyAttestationIdsRequest\0323.nugget"
+  ".app.keymaster.DestroyAttestationIdsResp"
+  "onse\022k\n\016BeginOperation\022+.nugget.app.keym"
+  "aster.BeginOperationRequest\032,.nugget.app"
+  ".keymaster.BeginOperationResponse\022n\n\017Upd"
+  "ateOperation\022,.nugget.app.keymaster.Upda"
+  "teOperationRequest\032-.nugget.app.keymaste"
+  "r.UpdateOperationResponse\022n\n\017FinishOpera"
+  "tion\022,.nugget.app.keymaster.FinishOperat"
+  "ionRequest\032-.nugget.app.keymaster.Finish"
+  "OperationResponse\022k\n\016AbortOperation\022+.nu"
+  "gget.app.keymaster.AbortOperationRequest"
+  "\032,.nugget.app.keymaster.AbortOperationRe"
+  "sponse\022j\n\020ImportWrappedKey\022-.nugget.app."
+  "keymaster.ImportWrappedKeyRequest\032\'.nugg"
+  "et.app.keymaster.ImportKeyResponse\022k\n\016Se"
+  "tRootOfTrust\022+.nugget.app.keymaster.SetR"
+  "ootOfTrustRequest\032,.nugget.app.keymaster"
+  ".SetRootOfTrustResponse\022e\n\014SetBootState\022"
+  ").nugget.app.keymaster.SetBootStateReque"
+  "st\032*.nugget.app.keymaster.SetBootStateRe"
+  "sponse\022w\n\022ProvisionDeviceIds\022/.nugget.ap"
+  "p.keymaster.ProvisionDeviceIdsRequest\0320."
+  "nugget.app.keymaster.ProvisionDeviceIdsR"
+  "esponse\022\206\001\n\027ReadTeeBatchCertificate\0224.nu"
+  "gget.app.keymaster.ReadTeeBatchCertifica"
+  "teRequest\0325.nugget.app.keymaster.ReadTee"
+  "BatchCertificateResponse\022\211\001\n\030GetHmacShar"
+  "ingParameters\0225.nugget.app.keymaster.Get"
+  "HmacSharingParametersRequest\0326.nugget.ap"
+  "p.keymaster.GetHmacSharingParametersResp"
+  "onse\022t\n\021ComputeSharedHmac\022..nugget.app.k"
+  "eymaster.ComputeSharedHmacRequest\032/.nugg"
+  "et.app.keymaster.ComputeSharedHmacRespon"
+  "se\022h\n\rHandshakeDTup\022*.nugget.app.keymast"
+  "er.DTupHandshakeRequest\032+.nugget.app.key"
+  "master.DTupHandshakeResponse\022z\n\023FetchDTu"
+  "pInputEvent\0220.nugget.app.keymaster.DTupF"
+  "etchInputEventRequest\0321.nugget.app.keyma"
+  "ster.DTupFetchInputEventResponse\022}\n\024SetS"
+  "ystemVersionInfo\0221.nugget.app.keymaster."
+  "SetSystemVersionInfoRequest\0322.nugget.app"
+  ".keymaster.SetSystemVersionInfoResponse\022"
+  "b\n\013GetBootInfo\022(.nugget.app.keymaster.Ge"
+  "tBootInfoRequest\032).nugget.app.keymaster."
+  "GetBootInfoResponse\022\211\001\n\030ProvisionPreshar"
+  "edSecret\0225.nugget.app.keymaster.Provisio"
+  "nPresharedSecretRequest\0326.nugget.app.key"
+  "master.ProvisionPresharedSecretResponse\022"
+  "t\n\021ContinueAttestKey\022..nugget.app.keymas"
+  "ter.ContinueAttestKeyRequest\032/.nugget.ap"
+  "p.keymaster.ContinueAttestKeyResponse\022n\n"
+  "\017FinishAttestKey\022,.nugget.app.keymaster."
+  "FinishAttestKeyRequest\032-.nugget.app.keym"
+  "aster.FinishAttestKeyResponse\022\200\001\n\025Provis"
+  "ionCertificates\0222.nugget.app.keymaster.P"
+  "rovisionCertificatesRequest\0323.nugget.app"
+  ".keymaster.ProvisionCertificatesResponse"
+  "\022e\n\014DeviceLocked\022).nugget.app.keymaster."
+  "DeviceLockedRequest\032*.nugget.app.keymast"
+  "er.DeviceLockedResponse\022k\n\016EarlyBootEnde"
+  "d\022+.nugget.app.keymaster.EarlyBootEndedR"
+  "equest\032,.nugget.app.keymaster.EarlyBootE"
+  "ndedResponse\022n\n\017ReadCertificate\022,.nugget"
+  ".app.keymaster.ReadCertificateRequest\032-."
+  "nugget.app.keymaster.ReadCertificateResp"
+  "onse\022\203\001\n\026IdentityStartAttestKey\0223.nugget"
+  ".app.keymaster.IdentityStartAttestKeyReq"
+  "uest\0324.nugget.app.keymaster.IdentityStar"
+  "tAttestKeyResponse\022\206\001\n\027IdentityFinishAtt"
+  "estKey\0224.nugget.app.keymaster.IdentityFi"
+  "nishAttestKeyRequest\0325.nugget.app.keymas"
+  "ter.IdentityFinishAttestKeyResponse\022_\n\nV"
+  "igoReadVS\022\'.nugget.app.keymaster.VigoRea"
+  "dVSRequest\032(.nugget.app.keymaster.VigoRe"
+  "adVSResponse\022q\n\020VigoStartChannel\022-.nugge"
+  "t.app.keymaster.VigoStartChannelRequest\032"
+  "..nugget.app.keymaster.VigoStartChannelR"
+  "esponse\022n\n\017VigoStoreSecret\022,.nugget.app."
+  "keymaster.VigoStoreSecretRequest\032-.nugge"
+  "t.app.keymaster.VigoStoreSecretResponse\022"
+  "t\n\021VigoReleaseSecret\022..nugget.app.keymas"
+  "ter.VigoReleaseSecretRequest\032/.nugget.ap"
+  "p.keymaster.VigoReleaseSecretResponse\022\206\001"
+  "\n\027GetPerFactoryResetValue\0224.nugget.app.k"
+  "eymaster.GetPerFactoryResetValueRequest\032"
+  "5.nugget.app.keymaster.GetPerFactoryRese"
+  "tValueResponse\032#\202}\tKEYMASTER\212}\tKeymaster"
+  "\220}\001\230}\200\030\240}\200\020b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto_deps[3] = {
   &::descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_5fdefs_2eproto,
@@ -2179,8 +2248,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto = {
-  false, false, 14343, descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto, "nugget/app/keymaster/keymaster.proto", 
-  &descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto_once, descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto_deps, 3, 75,
+  false, false, 14899, descriptor_table_protodef_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto, "nugget/app/keymaster/keymaster.proto", 
+  &descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto_once, descriptor_table_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto_deps, 3, 77,
   schemas, file_default_instances, TableStruct_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto::offsets,
   file_level_metadata_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto, file_level_enum_descriptors_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto, file_level_service_descriptors_nugget_2fapp_2fkeymaster_2fkeymaster_2eproto,
 };
@@ -4939,6 +5008,7 @@ class StartAttestKeyRequest::_Internal {
  public:
   static const ::nugget::app::keymaster::KeyBlob& blob(const StartAttestKeyRequest* msg);
   static const ::nugget::app::keymaster::KeyParameters& params(const StartAttestKeyRequest* msg);
+  static const ::nugget::app::keymaster::KeyParameters& caller_key_params(const StartAttestKeyRequest* msg);
 };
 
 const ::nugget::app::keymaster::KeyBlob&
@@ -4948,6 +5018,10 @@ StartAttestKeyRequest::_Internal::blob(const StartAttestKeyRequest* msg) {
 const ::nugget::app::keymaster::KeyParameters&
 StartAttestKeyRequest::_Internal::params(const StartAttestKeyRequest* msg) {
   return *msg->params_;
+}
+const ::nugget::app::keymaster::KeyParameters&
+StartAttestKeyRequest::_Internal::caller_key_params(const StartAttestKeyRequest* msg) {
+  return *msg->caller_key_params_;
 }
 void StartAttestKeyRequest::clear_blob() {
   if (GetArena() == nullptr && blob_ != nullptr) {
@@ -4960,6 +5034,12 @@ void StartAttestKeyRequest::clear_params() {
     delete params_;
   }
   params_ = nullptr;
+}
+void StartAttestKeyRequest::clear_caller_key_params() {
+  if (GetArena() == nullptr && caller_key_params_ != nullptr) {
+    delete caller_key_params_;
+  }
+  caller_key_params_ = nullptr;
 }
 StartAttestKeyRequest::StartAttestKeyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -4980,6 +5060,11 @@ StartAttestKeyRequest::StartAttestKeyRequest(const StartAttestKeyRequest& from)
     not_after_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_not_after(), 
       GetArena());
   }
+  caller_issuer_subj_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_caller_issuer_subj_name().empty()) {
+    caller_issuer_subj_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_caller_issuer_subj_name(), 
+      GetArena());
+  }
   if (from._internal_has_blob()) {
     blob_ = new ::nugget::app::keymaster::KeyBlob(*from.blob_);
   } else {
@@ -4990,6 +5075,11 @@ StartAttestKeyRequest::StartAttestKeyRequest(const StartAttestKeyRequest& from)
   } else {
     params_ = nullptr;
   }
+  if (from._internal_has_caller_key_params()) {
+    caller_key_params_ = new ::nugget::app::keymaster::KeyParameters(*from.caller_key_params_);
+  } else {
+    caller_key_params_ = nullptr;
+  }
   ::memcpy(&attestation_app_id_len_, &from.attestation_app_id_len_,
     static_cast<size_t>(reinterpret_cast<char*>(&selector_) -
     reinterpret_cast<char*>(&attestation_app_id_len_)) + sizeof(selector_));
@@ -4999,6 +5089,7 @@ StartAttestKeyRequest::StartAttestKeyRequest(const StartAttestKeyRequest& from)
 void StartAttestKeyRequest::SharedCtor() {
 not_before_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 not_after_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+caller_issuer_subj_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&blob_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&selector_) -
@@ -5015,8 +5106,10 @@ void StartAttestKeyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   not_before_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   not_after_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  caller_issuer_subj_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete blob_;
   if (this != internal_default_instance()) delete params_;
+  if (this != internal_default_instance()) delete caller_key_params_;
 }
 
 void StartAttestKeyRequest::ArenaDtor(void* object) {
@@ -5037,6 +5130,7 @@ void StartAttestKeyRequest::Clear() {
 
   not_before_.ClearToEmpty();
   not_after_.ClearToEmpty();
+  caller_issuer_subj_name_.ClearToEmpty();
   if (GetArena() == nullptr && blob_ != nullptr) {
     delete blob_;
   }
@@ -5045,6 +5139,10 @@ void StartAttestKeyRequest::Clear() {
     delete params_;
   }
   params_ = nullptr;
+  if (GetArena() == nullptr && caller_key_params_ != nullptr) {
+    delete caller_key_params_;
+  }
+  caller_key_params_ = nullptr;
   ::memset(&attestation_app_id_len_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&selector_) -
       reinterpret_cast<char*>(&attestation_app_id_len_)) + sizeof(selector_));
@@ -5100,6 +5198,21 @@ const char* StartAttestKeyRequest::_InternalParse(const char* ptr, ::PROTOBUF_NA
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           auto str = _internal_mutable_not_after();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes caller_issuer_subj_name = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_caller_issuer_subj_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .nugget.app.keymaster.KeyParameters caller_key_params = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_caller_key_params(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5172,6 +5285,20 @@ failure:
         6, this->_internal_not_after(), target);
   }
 
+  // bytes caller_issuer_subj_name = 7;
+  if (this->caller_issuer_subj_name().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        7, this->_internal_caller_issuer_subj_name(), target);
+  }
+
+  // .nugget.app.keymaster.KeyParameters caller_key_params = 8;
+  if (this->has_caller_key_params()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        8, _Internal::caller_key_params(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5202,6 +5329,13 @@ size_t StartAttestKeyRequest::ByteSizeLong() const {
         this->_internal_not_after());
   }
 
+  // bytes caller_issuer_subj_name = 7;
+  if (this->caller_issuer_subj_name().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_caller_issuer_subj_name());
+  }
+
   // .nugget.app.keymaster.KeyBlob blob = 1;
   if (this->has_blob()) {
     total_size += 1 +
@@ -5214,6 +5348,13 @@ size_t StartAttestKeyRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *params_);
+  }
+
+  // .nugget.app.keymaster.KeyParameters caller_key_params = 8;
+  if (this->has_caller_key_params()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *caller_key_params_);
   }
 
   // uint32 attestation_app_id_len = 3;
@@ -5266,11 +5407,17 @@ void StartAttestKeyRequest::MergeFrom(const StartAttestKeyRequest& from) {
   if (from.not_after().size() > 0) {
     _internal_set_not_after(from._internal_not_after());
   }
+  if (from.caller_issuer_subj_name().size() > 0) {
+    _internal_set_caller_issuer_subj_name(from._internal_caller_issuer_subj_name());
+  }
   if (from.has_blob()) {
     _internal_mutable_blob()->::nugget::app::keymaster::KeyBlob::MergeFrom(from._internal_blob());
   }
   if (from.has_params()) {
     _internal_mutable_params()->::nugget::app::keymaster::KeyParameters::MergeFrom(from._internal_params());
+  }
+  if (from.has_caller_key_params()) {
+    _internal_mutable_caller_key_params()->::nugget::app::keymaster::KeyParameters::MergeFrom(from._internal_caller_key_params());
   }
   if (from.attestation_app_id_len() != 0) {
     _internal_set_attestation_app_id_len(from._internal_attestation_app_id_len());
@@ -5303,6 +5450,7 @@ void StartAttestKeyRequest::InternalSwap(StartAttestKeyRequest* other) {
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   not_before_.Swap(&other->not_before_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   not_after_.Swap(&other->not_after_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  caller_issuer_subj_name_.Swap(&other->caller_issuer_subj_name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(StartAttestKeyRequest, selector_)
       + sizeof(StartAttestKeyRequest::selector_)
@@ -6085,17 +6233,39 @@ void ContinueAttestKeyResponse::InternalSwap(ContinueAttestKeyResponse* other) {
 class FinishAttestKeyRequest::_Internal {
  public:
   static const ::nugget::app::keymaster::OperationHandle& handle(const FinishAttestKeyRequest* msg);
+  static const ::nugget::app::keymaster::KeyBlob& caller_blob(const FinishAttestKeyRequest* msg);
+  static const ::nugget::app::keymaster::KeyParameters& caller_key_params(const FinishAttestKeyRequest* msg);
 };
 
 const ::nugget::app::keymaster::OperationHandle&
 FinishAttestKeyRequest::_Internal::handle(const FinishAttestKeyRequest* msg) {
   return *msg->handle_;
 }
+const ::nugget::app::keymaster::KeyBlob&
+FinishAttestKeyRequest::_Internal::caller_blob(const FinishAttestKeyRequest* msg) {
+  return *msg->caller_blob_;
+}
+const ::nugget::app::keymaster::KeyParameters&
+FinishAttestKeyRequest::_Internal::caller_key_params(const FinishAttestKeyRequest* msg) {
+  return *msg->caller_key_params_;
+}
 void FinishAttestKeyRequest::clear_handle() {
   if (GetArena() == nullptr && handle_ != nullptr) {
     delete handle_;
   }
   handle_ = nullptr;
+}
+void FinishAttestKeyRequest::clear_caller_blob() {
+  if (GetArena() == nullptr && caller_blob_ != nullptr) {
+    delete caller_blob_;
+  }
+  caller_blob_ = nullptr;
+}
+void FinishAttestKeyRequest::clear_caller_key_params() {
+  if (GetArena() == nullptr && caller_key_params_ != nullptr) {
+    delete caller_key_params_;
+  }
+  caller_key_params_ = nullptr;
 }
 FinishAttestKeyRequest::FinishAttestKeyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -6111,11 +6281,24 @@ FinishAttestKeyRequest::FinishAttestKeyRequest(const FinishAttestKeyRequest& fro
   } else {
     handle_ = nullptr;
   }
+  if (from._internal_has_caller_blob()) {
+    caller_blob_ = new ::nugget::app::keymaster::KeyBlob(*from.caller_blob_);
+  } else {
+    caller_blob_ = nullptr;
+  }
+  if (from._internal_has_caller_key_params()) {
+    caller_key_params_ = new ::nugget::app::keymaster::KeyParameters(*from.caller_key_params_);
+  } else {
+    caller_key_params_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:nugget.app.keymaster.FinishAttestKeyRequest)
 }
 
 void FinishAttestKeyRequest::SharedCtor() {
-handle_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&handle_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&caller_key_params_) -
+    reinterpret_cast<char*>(&handle_)) + sizeof(caller_key_params_));
 }
 
 FinishAttestKeyRequest::~FinishAttestKeyRequest() {
@@ -6127,6 +6310,8 @@ FinishAttestKeyRequest::~FinishAttestKeyRequest() {
 void FinishAttestKeyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   if (this != internal_default_instance()) delete handle_;
+  if (this != internal_default_instance()) delete caller_blob_;
+  if (this != internal_default_instance()) delete caller_key_params_;
 }
 
 void FinishAttestKeyRequest::ArenaDtor(void* object) {
@@ -6149,6 +6334,14 @@ void FinishAttestKeyRequest::Clear() {
     delete handle_;
   }
   handle_ = nullptr;
+  if (GetArena() == nullptr && caller_blob_ != nullptr) {
+    delete caller_blob_;
+  }
+  caller_blob_ = nullptr;
+  if (GetArena() == nullptr && caller_key_params_ != nullptr) {
+    delete caller_key_params_;
+  }
+  caller_key_params_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -6163,6 +6356,20 @@ const char* FinishAttestKeyRequest::_InternalParse(const char* ptr, ::PROTOBUF_N
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_handle(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .nugget.app.keymaster.KeyBlob caller_blob = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_caller_blob(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .nugget.app.keymaster.KeyParameters caller_key_params = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_caller_key_params(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -6202,6 +6409,22 @@ failure:
         1, _Internal::handle(this), target, stream);
   }
 
+  // .nugget.app.keymaster.KeyBlob caller_blob = 2;
+  if (this->has_caller_blob()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::caller_blob(this), target, stream);
+  }
+
+  // .nugget.app.keymaster.KeyParameters caller_key_params = 3;
+  if (this->has_caller_key_params()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::caller_key_params(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -6223,6 +6446,20 @@ size_t FinishAttestKeyRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *handle_);
+  }
+
+  // .nugget.app.keymaster.KeyBlob caller_blob = 2;
+  if (this->has_caller_blob()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *caller_blob_);
+  }
+
+  // .nugget.app.keymaster.KeyParameters caller_key_params = 3;
+  if (this->has_caller_key_params()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *caller_key_params_);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -6259,6 +6496,12 @@ void FinishAttestKeyRequest::MergeFrom(const FinishAttestKeyRequest& from) {
   if (from.has_handle()) {
     _internal_mutable_handle()->::nugget::app::keymaster::OperationHandle::MergeFrom(from._internal_handle());
   }
+  if (from.has_caller_blob()) {
+    _internal_mutable_caller_blob()->::nugget::app::keymaster::KeyBlob::MergeFrom(from._internal_caller_blob());
+  }
+  if (from.has_caller_key_params()) {
+    _internal_mutable_caller_key_params()->::nugget::app::keymaster::KeyParameters::MergeFrom(from._internal_caller_key_params());
+  }
 }
 
 void FinishAttestKeyRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -6282,7 +6525,12 @@ bool FinishAttestKeyRequest::IsInitialized() const {
 void FinishAttestKeyRequest::InternalSwap(FinishAttestKeyRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(handle_, other->handle_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(FinishAttestKeyRequest, caller_key_params_)
+      + sizeof(FinishAttestKeyRequest::caller_key_params_)
+      - PROTOBUF_FIELD_OFFSET(FinishAttestKeyRequest, handle_)>(
+          reinterpret_cast<char*>(&handle_),
+          reinterpret_cast<char*>(&other->handle_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FinishAttestKeyRequest::GetMetadata() const {
@@ -19934,8 +20182,8 @@ IdentityStartAttestKeyRequest::IdentityStartAttestKeyRequest(const IdentityStart
     params_ = nullptr;
   }
   ::memcpy(&attestation_app_id_len_, &from.attestation_app_id_len_,
-    static_cast<size_t>(reinterpret_cast<char*>(&creation_time_ms_) -
-    reinterpret_cast<char*>(&attestation_app_id_len_)) + sizeof(creation_time_ms_));
+    static_cast<size_t>(reinterpret_cast<char*>(&use_km_attest_key_) -
+    reinterpret_cast<char*>(&attestation_app_id_len_)) + sizeof(use_km_attest_key_));
   // @@protoc_insertion_point(copy_constructor:nugget.app.keymaster.IdentityStartAttestKeyRequest)
 }
 
@@ -19945,8 +20193,8 @@ not_before_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringA
 not_after_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&params_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&creation_time_ms_) -
-    reinterpret_cast<char*>(&params_)) + sizeof(creation_time_ms_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&use_km_attest_key_) -
+    reinterpret_cast<char*>(&params_)) + sizeof(use_km_attest_key_));
 }
 
 IdentityStartAttestKeyRequest::~IdentityStartAttestKeyRequest() {
@@ -19987,8 +20235,8 @@ void IdentityStartAttestKeyRequest::Clear() {
   }
   params_ = nullptr;
   ::memset(&attestation_app_id_len_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&creation_time_ms_) -
-      reinterpret_cast<char*>(&attestation_app_id_len_)) + sizeof(creation_time_ms_));
+      reinterpret_cast<char*>(&use_km_attest_key_) -
+      reinterpret_cast<char*>(&attestation_app_id_len_)) + sizeof(use_km_attest_key_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -20049,6 +20297,13 @@ const char* IdentityStartAttestKeyRequest::_InternalParse(const char* ptr, ::PRO
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
           creation_time_ms_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool use_km_attest_key = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+          use_km_attest_key_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -20125,6 +20380,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(7, this->_internal_creation_time_ms(), target);
   }
 
+  // bool use_km_attest_key = 8;
+  if (this->use_km_attest_key() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(8, this->_internal_use_km_attest_key(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -20189,6 +20450,11 @@ size_t IdentityStartAttestKeyRequest::ByteSizeLong() const {
         this->_internal_creation_time_ms());
   }
 
+  // bool use_km_attest_key = 8;
+  if (this->use_km_attest_key() != 0) {
+    total_size += 1 + 1;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -20241,6 +20507,9 @@ void IdentityStartAttestKeyRequest::MergeFrom(const IdentityStartAttestKeyReques
   if (from.creation_time_ms() != 0) {
     _internal_set_creation_time_ms(from._internal_creation_time_ms());
   }
+  if (from.use_km_attest_key() != 0) {
+    _internal_set_use_km_attest_key(from._internal_use_km_attest_key());
+  }
 }
 
 void IdentityStartAttestKeyRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -20268,8 +20537,8 @@ void IdentityStartAttestKeyRequest::InternalSwap(IdentityStartAttestKeyRequest* 
   not_before_.Swap(&other->not_before_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   not_after_.Swap(&other->not_after_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(IdentityStartAttestKeyRequest, creation_time_ms_)
-      + sizeof(IdentityStartAttestKeyRequest::creation_time_ms_)
+      PROTOBUF_FIELD_OFFSET(IdentityStartAttestKeyRequest, use_km_attest_key_)
+      + sizeof(IdentityStartAttestKeyRequest::use_km_attest_key_)
       - PROTOBUF_FIELD_OFFSET(IdentityStartAttestKeyRequest, params_)>(
           reinterpret_cast<char*>(&params_),
           reinterpret_cast<char*>(&other->params_));
@@ -21078,6 +21347,449 @@ void IdentityFinishAttestKeyResponse::InternalSwap(IdentityFinishAttestKeyRespon
 }
 
 
+// ===================================================================
+
+class GetPerFactoryResetValueRequest::_Internal {
+ public:
+};
+
+GetPerFactoryResetValueRequest::GetPerFactoryResetValueRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+}
+GetPerFactoryResetValueRequest::GetPerFactoryResetValueRequest(const GetPerFactoryResetValueRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  input_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_input().empty()) {
+    input_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_input(), 
+      GetArena());
+  }
+  bootloader_only_ = from.bootloader_only_;
+  // @@protoc_insertion_point(copy_constructor:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+}
+
+void GetPerFactoryResetValueRequest::SharedCtor() {
+input_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+bootloader_only_ = false;
+}
+
+GetPerFactoryResetValueRequest::~GetPerFactoryResetValueRequest() {
+  // @@protoc_insertion_point(destructor:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void GetPerFactoryResetValueRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  input_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void GetPerFactoryResetValueRequest::ArenaDtor(void* object) {
+  GetPerFactoryResetValueRequest* _this = reinterpret_cast< GetPerFactoryResetValueRequest* >(object);
+  (void)_this;
+}
+void GetPerFactoryResetValueRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void GetPerFactoryResetValueRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPerFactoryResetValueRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  input_.ClearToEmpty();
+  bootloader_only_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPerFactoryResetValueRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool bootloader_only = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          bootloader_only_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes input = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_input();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetPerFactoryResetValueRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool bootloader_only = 1;
+  if (this->bootloader_only() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_bootloader_only(), target);
+  }
+
+  // bytes input = 2;
+  if (this->input().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_input(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  return target;
+}
+
+size_t GetPerFactoryResetValueRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes input = 2;
+  if (this->input().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_input());
+  }
+
+  // bool bootloader_only = 1;
+  if (this->bootloader_only() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetPerFactoryResetValueRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetPerFactoryResetValueRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetPerFactoryResetValueRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetPerFactoryResetValueRequest::MergeFrom(const GetPerFactoryResetValueRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.input().size() > 0) {
+    _internal_set_input(from._internal_input());
+  }
+  if (from.bootloader_only() != 0) {
+    _internal_set_bootloader_only(from._internal_bootloader_only());
+  }
+}
+
+void GetPerFactoryResetValueRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetPerFactoryResetValueRequest::CopyFrom(const GetPerFactoryResetValueRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nugget.app.keymaster.GetPerFactoryResetValueRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPerFactoryResetValueRequest::IsInitialized() const {
+  return true;
+}
+
+void GetPerFactoryResetValueRequest::InternalSwap(GetPerFactoryResetValueRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  input_.Swap(&other->input_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(bootloader_only_, other->bootloader_only_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPerFactoryResetValueRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class GetPerFactoryResetValueResponse::_Internal {
+ public:
+};
+
+GetPerFactoryResetValueResponse::GetPerFactoryResetValueResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+}
+GetPerFactoryResetValueResponse::GetPerFactoryResetValueResponse(const GetPerFactoryResetValueResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  output_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_output().empty()) {
+    output_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_output(), 
+      GetArena());
+  }
+  error_code_ = from.error_code_;
+  // @@protoc_insertion_point(copy_constructor:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+}
+
+void GetPerFactoryResetValueResponse::SharedCtor() {
+output_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+error_code_ = 0;
+}
+
+GetPerFactoryResetValueResponse::~GetPerFactoryResetValueResponse() {
+  // @@protoc_insertion_point(destructor:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void GetPerFactoryResetValueResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  output_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void GetPerFactoryResetValueResponse::ArenaDtor(void* object) {
+  GetPerFactoryResetValueResponse* _this = reinterpret_cast< GetPerFactoryResetValueResponse* >(object);
+  (void)_this;
+}
+void GetPerFactoryResetValueResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void GetPerFactoryResetValueResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetPerFactoryResetValueResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  output_.ClearToEmpty();
+  error_code_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetPerFactoryResetValueResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .nugget.app.keymaster.ErrorCode error_code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_error_code(static_cast<::nugget::app::keymaster::ErrorCode>(val));
+        } else goto handle_unusual;
+        continue;
+      // bytes output = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_output();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetPerFactoryResetValueResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .nugget.app.keymaster.ErrorCode error_code = 1;
+  if (this->error_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_error_code(), target);
+  }
+
+  // bytes output = 2;
+  if (this->output().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_output(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  return target;
+}
+
+size_t GetPerFactoryResetValueResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes output = 2;
+  if (this->output().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_output());
+  }
+
+  // .nugget.app.keymaster.ErrorCode error_code = 1;
+  if (this->error_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_error_code());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetPerFactoryResetValueResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetPerFactoryResetValueResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetPerFactoryResetValueResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+    MergeFrom(*source);
+  }
+}
+
+void GetPerFactoryResetValueResponse::MergeFrom(const GetPerFactoryResetValueResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.output().size() > 0) {
+    _internal_set_output(from._internal_output());
+  }
+  if (from.error_code() != 0) {
+    _internal_set_error_code(from._internal_error_code());
+  }
+}
+
+void GetPerFactoryResetValueResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetPerFactoryResetValueResponse::CopyFrom(const GetPerFactoryResetValueResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nugget.app.keymaster.GetPerFactoryResetValueResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetPerFactoryResetValueResponse::IsInitialized() const {
+  return true;
+}
+
+void GetPerFactoryResetValueResponse::InternalSwap(GetPerFactoryResetValueResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  output_.Swap(&other->output_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(error_code_, other->error_code_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetPerFactoryResetValueResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace keymaster
 }  // namespace app
@@ -21307,6 +22019,12 @@ template<> PROTOBUF_NOINLINE ::nugget::app::keymaster::IdentityFinishAttestKeyRe
 }
 template<> PROTOBUF_NOINLINE ::nugget::app::keymaster::IdentityFinishAttestKeyResponse* Arena::CreateMaybeMessage< ::nugget::app::keymaster::IdentityFinishAttestKeyResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::nugget::app::keymaster::IdentityFinishAttestKeyResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::nugget::app::keymaster::GetPerFactoryResetValueRequest* Arena::CreateMaybeMessage< ::nugget::app::keymaster::GetPerFactoryResetValueRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::nugget::app::keymaster::GetPerFactoryResetValueRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::nugget::app::keymaster::GetPerFactoryResetValueResponse* Arena::CreateMaybeMessage< ::nugget::app::keymaster::GetPerFactoryResetValueResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::nugget::app::keymaster::GetPerFactoryResetValueResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -20,7 +20,8 @@ namespace nugget {
 namespace app {
 namespace avb {
 constexpr GetStateRequest::GetStateRequest(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : keysclear_reset_(false){}
 struct GetStateRequestDefaultTypeInternal {
   constexpr GetStateRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -36,6 +37,7 @@ constexpr GetStateResponse::GetStateResponse(
   , version_(PROTOBUF_ULONGLONG(0))
   , bootloader_(false)
   , production_(false)
+  , keysclear_required_(false)
   , number_of_locks_(0u){}
 struct GetStateResponseDefaultTypeInternal {
   constexpr GetStateResponseDefaultTypeInternal()
@@ -449,6 +451,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2favb_2favb_2epro
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::nugget::app::avb::GetStateRequest, keysclear_reset_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::avb::GetStateResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -459,6 +462,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2favb_2favb_2epro
   PROTOBUF_FIELD_OFFSET(::nugget::app::avb::GetStateResponse, production_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::avb::GetStateResponse, number_of_locks_),
   PROTOBUF_FIELD_OFFSET(::nugget::app::avb::GetStateResponse, locks_),
+  PROTOBUF_FIELD_OFFSET(::nugget::app::avb::GetStateResponse, keysclear_required_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::nugget::app::avb::LoadRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -658,39 +662,39 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_nugget_2fapp_2favb_2favb_2epro
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::nugget::app::avb::GetStateRequest)},
-  { 5, -1, sizeof(::nugget::app::avb::GetStateResponse)},
-  { 15, -1, sizeof(::nugget::app::avb::LoadRequest)},
-  { 21, -1, sizeof(::nugget::app::avb::LoadResponse)},
-  { 27, -1, sizeof(::nugget::app::avb::StoreRequest)},
-  { 34, -1, sizeof(::nugget::app::avb::StoreResponse)},
-  { 39, -1, sizeof(::nugget::app::avb::GetLockRequest)},
-  { 45, -1, sizeof(::nugget::app::avb::GetLockResponse)},
-  { 51, -1, sizeof(::nugget::app::avb::CarrierUnlock)},
-  { 59, -1, sizeof(::nugget::app::avb::CarrierLockRequest)},
-  { 66, -1, sizeof(::nugget::app::avb::CarrierLockResponse)},
-  { 71, -1, sizeof(::nugget::app::avb::CarrierUnlockRequest)},
-  { 77, -1, sizeof(::nugget::app::avb::CarrierUnlockResponse)},
-  { 82, -1, sizeof(::nugget::app::avb::SetDeviceLockRequest)},
-  { 88, -1, sizeof(::nugget::app::avb::SetDeviceLockResponse)},
-  { 93, -1, sizeof(::nugget::app::avb::SetBootLockRequest)},
-  { 99, -1, sizeof(::nugget::app::avb::SetBootLockResponse)},
-  { 104, -1, sizeof(::nugget::app::avb::SetOwnerLockRequest)},
-  { 111, -1, sizeof(::nugget::app::avb::SetOwnerLockResponse)},
-  { 116, -1, sizeof(::nugget::app::avb::GetOwnerKeyRequest)},
-  { 123, -1, sizeof(::nugget::app::avb::GetOwnerKeyResponse)},
-  { 129, -1, sizeof(::nugget::app::avb::SetProductionRequest)},
-  { 136, -1, sizeof(::nugget::app::avb::SetProductionResponse)},
-  { 141, -1, sizeof(::nugget::app::avb::CarrierLockTestRequest)},
-  { 150, -1, sizeof(::nugget::app::avb::CarrierLockTestResponse)},
-  { 155, -1, sizeof(::nugget::app::avb::ResetToken)},
-  { 162, -1, sizeof(::nugget::app::avb::ResetRequest)},
-  { 169, -1, sizeof(::nugget::app::avb::ResetResponse)},
-  { 174, -1, sizeof(::nugget::app::avb::GetResetChallengeRequest)},
-  { 179, -1, sizeof(::nugget::app::avb::GetResetChallengeResponse)},
-  { 187, -1, sizeof(::nugget::app::avb::ProductionResetTestRequest)},
-  { 196, -1, sizeof(::nugget::app::avb::ProductionResetTestResponse)},
-  { 201, -1, sizeof(::nugget::app::avb::BootloaderDoneRequest)},
-  { 206, -1, sizeof(::nugget::app::avb::BootloaderDoneResponse)},
+  { 6, -1, sizeof(::nugget::app::avb::GetStateResponse)},
+  { 17, -1, sizeof(::nugget::app::avb::LoadRequest)},
+  { 23, -1, sizeof(::nugget::app::avb::LoadResponse)},
+  { 29, -1, sizeof(::nugget::app::avb::StoreRequest)},
+  { 36, -1, sizeof(::nugget::app::avb::StoreResponse)},
+  { 41, -1, sizeof(::nugget::app::avb::GetLockRequest)},
+  { 47, -1, sizeof(::nugget::app::avb::GetLockResponse)},
+  { 53, -1, sizeof(::nugget::app::avb::CarrierUnlock)},
+  { 61, -1, sizeof(::nugget::app::avb::CarrierLockRequest)},
+  { 68, -1, sizeof(::nugget::app::avb::CarrierLockResponse)},
+  { 73, -1, sizeof(::nugget::app::avb::CarrierUnlockRequest)},
+  { 79, -1, sizeof(::nugget::app::avb::CarrierUnlockResponse)},
+  { 84, -1, sizeof(::nugget::app::avb::SetDeviceLockRequest)},
+  { 90, -1, sizeof(::nugget::app::avb::SetDeviceLockResponse)},
+  { 95, -1, sizeof(::nugget::app::avb::SetBootLockRequest)},
+  { 101, -1, sizeof(::nugget::app::avb::SetBootLockResponse)},
+  { 106, -1, sizeof(::nugget::app::avb::SetOwnerLockRequest)},
+  { 113, -1, sizeof(::nugget::app::avb::SetOwnerLockResponse)},
+  { 118, -1, sizeof(::nugget::app::avb::GetOwnerKeyRequest)},
+  { 125, -1, sizeof(::nugget::app::avb::GetOwnerKeyResponse)},
+  { 131, -1, sizeof(::nugget::app::avb::SetProductionRequest)},
+  { 138, -1, sizeof(::nugget::app::avb::SetProductionResponse)},
+  { 143, -1, sizeof(::nugget::app::avb::CarrierLockTestRequest)},
+  { 152, -1, sizeof(::nugget::app::avb::CarrierLockTestResponse)},
+  { 157, -1, sizeof(::nugget::app::avb::ResetToken)},
+  { 164, -1, sizeof(::nugget::app::avb::ResetRequest)},
+  { 171, -1, sizeof(::nugget::app::avb::ResetResponse)},
+  { 176, -1, sizeof(::nugget::app::avb::GetResetChallengeRequest)},
+  { 181, -1, sizeof(::nugget::app::avb::GetResetChallengeResponse)},
+  { 189, -1, sizeof(::nugget::app::avb::ProductionResetTestRequest)},
+  { 198, -1, sizeof(::nugget::app::avb::ProductionResetTestResponse)},
+  { 203, -1, sizeof(::nugget::app::avb::BootloaderDoneRequest)},
+  { 208, -1, sizeof(::nugget::app::avb::BootloaderDoneResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -732,95 +736,96 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_nugget_2fapp_2favb_2favb_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\030nugget/app/avb/avb.proto\022\016nugget.app.a"
-  "vb\032\035nugget/protobuf/options.proto\"\021\n\017Get"
-  "StateRequest\"s\n\020GetStateResponse\022\017\n\007vers"
-  "ion\030\001 \001(\004\022\022\n\nbootloader\030\002 \001(\010\022\022\n\nproduct"
-  "ion\030\003 \001(\010\022\027\n\017number_of_locks\030\004 \001(\r\022\r\n\005lo"
-  "cks\030\005 \001(\014\"\033\n\013LoadRequest\022\014\n\004slot\030\001 \001(\r\"\037"
-  "\n\014LoadResponse\022\017\n\007version\030\001 \001(\004\"-\n\014Store"
-  "Request\022\014\n\004slot\030\001 \001(\r\022\017\n\007version\030\002 \001(\004\"\017"
-  "\n\rStoreResponse\"9\n\016GetLockRequest\022\'\n\004loc"
-  "k\030\001 \001(\0162\031.nugget.app.avb.LockIndex\"!\n\017Ge"
-  "tLockResponse\022\016\n\006locked\030\001 \001(\r\"B\n\rCarrier"
-  "Unlock\022\017\n\007version\030\001 \001(\004\022\r\n\005nonce\030\002 \001(\004\022\021"
-  "\n\tsignature\030\003 \001(\014\"9\n\022CarrierLockRequest\022"
-  "\016\n\006locked\030\001 \001(\r\022\023\n\013device_data\030\002 \001(\014\"\025\n\023"
-  "CarrierLockResponse\"D\n\024CarrierUnlockRequ"
-  "est\022,\n\005token\030\001 \001(\0132\035.nugget.app.avb.Carr"
-  "ierUnlock\"\027\n\025CarrierUnlockResponse\"&\n\024Se"
-  "tDeviceLockRequest\022\016\n\006locked\030\001 \001(\r\"\027\n\025Se"
-  "tDeviceLockResponse\"$\n\022SetBootLockReques"
-  "t\022\016\n\006locked\030\001 \001(\r\"\025\n\023SetBootLockResponse"
-  "\"2\n\023SetOwnerLockRequest\022\016\n\006locked\030\001 \001(\r\022"
-  "\013\n\003key\030\002 \001(\014\"\026\n\024SetOwnerLockResponse\"2\n\022"
-  "GetOwnerKeyRequest\022\016\n\006offset\030\001 \001(\r\022\014\n\004si"
-  "ze\030\002 \001(\r\"$\n\023GetOwnerKeyResponse\022\r\n\005chunk"
-  "\030\001 \001(\014\"\?\n\024SetProductionRequest\022\022\n\nproduc"
-  "tion\030\001 \001(\010\022\023\n\013device_data\030\002 \001(\014\"\027\n\025SetPr"
-  "oductionResponse\"\200\001\n\026CarrierLockTestRequ"
-  "est\022\022\n\nlast_nonce\030\001 \001(\004\022\017\n\007version\030\002 \001(\004"
-  "\022\023\n\013device_data\030\003 \001(\014\022,\n\005token\030\004 \001(\0132\035.n"
-  "ugget.app.avb.CarrierUnlock\"\031\n\027CarrierLo"
-  "ckTestResponse\"X\n\nResetToken\022\020\n\010selector"
-  "\030\001 \001(\r\022\021\n\tsignature\030\002 \001(\014\"%\n\tSelectors\022\013"
-  "\n\007INVALID\020\000\022\013\n\007CURRENT\020\001\"\227\001\n\014ResetReques"
-  "t\0224\n\004kind\030\001 \001(\0162&.nugget.app.avb.ResetRe"
-  "quest.ResetKind\022)\n\005token\030\002 \001(\0132\032.nugget."
-  "app.avb.ResetToken\"&\n\tResetKind\022\016\n\nPRODU"
-  "CTION\020\000\022\t\n\005LOCKS\020\001\"\017\n\rResetResponse\"\032\n\030G"
-  "etResetChallengeRequest\"Q\n\031GetResetChall"
-  "engeResponse\022\020\n\010selector\030\001 \001(\r\022\r\n\005nonce\030"
-  "\002 \001(\004\022\023\n\013device_data\030\003 \001(\014\"e\n\032Production"
-  "ResetTestRequest\022\020\n\010selector\030\001 \001(\r\022\r\n\005no"
-  "nce\030\002 \001(\004\022\023\n\013device_data\030\003 \001(\014\022\021\n\tsignat"
-  "ure\030\004 \001(\014\"\035\n\033ProductionResetTestResponse"
-  "\"\027\n\025BootloaderDoneRequest\"\030\n\026BootloaderD"
-  "oneResponse*9\n\tLockIndex\022\013\n\007CARRIER\020\000\022\n\n"
-  "\006DEVICE\020\001\022\010\n\004BOOT\020\002\022\t\n\005OWNER\020\0032\266\013\n\003Avb\022M"
-  "\n\010GetState\022\037.nugget.app.avb.GetStateRequ"
-  "est\032 .nugget.app.avb.GetStateResponse\022A\n"
-  "\004Load\022\033.nugget.app.avb.LoadRequest\032\034.nug"
-  "get.app.avb.LoadResponse\022D\n\005Store\022\034.nugg"
-  "et.app.avb.StoreRequest\032\035.nugget.app.avb"
-  ".StoreResponse\022J\n\007GetLock\022\036.nugget.app.a"
-  "vb.GetLockRequest\032\037.nugget.app.avb.GetLo"
-  "ckResponse\022V\n\013CarrierLock\022\".nugget.app.a"
-  "vb.CarrierLockRequest\032#.nugget.app.avb.C"
-  "arrierLockResponse\022\\\n\rCarrierUnlock\022$.nu"
-  "gget.app.avb.CarrierUnlockRequest\032%.nugg"
-  "et.app.avb.CarrierUnlockResponse\022\\\n\rSetD"
-  "eviceLock\022$.nugget.app.avb.SetDeviceLock"
-  "Request\032%.nugget.app.avb.SetDeviceLockRe"
-  "sponse\022V\n\013SetBootLock\022\".nugget.app.avb.S"
-  "etBootLockRequest\032#.nugget.app.avb.SetBo"
-  "otLockResponse\022Y\n\014SetOwnerLock\022#.nugget."
-  "app.avb.SetOwnerLockRequest\032$.nugget.app"
-  ".avb.SetOwnerLockResponse\022\\\n\rSetProducti"
-  "on\022$.nugget.app.avb.SetProductionRequest"
-  "\032%.nugget.app.avb.SetProductionResponse\022"
-  "b\n\017CarrierLockTest\022&.nugget.app.avb.Carr"
-  "ierLockTestRequest\032\'.nugget.app.avb.Carr"
-  "ierLockTestResponse\022D\n\005Reset\022\034.nugget.ap"
-  "p.avb.ResetRequest\032\035.nugget.app.avb.Rese"
-  "tResponse\022_\n\016BootloaderDone\022%.nugget.app"
-  ".avb.BootloaderDoneRequest\032&.nugget.app."
-  "avb.BootloaderDoneResponse\022V\n\013GetOwnerKe"
-  "y\022\".nugget.app.avb.GetOwnerKeyRequest\032#."
-  "nugget.app.avb.GetOwnerKeyResponse\022h\n\021Ge"
-  "tResetChallenge\022(.nugget.app.avb.GetRese"
-  "tChallengeRequest\032).nugget.app.avb.GetRe"
-  "setChallengeResponse\022n\n\023ProductionResetT"
-  "est\022*.nugget.app.avb.ProductionResetTest"
-  "Request\032+.nugget.app.avb.ProductionReset"
-  "TestResponse\032)\202}\003AVB\212}\025Android Verified "
-  "Boot\220}\001\230}\230\021\240}\200\005b\006proto3"
+  "vb\032\035nugget/protobuf/options.proto\"*\n\017Get"
+  "StateRequest\022\027\n\017keysclear_reset\030\001 \001(\010\"\217\001"
+  "\n\020GetStateResponse\022\017\n\007version\030\001 \001(\004\022\022\n\nb"
+  "ootloader\030\002 \001(\010\022\022\n\nproduction\030\003 \001(\010\022\027\n\017n"
+  "umber_of_locks\030\004 \001(\r\022\r\n\005locks\030\005 \001(\014\022\032\n\022k"
+  "eysclear_required\030\006 \001(\010\"\033\n\013LoadRequest\022\014"
+  "\n\004slot\030\001 \001(\r\"\037\n\014LoadResponse\022\017\n\007version\030"
+  "\001 \001(\004\"-\n\014StoreRequest\022\014\n\004slot\030\001 \001(\r\022\017\n\007v"
+  "ersion\030\002 \001(\004\"\017\n\rStoreResponse\"9\n\016GetLock"
+  "Request\022\'\n\004lock\030\001 \001(\0162\031.nugget.app.avb.L"
+  "ockIndex\"!\n\017GetLockResponse\022\016\n\006locked\030\001 "
+  "\001(\r\"B\n\rCarrierUnlock\022\017\n\007version\030\001 \001(\004\022\r\n"
+  "\005nonce\030\002 \001(\004\022\021\n\tsignature\030\003 \001(\014\"9\n\022Carri"
+  "erLockRequest\022\016\n\006locked\030\001 \001(\r\022\023\n\013device_"
+  "data\030\002 \001(\014\"\025\n\023CarrierLockResponse\"D\n\024Car"
+  "rierUnlockRequest\022,\n\005token\030\001 \001(\0132\035.nugge"
+  "t.app.avb.CarrierUnlock\"\027\n\025CarrierUnlock"
+  "Response\"&\n\024SetDeviceLockRequest\022\016\n\006lock"
+  "ed\030\001 \001(\r\"\027\n\025SetDeviceLockResponse\"$\n\022Set"
+  "BootLockRequest\022\016\n\006locked\030\001 \001(\r\"\025\n\023SetBo"
+  "otLockResponse\"2\n\023SetOwnerLockRequest\022\016\n"
+  "\006locked\030\001 \001(\r\022\013\n\003key\030\002 \001(\014\"\026\n\024SetOwnerLo"
+  "ckResponse\"2\n\022GetOwnerKeyRequest\022\016\n\006offs"
+  "et\030\001 \001(\r\022\014\n\004size\030\002 \001(\r\"$\n\023GetOwnerKeyRes"
+  "ponse\022\r\n\005chunk\030\001 \001(\014\"\?\n\024SetProductionReq"
+  "uest\022\022\n\nproduction\030\001 \001(\010\022\023\n\013device_data\030"
+  "\002 \001(\014\"\027\n\025SetProductionResponse\"\200\001\n\026Carri"
+  "erLockTestRequest\022\022\n\nlast_nonce\030\001 \001(\004\022\017\n"
+  "\007version\030\002 \001(\004\022\023\n\013device_data\030\003 \001(\014\022,\n\005t"
+  "oken\030\004 \001(\0132\035.nugget.app.avb.CarrierUnloc"
+  "k\"\031\n\027CarrierLockTestResponse\"X\n\nResetTok"
+  "en\022\020\n\010selector\030\001 \001(\r\022\021\n\tsignature\030\002 \001(\014\""
+  "%\n\tSelectors\022\013\n\007INVALID\020\000\022\013\n\007CURRENT\020\001\"\227"
+  "\001\n\014ResetRequest\0224\n\004kind\030\001 \001(\0162&.nugget.a"
+  "pp.avb.ResetRequest.ResetKind\022)\n\005token\030\002"
+  " \001(\0132\032.nugget.app.avb.ResetToken\"&\n\tRese"
+  "tKind\022\016\n\nPRODUCTION\020\000\022\t\n\005LOCKS\020\001\"\017\n\rRese"
+  "tResponse\"\032\n\030GetResetChallengeRequest\"Q\n"
+  "\031GetResetChallengeResponse\022\020\n\010selector\030\001"
+  " \001(\r\022\r\n\005nonce\030\002 \001(\004\022\023\n\013device_data\030\003 \001(\014"
+  "\"e\n\032ProductionResetTestRequest\022\020\n\010select"
+  "or\030\001 \001(\r\022\r\n\005nonce\030\002 \001(\004\022\023\n\013device_data\030\003"
+  " \001(\014\022\021\n\tsignature\030\004 \001(\014\"\035\n\033ProductionRes"
+  "etTestResponse\"\027\n\025BootloaderDoneRequest\""
+  "\030\n\026BootloaderDoneResponse*9\n\tLockIndex\022\013"
+  "\n\007CARRIER\020\000\022\n\n\006DEVICE\020\001\022\010\n\004BOOT\020\002\022\t\n\005OWN"
+  "ER\020\0032\266\013\n\003Avb\022M\n\010GetState\022\037.nugget.app.av"
+  "b.GetStateRequest\032 .nugget.app.avb.GetSt"
+  "ateResponse\022A\n\004Load\022\033.nugget.app.avb.Loa"
+  "dRequest\032\034.nugget.app.avb.LoadResponse\022D"
+  "\n\005Store\022\034.nugget.app.avb.StoreRequest\032\035."
+  "nugget.app.avb.StoreResponse\022J\n\007GetLock\022"
+  "\036.nugget.app.avb.GetLockRequest\032\037.nugget"
+  ".app.avb.GetLockResponse\022V\n\013CarrierLock\022"
+  "\".nugget.app.avb.CarrierLockRequest\032#.nu"
+  "gget.app.avb.CarrierLockResponse\022\\\n\rCarr"
+  "ierUnlock\022$.nugget.app.avb.CarrierUnlock"
+  "Request\032%.nugget.app.avb.CarrierUnlockRe"
+  "sponse\022\\\n\rSetDeviceLock\022$.nugget.app.avb"
+  ".SetDeviceLockRequest\032%.nugget.app.avb.S"
+  "etDeviceLockResponse\022V\n\013SetBootLock\022\".nu"
+  "gget.app.avb.SetBootLockRequest\032#.nugget"
+  ".app.avb.SetBootLockResponse\022Y\n\014SetOwner"
+  "Lock\022#.nugget.app.avb.SetOwnerLockReques"
+  "t\032$.nugget.app.avb.SetOwnerLockResponse\022"
+  "\\\n\rSetProduction\022$.nugget.app.avb.SetPro"
+  "ductionRequest\032%.nugget.app.avb.SetProdu"
+  "ctionResponse\022b\n\017CarrierLockTest\022&.nugge"
+  "t.app.avb.CarrierLockTestRequest\032\'.nugge"
+  "t.app.avb.CarrierLockTestResponse\022D\n\005Res"
+  "et\022\034.nugget.app.avb.ResetRequest\032\035.nugge"
+  "t.app.avb.ResetResponse\022_\n\016BootloaderDon"
+  "e\022%.nugget.app.avb.BootloaderDoneRequest"
+  "\032&.nugget.app.avb.BootloaderDoneResponse"
+  "\022V\n\013GetOwnerKey\022\".nugget.app.avb.GetOwne"
+  "rKeyRequest\032#.nugget.app.avb.GetOwnerKey"
+  "Response\022h\n\021GetResetChallenge\022(.nugget.a"
+  "pp.avb.GetResetChallengeRequest\032).nugget"
+  ".app.avb.GetResetChallengeResponse\022n\n\023Pr"
+  "oductionResetTest\022*.nugget.app.avb.Produ"
+  "ctionResetTestRequest\032+.nugget.app.avb.P"
+  "roductionResetTestResponse\032)\202}\003AVB\212}\025And"
+  "roid Verified Boot\220}\001\230}\230\021\240}\200\005b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_nugget_2fapp_2favb_2favb_2eproto_deps[1] = {
   &::descriptor_table_nugget_2fprotobuf_2foptions_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_nugget_2fapp_2favb_2favb_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_nugget_2fapp_2favb_2favb_2eproto = {
-  false, false, 3303, descriptor_table_protodef_nugget_2fapp_2favb_2favb_2eproto, "nugget/app/avb/avb.proto", 
+  false, false, 3357, descriptor_table_protodef_nugget_2fapp_2favb_2favb_2eproto, "nugget/app/avb/avb.proto", 
   &descriptor_table_nugget_2fapp_2favb_2favb_2eproto_once, descriptor_table_nugget_2fapp_2favb_2favb_2eproto_deps, 1, 34,
   schemas, file_default_instances, TableStruct_nugget_2fapp_2favb_2favb_2eproto::offsets,
   file_level_metadata_nugget_2fapp_2favb_2favb_2eproto, file_level_enum_descriptors_nugget_2fapp_2favb_2favb_2eproto, file_level_service_descriptors_nugget_2fapp_2favb_2favb_2eproto,
@@ -910,10 +915,12 @@ GetStateRequest::GetStateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 GetStateRequest::GetStateRequest(const GetStateRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  keysclear_reset_ = from.keysclear_reset_;
   // @@protoc_insertion_point(copy_constructor:nugget.app.avb.GetStateRequest)
 }
 
 void GetStateRequest::SharedCtor() {
+keysclear_reset_ = false;
 }
 
 GetStateRequest::~GetStateRequest() {
@@ -942,6 +949,7 @@ void GetStateRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  keysclear_reset_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -951,6 +959,16 @@ const char* GetStateRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // bool keysclear_reset = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          keysclear_reset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -960,6 +978,8 @@ const char* GetStateRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
             ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -974,6 +994,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:nugget.app.avb.GetStateRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // bool keysclear_reset = 1;
+  if (this->keysclear_reset() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_keysclear_reset(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -990,6 +1016,11 @@ size_t GetStateRequest::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // bool keysclear_reset = 1;
+  if (this->keysclear_reset() != 0) {
+    total_size += 1 + 1;
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -1022,6 +1053,9 @@ void GetStateRequest::MergeFrom(const GetStateRequest& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.keysclear_reset() != 0) {
+    _internal_set_keysclear_reset(from._internal_keysclear_reset());
+  }
 }
 
 void GetStateRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1045,6 +1079,7 @@ bool GetStateRequest::IsInitialized() const {
 void GetStateRequest::InternalSwap(GetStateRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(keysclear_reset_, other->keysclear_reset_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStateRequest::GetMetadata() const {
@@ -1163,6 +1198,13 @@ const char* GetStateResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
+      // bool keysclear_required = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          keysclear_required_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -1221,6 +1263,12 @@ failure:
         5, this->_internal_locks(), target);
   }
 
+  // bool keysclear_required = 6;
+  if (this->keysclear_required() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(6, this->_internal_keysclear_required(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1258,6 +1306,11 @@ size_t GetStateResponse::ByteSizeLong() const {
 
   // bool production = 3;
   if (this->production() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool keysclear_required = 6;
+  if (this->keysclear_required() != 0) {
     total_size += 1 + 1;
   }
 
@@ -1310,6 +1363,9 @@ void GetStateResponse::MergeFrom(const GetStateResponse& from) {
   }
   if (from.production() != 0) {
     _internal_set_production(from._internal_production());
+  }
+  if (from.keysclear_required() != 0) {
+    _internal_set_keysclear_required(from._internal_keysclear_required());
   }
   if (from.number_of_locks() != 0) {
     _internal_set_number_of_locks(from._internal_number_of_locks());

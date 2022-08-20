@@ -37,8 +37,8 @@ enum KeymasterCmdsId {
   ReadTeeBatchCertificate,
   GetHmacSharingParameters,
   ComputeSharedHmac,
-  DTupHandshake,
-  DTupFetchInputEvent,
+  HandshakeDTup,
+  FetchDTupInputEvent,
   SetSystemVersionInfo,
   GetBootInfo,
   ProvisionPresharedSecret,
@@ -54,6 +54,7 @@ enum KeymasterCmdsId {
   VigoStartChannel,
   VigoStoreSecret,
   VigoReleaseSecret,
+  GetPerFactoryResetValue,
 };
 
 enum AVBCmdsId {
@@ -77,6 +78,7 @@ enum AVBCmdsId {
 
 enum IdentityCmdsId {
   WICinitialize,
+  WICinitializeForUpdate,
   WICcreateCredentialKey,
   WICstartPersonalization,
   WICaddAccessControlProfile,
@@ -96,7 +98,8 @@ enum IdentityCmdsId {
   ICstartRetrieveEntryValue,
   ICretrieveEntryValue,
   ICfinishRetrieval,
-  ICdeleteCredential
+  ICdeleteCredential,
+  ICproveOwnership
 };
 
 class NosCmd {
@@ -282,12 +285,12 @@ inline std::map<int, NosCmd> keymasterCmds = {
      NosCmd(KeymasterCmdsId::ComputeSharedHmac, string("ComputeSharedHmac"),
             new ::nugget::app::keymaster::ComputeSharedHmacRequest(),
             new ::nugget::app::keymaster::ComputeSharedHmacResponse())},
-    {KeymasterCmdsId::DTupHandshake,
-     NosCmd(KeymasterCmdsId::DTupHandshake, string("DTupHandshake"),
+    {KeymasterCmdsId::HandshakeDTup,
+     NosCmd(KeymasterCmdsId::HandshakeDTup, string("HandshakeDTup"),
             new ::nugget::app::keymaster::DTupHandshakeRequest(),
             new ::nugget::app::keymaster::DTupHandshakeResponse())},
-    {KeymasterCmdsId::DTupFetchInputEvent,
-     NosCmd(KeymasterCmdsId::DTupFetchInputEvent, string("DTupFetchInputEvent"),
+    {KeymasterCmdsId::FetchDTupInputEvent,
+     NosCmd(KeymasterCmdsId::FetchDTupInputEvent, string("FetchDTupInputEvent"),
             new ::nugget::app::keymaster::DTupFetchInputEventRequest(),
             new ::nugget::app::keymaster::DTupFetchInputEventResponse())},
     {KeymasterCmdsId::SetSystemVersionInfo,
@@ -355,6 +358,10 @@ inline std::map<int, NosCmd> keymasterCmds = {
      NosCmd(KeymasterCmdsId::VigoReleaseSecret, string("VigoReleaseSecret"),
             new ::nugget::app::keymaster::VigoReleaseSecretRequest(),
             new ::nugget::app::keymaster::VigoReleaseSecretResponse())},
+    {KeymasterCmdsId::GetPerFactoryResetValue,
+     NosCmd(KeymasterCmdsId::GetPerFactoryResetValue, string("GetPerFactoryResetValue"),
+            new ::nugget::app::keymaster::GetPerFactoryResetValueRequest(),
+            new ::nugget::app::keymaster::GetPerFactoryResetValueResponse())},
 };
 
 /* Weaver commands declaration */
@@ -380,6 +387,10 @@ inline std::map<int, NosCmd> identityCmds = {
      NosCmd(IdentityCmdsId::WICinitialize, string("WICinitialize"),
             new nugget::app::identity::WICinitializeRequest(),
             new nugget::app::identity::WICinitializeResponse())},
+     {IdentityCmdsId::WICinitializeForUpdate,
+     NosCmd(IdentityCmdsId::WICinitializeForUpdate, string("WICinitializeForUpdate"),
+            new nugget::app::identity::WICinitializeForUpdateRequest(),
+            new nugget::app::identity::WICinitializeForUpdateResponse())},
     {IdentityCmdsId::WICcreateCredentialKey,
      NosCmd(IdentityCmdsId::WICcreateCredentialKey,
             string("WICcreateCredentialKey"),
@@ -472,7 +483,11 @@ inline std::map<int, NosCmd> identityCmds = {
     {IdentityCmdsId::ICdeleteCredential,
      NosCmd(IdentityCmdsId::ICdeleteCredential, string("ICdeleteCredential"),
             new nugget::app::identity::ICdeleteCredentialRequest(),
-            new nugget::app::identity::ICdeleteCredentialResponse())}};
+            new nugget::app::identity::ICdeleteCredentialResponse())},
+    {IdentityCmdsId::ICproveOwnership,
+     NosCmd(IdentityCmdsId::ICproveOwnership, string("ICproveOwnership"),
+            new nugget::app::identity::ICproveOwnershipRequest(),
+            new nugget::app::identity::ICproveOwnershipResponse())}};
 
 /* Global declaration */
 

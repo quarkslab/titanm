@@ -27,10 +27,10 @@
     __android_log_print(ANDROID_##priority, tag, fmt)
 #endif
 
-#define ALOGV(...)   ((void)0)
-#define ALOGD(...)   ((void)0)
-#define ALOGI(...)   ((void)0)
-#define ALOGE(...)   ((void)0)
+// #define ALOGV(...)   ((void)0)
+// #define ALOGD(...)   ((void)0)
+// #define ALOGI(...)   ((void)0)
+// #define ALOGE(...)   ((void)0)
 
 #ifndef ALOGV
 #if LOG_NDEBUG

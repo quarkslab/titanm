@@ -33,4 +33,8 @@ uint32_t generate_dump_blob();
 int callNosCmd(const char* body, const nostypes::NosApp* app,
                const nostypes::NosCmd* cmd);
 
+uint32_t leak_kb(::nugget::app::keymaster::KeyBlob* keyblob,
+                 ::nugget::app::keymaster::KeyParameters* params,
+                 int64_t keysize);
+
 #endif
