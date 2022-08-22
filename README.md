@@ -7,6 +7,7 @@ We presented our results at [Black Hat EU 21](https://www.blackhat.com/eu-21/bri
 * [`nugget_toolkit`](./nugget_toolkit): the set of tools to trace messages and communicate with the chip (including an exploit for a known vulnerability and a fuzzer)
 * [`bin2rec`](./bin2rec): a set of scripts used to convert firmware files into rec files that can be used with the SPI rescue feature
 * [`BHEU_2021`](./BHEU_2021): the materials of our presentation at BlackHat Europe 2021 (the slides and the white paper)
+* [`BHUSA_2022`](./BHUSA_2022): the materials of our presentation at BlackHat USA 2022
 
 ---
 **NOTE**
